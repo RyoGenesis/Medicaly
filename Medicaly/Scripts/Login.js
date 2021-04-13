@@ -1,24 +1,6 @@
 ﻿function login() {
     console.log($("#Username").val());
 }
-$(document).ready(function () {
-    $('#login').validate({
-        rules: {
-            Email: {
-                required: true,
-            },
-            Password: {
-                required: true,
-                minlength: 6
-            }
-        },
-        messages: {
-            Password: {
-                minlength: "password should be at least 6 characters"
-            }
-        }
-    });
-});
 
 function LoginPost(formData) {
     var ajaxConfig = {

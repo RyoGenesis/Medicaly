@@ -35,13 +35,13 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-form-label" for="NoHandphone">No Handphone</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control mt-2" id="NoHandphone" name="NoHandphone" placeholder="No Handphones" required>
+                            <input type="text" class="form-control mt-2" id="NoHandphone" name="NoHandphone" maxlength="10" pattern="[0-9]{10}" placeholder="No Handphones" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-form-label" for="Password">Password</label>
                         <div class="col-sm-12">
-                            <input type="password" class="form-control mt-2" id="Password" name="Password" placeholder="Password" required>
+                            <input type="password" class="form-control mt-2" id="Password" name="Password" maxlength="8" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -60,9 +60,6 @@
 </section>
 
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-
     <script src="~/Scripts/Register.js"></script>
 }
 
