@@ -24,7 +24,7 @@
                     <div class="form-group row">
                         @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "col-sm-12 col-form-label", })
                         <div class="col-sm-12">
-                            @Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control mt-2", @id = "UserPassword", @placeholder = "Password" })
+                            @Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control mt-2", @id = "Password", @placeholder = "Password" })
                         </div>
                     </div>
                     <div class="text-right">
@@ -48,16 +48,16 @@
         $(document).ready(function () {
             $('#login').validate({
                 rules: {
-                    Username: {
+                    Email: {
                         required: true,
                     },
-                    UserPassword: {
+                    Password: {
                         required: true,
                         minlength: 6
                     }
                 },
                 messages: {
-                    UserPassword: {
+                    Password: {
                         minlength: "password should be at least 6 characters"
                     }
                 }
