@@ -5,5 +5,17 @@
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none!important;
+}
+
+.navbar {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }

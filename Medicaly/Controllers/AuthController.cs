@@ -19,25 +19,23 @@ namespace Medicaly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(Customer customer)
+        public JsonResult Post(Customer customer)
         {
-            string email = customer.Email;
-            string password = customer.Password;
-
-            Customer csr = CustomerRepository.getCustomerByEmailAndPassword(email, password);
-
-            if (csr != null)
+            if (customer != null)
             {
-                Session["CustomerID"] = csr.Id;
-                Session["Nama"] = csr.Nama;
-                Session["Email"] = csr.Email;
-                Session["FotoProfile"] = csr.FotoProfile;
-                Session["UserType"] = "Customer";
+                string email = customer.Email;
+                string password = customer.Password;
 
-                return RedirectToAction("Index", "Home");
+                Customer csr = CustomerRepository.getCustomerByEmailAndPassword(email, password);
+
+                if (csr != null)
+                {
+                    createSession(csr);
+                    return Json(new { success = true, message = "Login Successfully", JsonRequestBehavior.AllowGet });
+                }
             }
 
-            return base.Content("<div>Username atau Password salah</div>", "text/html");
+            return Json(new { success = false, message = "Cannot Login", JsonRequestBehavior.AllowGet });
         }
 
         public ActionResult Register()
@@ -58,17 +56,13 @@ namespace Medicaly.Controllers
 
                 if (Repositories.CustomerRepository.addCustomer(customer))
                 {
-                    Session["CustomerID"] = customer.Id;
-                    Session["Nama"] = customer.Nama;
-                    Session["Email"] = customer.Email;
-                    Session["FotoProfile"] = customer.FotoProfile;
-                    Session["UserType"] = "Customer";
-                    return Json(new { success = true, message = "Saved Successfully", JsonRequestBehavior.AllowGet });
+                    createSession(customer);
+                    return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
                 
             }
 
-            return Json(new { success = false, message = "Cannot Successfully", JsonRequestBehavior.AllowGet });
+            return Json(new { success = false, message = "Cannot Register", JsonRequestBehavior.AllowGet });
             
         }
 
@@ -77,6 +71,15 @@ namespace Medicaly.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "Auth");
+        }
+
+        public void createSession(Customer customer)
+        {
+            Session["CustomerID"] = customer.Id;
+            Session["Nama"] = customer.Nama;
+            Session["Email"] = customer.Email;
+            Session["FotoProfile"] = customer.FotoProfile;
+            Session["UserType"] = "Customer";
         }
     }
 }

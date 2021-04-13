@@ -176,6 +176,7 @@
       <LastGenOutput>MedicalyModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
