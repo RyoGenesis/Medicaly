@@ -11,7 +11,8 @@ namespace Medicaly.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Customer
     {
         public int Id { get; set; }
@@ -21,5 +22,7 @@ namespace Medicaly.Models
         public string NoHandphone { get; set; }
         public string Password { get; set; }
         public string FotoProfile { get; set; }
+
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }

@@ -176,6 +176,7 @@
       <LastGenOutput>MedicalyModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\Register.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -192,7 +193,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Pharmacy\Home.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AppFile\Images\Customers\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -207,6 +210,7 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -56,23 +56,23 @@
                         if (Session["Nama"] == null)
                         {
                             <button class="btn btn-outline-primary " type="submit"><a href="/Auth/Login">Login</a></button>
-                            <button class="btn btn-outline-primary " type="submit"><a href="">Register</a></button>
+                            <button class="btn btn-outline-primary " type="submit"><a href="/Auth/Register">Register</a></button>
                         }
                         else
                         {
-                        <div class="dropdown">
-                            <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <img src="" class="avatar" alt="Avatar">
-                                @Session["Nama"]
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
-                                <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                            </ul> 
-                        </div>
+                            <div class="dropdown">
+                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <img src="" class="avatar" alt="Avatar">
+                                    @Session["Nama"]
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
+                                    <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                </ul>
+                            </div>
                         }
                     }
                 </span>
@@ -80,13 +80,18 @@
         </div>
     </nav>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
+    <div id="App">
+        <div class="container body-content" style="margin-top: 40px;">
+            @RenderBody()
+        </div>
+    </div>
+
+    <section id="footer">
+        <footer class="container body-content" style="margin-top: 10vw;">
+            <hr />
             <p>&copy; @DateTime.Now.Year - Medicaly ASP.NET Application</p>
         </footer>
-    </div>
+    </section>
 
     @RenderSection("scripts", required: false)
 

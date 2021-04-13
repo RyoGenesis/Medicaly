@@ -16,5 +16,26 @@ namespace Medicaly.Repositories
                     where x.Email.Equals(email) && x.Password.Equals(password)
                     select x).FirstOrDefault();
         }
+
+        public static List<Customer> getAllCustomer()
+        {
+            return (from x in db.Customers
+                    select x).ToList();
+        }
+
+        public static bool addCustomer(Customer customer)
+        {
+            try
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }
