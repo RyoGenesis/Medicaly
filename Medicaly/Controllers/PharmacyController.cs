@@ -9,7 +9,7 @@ namespace Medicaly.Controllers
     public class PharmacyController : Controller
     {
         // GET: Pharmacy
-        public ActionResult Index()
+        public ActionResult Dashboard()
         {
             return View();
         }

@@ -48,6 +48,11 @@ namespace Medicaly.Controllers
         {
             if (customer != null && customer.ImageUpload != null)
             {
+                if (!validateEmail(customer.Email))
+                {
+                    return Json(new { success = false, message = "Email Already Registered", JsonRequestBehavior.AllowGet });
+                }
+
                 string fileName = Path.GetFileNameWithoutExtension(customer.ImageUpload.FileName);
                 string extension = Path.GetExtension(customer.ImageUpload.FileName);
                 fileName = "csr_" + customer.Nama + "_" + fileName + extension;
@@ -80,6 +85,21 @@ namespace Medicaly.Controllers
             Session["Email"] = customer.Email;
             Session["FotoProfile"] = customer.FotoProfile;
             Session["UserType"] = "Customer";
+        }
+
+        private bool validateEmail(string email)
+        {
+            List<Customer> customersList = Repositories.CustomerRepository.getAllCustomer();
+
+            foreach (var item in customersList)
+            {
+                if (email == item.Email)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

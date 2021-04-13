@@ -55,7 +55,12 @@ function AjaxPost(formData) {
                 alert("Success Register Customer");
                 window.location.href = "/Home";
             } else {
-                alert("Cannot Register Customer");
+                console.log(result.message);
+                if (result.message == "Email Already Registered") {
+                    alert("Email Already Registered");
+                } else {
+                    alert("Cannot Register Customer");
+                }
             }        
         },
         error: function (err) {

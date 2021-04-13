@@ -192,7 +192,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Pharmacy\Home.cshtml" />
+    <Content Include="Views\Pharmacy\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppFile\Images\Customers\" />
