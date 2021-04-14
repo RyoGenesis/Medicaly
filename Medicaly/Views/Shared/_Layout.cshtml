@@ -60,7 +60,7 @@
                             <button class="btn btn-outline-primary " type="submit"><a href="/Auth/Login">Login</a></button>
                             <button class="btn btn-outline-primary " type="submit"><a href="/Auth/Register">Register</a></button>
                         }
-                        else
+                        else if (Session["UserType"].ToString() == "Customer")
                         {
                             <div class="dropdown">
                                 <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
@@ -71,6 +71,23 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
+                                    <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        }
+                        else if (Session["UserType"].ToString() == "Pharmacy")
+                        {
+                            <div class="dropdown">
+                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <img src="~/AppFile/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                    @Session["Nama"]
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Products</a></li>
+                                    <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Transactions</a></li>
                                     <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
                                     <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
                                 </ul>

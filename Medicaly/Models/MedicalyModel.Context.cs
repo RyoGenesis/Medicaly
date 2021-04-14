@@ -26,5 +26,6 @@ namespace Medicaly.Models
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Pharmacy> Pharmacies { get; set; }
     }
 }
