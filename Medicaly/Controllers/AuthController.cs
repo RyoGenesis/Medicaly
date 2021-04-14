@@ -23,9 +23,9 @@ namespace Medicaly.Controllers
         {
             if (customer != null)
             {
-                if (AuthService.Login(customer) != null)
+                if (CustomerService.Login(customer) != null)
                 {
-                    createSession(AuthService.Login(customer));
+                    createSession(CustomerService.Login(customer));
                     return Json(new { success = true, message = "Login Successfully", JsonRequestBehavior.AllowGet });
                 }
                 return Json(new { success = false, message = "Wrong email and password", JsonRequestBehavior.AllowGet });
@@ -45,10 +45,10 @@ namespace Medicaly.Controllers
             if (customer != null && customer.ImageUpload != null)
             {
                 string path = Server.MapPath("~/AppFile/Images/Customers");
-                Customer csr = AuthService.AddCustomer(customer, path);
+                Customer csr = CustomerService.AddCustomer(customer, path);
                 if (csr != null)
                 {
-                    createSession(AuthService.Login(csr));
+                    createSession(CustomerService.Login(csr));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
 

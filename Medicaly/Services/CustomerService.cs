@@ -9,7 +9,7 @@ using System.Web;
 
 namespace Medicaly.Services
 {
-    public static class AuthService
+    public static class CustomerService
     {
         public static Customer Login(Customer customer)
         {
