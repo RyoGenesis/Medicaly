@@ -11,6 +11,9 @@ function LoginPost(formData) {
             if (result.success) {
                 window.location.href = "/Home";
             } else {
+                if (result.message == "Wrong email and password") {
+                    alert("Wrong email and password");
+                }
                 alert("Login Failed");
             }
         },

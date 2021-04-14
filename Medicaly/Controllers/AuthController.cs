@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Medicaly.Models;
-using Medicaly.Repositories;
+using Medicaly.Services;
 
 namespace Medicaly.Controllers
 {
@@ -23,16 +23,12 @@ namespace Medicaly.Controllers
         {
             if (customer != null)
             {
-                string email = customer.Email;
-                string password = customer.Password;
-
-                Customer csr = CustomerRepository.getCustomerByEmailAndPassword(email, password);
-
-                if (csr != null)
+                if (AuthService.Login(customer) != null)
                 {
-                    createSession(csr);
+                    createSession(AuthService.Login(customer));
                     return Json(new { success = true, message = "Login Successfully", JsonRequestBehavior.AllowGet });
                 }
+                return Json(new { success = false, message = "Wrong email and password", JsonRequestBehavior.AllowGet });
             }
 
             return Json(new { success = false, message = "Cannot Login", JsonRequestBehavior.AllowGet });
@@ -48,23 +44,15 @@ namespace Medicaly.Controllers
         {
             if (customer != null && customer.ImageUpload != null)
             {
-                if (!validateEmail(customer.Email))
+                string path = Server.MapPath("~/AppFile/Images/Customers");
+                Customer csr = AuthService.AddCustomer(customer, path);
+                if (csr != null)
                 {
-                    return Json(new { success = false, message = "Email Already Registered", JsonRequestBehavior.AllowGet });
-                }
-
-                string fileName = Path.GetFileNameWithoutExtension(customer.ImageUpload.FileName);
-                string extension = Path.GetExtension(customer.ImageUpload.FileName);
-                fileName = "csr_" + customer.Nama + "_" + fileName + extension;
-                customer.FotoProfile = fileName;
-                customer.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/Customers"), fileName));
-
-                if (Repositories.CustomerRepository.addCustomer(customer))
-                {
-                    createSession(customer);
+                    createSession(AuthService.Login(csr));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
-                
+
+                return Json(new { success = false, message = "Email Already Registered", JsonRequestBehavior.AllowGet });
             }
 
             return Json(new { success = false, message = "Cannot Register", JsonRequestBehavior.AllowGet });
@@ -85,21 +73,6 @@ namespace Medicaly.Controllers
             Session["Email"] = customer.Email;
             Session["FotoProfile"] = customer.FotoProfile;
             Session["UserType"] = "Customer";
-        }
-
-        private bool validateEmail(string email)
-        {
-            List<Customer> customersList = Repositories.CustomerRepository.getAllCustomer();
-
-            foreach (var item in customersList)
-            {
-                if (email == item.Email)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

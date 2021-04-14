@@ -37,5 +37,12 @@ namespace Medicaly.Repositories
                 throw e;
             }
         }
+
+        public static Customer getCustomerById(int id)
+        {
+            return (from x in db.Customers
+                    where x.Id == id
+                    select x).FirstOrDefault();
+        }
     }
 }

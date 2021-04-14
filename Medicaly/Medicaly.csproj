@@ -155,6 +155,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\MedicalySingletonDB.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\CustomerProfileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MedicalyDB.mdf" />
