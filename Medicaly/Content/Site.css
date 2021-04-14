@@ -19,3 +19,7 @@ a {
     height: 40px;
     margin-right: 10px;
 }
+
+#footer {
+    min-height: 150px;
+}
