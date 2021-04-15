@@ -31,9 +31,41 @@
           <Property Name="Password" Type="varchar" MaxLength="10" />
           <Property Name="FotoPharmacy" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Deskripsi" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Price" Type="bigint" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="10" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PharmacyId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Products__Pharma__5CD6CB2B">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="PharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedicalyModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Products__Pharma__5CD6CB2B" Association="Self.FK__Products__Pharma__5CD6CB2B">
+            <End Role="Pharmacy" EntitySet="Pharmacy" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -65,10 +97,44 @@
           <Property Name="EmailPIC" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FotoPharmacy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Pharmacy" ToRole="Products" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deskripsi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int64" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PharmacyId" Type="Int32" />
+          <NavigationProperty Name="Pharmacy" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Products" ToRole="Pharmacy" />
+        </EntityType>
+        <Association Name="FK__Products__Pharma__5CD6CB2B">
+          <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="PharmacyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedicalyDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Pharmacies" EntityType="Self.Pharmacy" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK__Products__Pharma__5CD6CB2B" Association="Self.FK__Products__Pharma__5CD6CB2B">
+            <End Role="Pharmacy" EntitySet="Pharmacies" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -101,6 +167,20 @@
                 <ScalarProperty Name="EmailPIC" ColumnName="EmailPIC" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FotoPharmacy" ColumnName="FotoPharmacy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="MedicalyModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Deskripsi" ColumnName="Deskripsi" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PharmacyId" ColumnName="PharmacyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
