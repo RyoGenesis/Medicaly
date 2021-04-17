@@ -43,6 +43,7 @@
           <Property Name="Category" Type="varchar" MaxLength="10" />
           <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="PharmacyId" Type="int" />
+          <Property Name="ProductFoto" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK__Products__Pharma__5CD6CB2B">
           <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1">
@@ -111,6 +112,7 @@
           <Property Name="Category" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PharmacyId" Type="Int32" />
+          <Property Name="ProductFoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Pharmacy" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Products" ToRole="Pharmacy" />
         </EntityType>
         <Association Name="FK__Products__Pharma__5CD6CB2B">
@@ -181,6 +183,7 @@
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="PharmacyId" ColumnName="PharmacyId" />
+                <ScalarProperty Name="ProductFoto" ColumnName="ProductFoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

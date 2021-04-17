@@ -11,7 +11,8 @@ namespace Medicaly.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Product
     {
         public int Id { get; set; }
@@ -22,7 +23,8 @@ namespace Medicaly.Models
         public string Category { get; set; }
         public string Type { get; set; }
         public Nullable<int> PharmacyId { get; set; }
-    
+        public string ProductFoto { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
         public virtual Pharmacy Pharmacy { get; set; }
     }
 }

@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,8 +163,11 @@
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\MedicalySingletonDB.cs" />
     <Compile Include="Repositories\PharmacyRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\PharmacyService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MedicalyDB.mdf" />
@@ -207,6 +211,7 @@
   <ItemGroup>
     <Folder Include="AppFile\Images\Customers\" />
     <Folder Include="AppFile\Images\Pharmacies\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -225,6 +230,7 @@
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Pharmacy\Auth\Login.cshtml" />
     <Content Include="Views\Pharmacy\Auth\Register.cshtml" />
+    <Content Include="Views\Pharmacy\Products\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
