@@ -1,5 +1,7 @@
 ﻿using Medicaly.Models;
+using Medicaly.Repositories;
 using Medicaly.Services;
+using Medicaly.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,23 @@ namespace Medicaly.Controllers
     public class PharmacyController : Controller
     {
         // GET: Pharmacy
-        public ActionResult Dashboard()
+        public ActionResult Index()
         {
             return View();
+        }
+
+        // GET: Product
+        public ActionResult Product()
+        {
+            if (Session["Nama"] != null && Session["UserType"].ToString() == "Pharmacy")
+            {
+                ProductViewModel productView = ProductService.getProductView(int.Parse(Session["PharmacyId"].ToString()));
+
+                return View("~/Views/Pharmacy/Products/Dashboard.cshtml", productView);
+            }
+
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Login()
@@ -63,6 +79,9 @@ namespace Medicaly.Controllers
             return Json(new { success = false, message = "Cannot Register", JsonRequestBehavior.AllowGet });
 
         }
+
+
+
 
         public void createSession(Pharmacy pharmacy)
         {

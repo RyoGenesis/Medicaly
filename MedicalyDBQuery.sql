@@ -27,4 +27,16 @@ CREATE TABLE Pharmacy
 
 
 INSERT INTO Pharmacies VALUES
-('Apotek 1', 'apotek1@gmail.com', 'jl anak karyawan', '8131048912', 'Andi', 'andi@gmail.com', 'andi123', )
+('Apotek 1', 'apotek1@gmail.com', 'jl anak karyawan', '8131048912', 'Andi', 'andi@gmail.com', 'andi12', )
+
+CREATE TABLE Products
+(
+	Id INT IDENTITY(1, 1) PRIMARY KEY,
+	Nama VARCHAR(32) NOT NULL,
+	Deskripsi VARCHAR(255) NOT NULL,
+	Stock INT NOT NULL,
+	Price BIGINT NOT NULL,
+	Category VARCHAR(10),
+	[Type] VARCHAR(10) NOT NULL,
+	PharmacyId INT FOREIGN KEY REFERENCES 	Pharmacy(Id) ON DELETE CASCADE
+)
