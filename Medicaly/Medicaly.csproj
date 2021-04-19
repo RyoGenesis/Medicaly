@@ -191,6 +191,7 @@
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\PharmacyAuth.js" />
+    <Content Include="Scripts\Product.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
@@ -211,7 +212,7 @@
   <ItemGroup>
     <Folder Include="AppFile\Images\Customers\" />
     <Folder Include="AppFile\Images\Pharmacies\" />
-    <Folder Include="Views\Product\" />
+    <Folder Include="AppFile\Images\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -12,7 +12,7 @@
 
         <div class="col-lg-5 row text-end">
             <div class="col-lg-8">
-                <input type="text" id="mySearch" class="form-control" onkeyup="mySearch()" placeholder="Filter product">
+                <input type="text" id="mySearch" class="form-control" placeholder="Filter product">
             </div>
             <div class="col-lg-4 ml-0">
                 <button type="button" class="btn btn-primary pr-4 pl-4" data-bs-toggle="modal" data-bs-target="#add-product">
@@ -27,52 +27,55 @@
     <div class="table-responsive mt-4">
         @if (Model.product.Count() > 0)
         {
-        <table id="ProductList" class="table display">
-            <thead>
-                <tr style="border-style : hidden!important;">
-                    <th></th>
-                    <th class="pr-5">Nama</th>
-                    <th class="pr-5 pl-5">Stock</th>
-                    <th class="pr-5 pl-5">Harga Barang</th>
-                    <th class="pr-5 pl-5">Kategori</th>
-                    <th class="pr-5 pl-5">Tipe</th>
-                    <th class="pr-5 pl-5"></th>
-                </tr>
-            </thead>
-            <tbody id="List">
-                @foreach (var item in Model.product)
-                {
-                <tr class="tr-header">
+            <table id="ProductList" class="table display">
+                <thead>
+                    <tr style="border-style : hidden!important;">
+                        <th></th>
+                        <th class="pr-5">Nama</th>
+                        <th class="pr-5 pl-5">Stock</th>
+                        <th class="pr-5 pl-5">Harga Barang</th>
+                        <th class="pr-5 pl-5">Kategori</th>
+                        <th class="pr-5 pl-5">Tipe</th>
+                        <th class="pr-5 pl-5"></th>
+                    </tr>
+                </thead>
+                <tbody id="List">
+                    @foreach (var item in Model.product)
+                    {
+                        <tr class="tr-header">
 
-                    <td style="padding-right: 0px;" class="pt-3">
-                        <img src="~/AppFile/Images/@item.ProductFoto" class="rounded-circle img-size" alt="No Images">
-                    </td>
-                    <td class="list pr-5 pt-3 text-left">
-                        @Html.DisplayFor(modelItem => item.Nama)
-                    </td>
-                    <td class="list pr-5 pl-5 pt-3">
-                        @Html.DisplayFor(modelItem => item.Stock)
-                    </td>
-                    <td class="list pr-5 pl-5 pt-3">
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td class="list pr-5 pl-5 pt-3">
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td class="list pr-5 pl-5 pt-3">
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td class=" text-center pr-5 pl-5 pt-3">
+                            <td style="padding-right: 0px;" class="pt-3">
+                                <img src="~/AppFile/Images/Products/@item.ProductFoto" class="img-thumbnail" width="100px" alt="No Images">
+                            </td>
+                            <td class="list pr-5 pt-4 text-left productName">
+                                @Html.DisplayFor(modelItem => item.Nama)
+                            </td>
+                            <td class="list pr-5 pl-5 pt-4">
+                                @Html.DisplayFor(modelItem => item.Stock)
+                            </td>
+                            <td class="list pr-5 pl-5 pt-4">
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td class="list pr-5 pl-5 pt-4">
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td class="list pr-5 pl-5 pt-4 productType">
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td class=" text-center pr-5 pl-5 pt-4 pe-3">
+                                <button type="button" class="btn btn-outline-dark editProduct" data-bs-toggle="modal" data-bs-id="@item.Id"
+                                   data-bs-target="#exampleEdit">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-                        <a href="#exampleEdit" data-bs-toggle="modal" data-id="@item.Id"
-                           data-bs-target="#exampleEdit" class="editProduct"><i class="fas fa-pen"></i></a>
-                        <a href="" data-id="@item.Id"><i class="fas fa-trash ps-3"></i></a>
-                    </td>
-                </tr>
-                }
-            </tbody>
-
-        </table>
+            </table>
         }
         else
         {
@@ -132,56 +135,62 @@
 
 <section id="modalAddProduct">
     <div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-labelledby="add-securityLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="container mb-2">
                         <h3 class="text-primary">Add</h3>
-                        <h6>New User</h6>
-                        <form id="formAddUser" enctype="multipart/form-data" method="post" onsubmit="return AjaxPost(this)">
+                        <h6>New Product</h6>
+                        <form id="formAddProduct" enctype="multipart/form-data" method="post" onsubmit="return AddProductPost(this)">
                             <div class="form-group row">
-                                <label class="col-sm-12 col-form-label" for="Username">Username</label>
+                                <label class="col-sm-12 col-form-label" for="Nama">Nama Produk</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control mt-2" id="Username" name="Username" required>
+                                    <input type="text" class="form-control mt-2" id="Nama" name="Nama" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-12 col-form-label" for="UserPassword">Password</label>
+                                <label class="col-sm-12 col-form-label" for="Deskripsi">Deskripsi Produk</label>
                                 <div class="col-sm-12">
-                                    <input type="password" class="form-control mt-2" id="UserPassword" name="UserPassword" required>
+                                    <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" placeholder="Deskripsi Produk" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-12 col-form-label" for="UserRoles">Roles</label>
+                                <label class="col-sm-12 col-form-label" for="Stock">Stock</label>
                                 <div class="col-sm-12">
-                                    <select id="UserRoles" name="UserRoles" class="form-control mt-2">
+                                    <input type="number" class="form-control mt-2" id="Stock" name="Stock" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label" for="Price">Price</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control mt-2" id="Price" name="Price" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label" for="Category">Category Produk</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Category" name="Category" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label" for="Type">Tipe Produk</label>
+                                <div class="col-sm-12">
+                                    <select id="Type" name="Type" class="form-control mt-2">
                                         <option selected>Choose...</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="User">User</option>
+                                        <option value="Obat">Obat - Obatan</option>
+                                        <option value="Alat">Alat Kesehatan</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-12 col-form-label" for="UserPhoto">Photos</label>
+                                <label class="col-sm-12 col-form-label" for="ProductFoto">Photos</label>
                                 <div class="col-sm-12 mt-2">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input fileUpload-2" id="ImageUpload" name="ImageUpload">
-                                        <label class="custom-file-label" for="ImageUpload">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-12 col-form-label" for="UserStatus">Status</label>
-                                <div class="col-sm-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="edit-checkbox form-check-input" id="UserStatus" name="UserStatus" value="Active">
-                                        <label class="" for="UserStatus">Active</label>
-                                    </div>
+                                    <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
                                 </div>
                             </div>
                             <div class="text-left mt-3">
                                 <button type="submit" class="btn btn-primary">Save and Close</button>
-                                <button type="button" class="btn btn-secondary pr-5 pl-5 closeModal" data-dismiss="modal">Cancel</button>
+                                <button type="button"  class="btn btn-secondary pr-5 pl-5 closeModal" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -190,3 +199,7 @@
         </div>
     </div>
 </section>
+
+@section scripts {
+    <script src="~/Scripts/Product.js"></script>
+}

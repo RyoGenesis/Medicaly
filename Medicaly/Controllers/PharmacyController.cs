@@ -32,6 +32,45 @@ namespace Medicaly.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // Add Product
+        [HttpPost]
+        public JsonResult AddProduct(Product product)
+        {
+            if (product != null && product.ImageUpload != null)
+            {
+                string path = Server.MapPath("~/AppFile/Images/Products");
+                int pharmacyId = int.Parse(Session["PharmacyId"].ToString());
+
+                if (ProductService.addProduct(pharmacyId, Session["Nama"].ToString(), product, path))
+                {
+                    return Json(new { success = true, message = "Added Successfully", JsonRequestBehavior.AllowGet });
+                }
+
+                return Json(new { success = false, message = "Failed Add Product", JsonRequestBehavior.AllowGet });
+            }
+
+            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+
+        }
+
+        // Delete Product
+        [HttpPost]
+        public JsonResult DeleteProduct(int id)
+        {
+            if (id.ToString() != null)
+            {
+                if (ProductService.deleteProduct(id))
+                {
+                    return Json(new { success = true, message = "Deleted Successfully", JsonRequestBehavior.AllowGet });
+                }
+
+                return Json(new { success = false, message = "Failed Add Product", JsonRequestBehavior.AllowGet });
+            }
+
+            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+
+        }
+
         public ActionResult Login()
         {
             return View("~/Views/Pharmacy/Auth/Login.cshtml");

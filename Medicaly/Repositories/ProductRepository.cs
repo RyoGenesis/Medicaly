@@ -16,5 +16,50 @@ namespace Medicaly.Repositories
                     where x.PharmacyId == pharmacyId
                     select x).ToList();
         }
+
+        public static bool addProduct(Product product)
+        {
+            try
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public static Product GetProductById(int id)
+        {
+            return (
+                    from x in db.Products
+                    where x.Id == id
+                    select x
+                ).FirstOrDefault();
+        }
+
+
+        public static bool deleteProduct(int productId)
+        {
+            try
+            {
+                Product product = GetProductById(productId);
+                if (product != null)
+                {
+                    db.Products.Remove(product);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }
