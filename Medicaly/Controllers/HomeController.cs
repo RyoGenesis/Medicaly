@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Medicaly.Services;
+using Medicaly.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,8 @@ namespace Medicaly.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            ProductViewModel productView = ProductService.getAllProductView();
+            return View(productView);
         }
 
         public ActionResult About()

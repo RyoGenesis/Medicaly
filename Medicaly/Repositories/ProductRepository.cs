@@ -17,6 +17,12 @@ namespace Medicaly.Repositories
                     select x).ToList();
         }
 
+        public static List<Product> getAllProduct()
+        {
+            return (from x in db.Products
+                    select x).ToList();
+        }
+
         public static bool addProduct(Product product)
         {
             try

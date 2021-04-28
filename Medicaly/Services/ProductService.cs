@@ -11,6 +11,16 @@ namespace Medicaly.Services
 {
     public static class ProductService
     {
+        public static ProductViewModel getAllProductView()
+        {
+            List<Product> products = ProductRepository.getAllProduct();
+            ProductViewModel productView = new ProductViewModel();
+
+            productView.product = products;
+
+            return productView;
+        }
+
         public static ProductViewModel getProductView(int id)
         {
             List<Product> products = ProductRepository.getProductByPharmacy(id);
