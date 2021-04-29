@@ -23,3 +23,11 @@ a {
 #footer {
     min-height: 150px;
 }
+
+.filterDiv {
+    display: none;
+}
+
+.show {
+    display: block;
+}

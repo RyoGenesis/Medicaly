@@ -15,9 +15,14 @@ namespace Medicaly.Controllers
         // GET: Auth
         public ActionResult Login()
         {
+            if (Session["CustomerID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        // Login
         [HttpPost]
         public JsonResult Post(Customer customer)
         {
@@ -36,9 +41,14 @@ namespace Medicaly.Controllers
 
         public ActionResult Register()
         {
+            if (Session["CustomerID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        // Register
         [HttpPost]
         public JsonResult Create(Customer customer)
         {
@@ -59,6 +69,7 @@ namespace Medicaly.Controllers
             
         }
 
+        // Log Out
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

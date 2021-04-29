@@ -15,6 +15,10 @@ namespace Medicaly.Controllers
         // GET: Pharmacy
         public ActionResult Index()
         {
+            if (Session["PharmacyID"] == null)
+            {
+                return RedirectToAction("Login", "Pharmacy");
+            }
             return View();
         }
 
@@ -73,11 +77,19 @@ namespace Medicaly.Controllers
 
         public ActionResult Login()
         {
+            if (Session["PharmacyID"] != null)
+            {
+                return RedirectToAction("Index", "Pharmacy");
+            }
             return View("~/Views/Pharmacy/Auth/Login.cshtml");
         }
 
         public ActionResult Register()
         {
+            if (Session["PharmacyID"] != null)
+            {
+                return RedirectToAction("Index", "Pharmacy");
+            }
             return View("~/Views/Pharmacy/Auth/Register.cshtml");
         }
 

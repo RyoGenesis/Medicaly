@@ -131,7 +131,6 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,7 +206,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Pharmacy\Dashboard.cshtml" />
+    <Content Include="Views\Pharmacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppFile\Images\Customers\" />

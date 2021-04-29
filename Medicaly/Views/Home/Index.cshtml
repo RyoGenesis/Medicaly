@@ -6,21 +6,23 @@
 
 
 <div class="container">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" 
+                    aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-            @{ 
+            @{
                 int i = 0;
                 string active = "active";
                 foreach (var item in Model.product)
                 {
                     <div class="carousel-item @if (i == 0) { @active }">
-                        <img src="~/AppFile/Images/Products/@item.ProductFoto" class="d-block w-100" width="600px" height="400px" alt="...">
-                    </div> 
+                        <img src="~/AppFile/Images/Products/@item.ProductFoto" class="d-block w-100" width="600px" 
+                             height="400px" alt="...">
+                    </div>
 
                     i++;
                     if (i == 3)
@@ -28,15 +30,52 @@
                         break;
                     }
                 }
-             }
+            }
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" 
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" 
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+    <div id="myBtnContainer">
+        <button class="btn btn-outline-primary btnFilter active" onclick="filterSelection('all')"> Show all</button>
+        @foreach (var item in Model.product)
+        {
+            <button class="btn btn-outline-primary btnFilter" onclick="filterSelection('@item.Category')"> 
+                @item.Category
+            </button>
+        }
+    </div>
+
+    <div class="row justify-content-md-center mt-3">
+        @foreach (var item in Model.product)
+        {
+            <div class="filterDiv @item.Category col-3  mt-3">
+                <div class="card" style="width: 18rem;">
+                    <a href="">
+                        <img class="card-img-top" width="300px" height="150px" src="~/AppFile/Images/Products/@item.ProductFoto"
+                             alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <a href=""><h5 class="text-dark card-title">@item.Nama</h5></a>
+                        <p style="color: grey;">@item.Pharmacy.NamaPharmacy</p>
+                        <p class="card-text">Rp. @item.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
 </div>
+
+@section scripts {
+    <script src="~/Scripts/Index.js"></script>
+}
