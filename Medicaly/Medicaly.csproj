@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
+    <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +192,7 @@
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\PharmacyAuth.js" />
     <Content Include="Scripts\Product.js" />
+    <Content Include="Scripts\ProductDetail.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
@@ -205,7 +207,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
     <Content Include="Views\Pharmacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

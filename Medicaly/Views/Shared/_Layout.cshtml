@@ -31,90 +31,91 @@
 <body>
     <div id="App">
         <!-- NavBar -->
-        <section id="Header">
-            @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
-            {
-                <nav class="navbar navbar-expand-sm navbar-light bg-light mb-lg-0 pb-0">
-                    <div class="container">
-                        <div class="collapse navbar-collapse" id="navbarText">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            </ul>
-                            <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0 pe-2">
-                                <a href="/Pharmacy/Login">Masuk Toko</a>
-                            </p>
-                            <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0">
-                                <a href="/Pharmacy/Register">Buka Toko</a>
-                            </p>
-                        </div>
-                    </div>
-                </nav>
-            }
-            <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+        @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
+        {
+            <nav class="navbar navbar-expand-sm navbar-light bg-light mb-lg-0 pb-0">
                 <div class="container">
-                    <a class="navbar-brand" href="/">Medicaly</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-betwee" id="navbarText">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/Home/About">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
                         </ul>
-                        <div class=" me-auto">
-                        </div>
-                        <span class="navbar-text">
-                            @{
-                                if (Session["Nama"] == null)
-                                {
-                                    <button class="btn btn-outline-primary pe-4 ps-4" type="submit"><a href="/Auth/Login">Login</a></button>
-                                    <button class="btn btn-outline-primary pe-3 ps-3" type="submit"><a href="/Auth/Register">Register</a></button>
-                                }
-                                else if (Session["UserType"].ToString() == "Customer")
-                                {
-                                    <div class="dropdown">
-                                        <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                           aria-expanded="false">
-                                            <img src="~/AppFile/Images/Customers/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                            @Session["Nama"]
-                                            <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
-                                            <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                            <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                        </ul>
-                                    </div>
-                                }
-                                else if (Session["UserType"].ToString() == "Pharmacy")
-                                {
-                                    <div class="dropdown">
-                                        <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                           aria-expanded="false">
-                                            <img src="~/AppFile/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                            @Session["Nama"]
-                                            <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li> <a href="/Pharmacy/Product" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Products</a></li>
-                                            <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Transactions</a></li>
-                                            <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                            <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                        </ul>
-                                    </div>
-                                }
-                            }
-                        </span>
-                    </div>
+                        <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0 pe-2">
+                            <a href="/Pharmacy/Login">Masuk Toko</a>
+                        </p>
+                        <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0">
+                            <a href="/Pharmacy/Register">Buka Toko</a>
+                        </p>
                 </div>
             </nav>
-        </section>
+        }
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">Medicaly</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-betwee" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/Home/About">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                    <div class="ml-auto">
+                        <a href="#!" class="nav-link navbar-link-2 waves-effect">
+                            <span class="badge badge-pill red">1</span>
+                            <i class="fas fa-shopping-cart pl-0"></i>
+                        </a>
+                    </div>
+                    <span class="navbar-text">
+                        @{
+                            if (Session["Nama"] == null)
+                            {
+                                <button class="btn btn-outline-primary btn-rounded pe-4 ps-4" type="submit"><a href="/Auth/Login">Login</a></button>
+                                <button class="btn btn-outline-primary pe-3 ps-3" type="submit"><a href="/Auth/Register">Register</a></button>
+                            }
+                            else if (Session["UserType"].ToString() == "Customer")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/AppFile/Images/Customers/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
+                                        <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Session["UserType"].ToString() == "Pharmacy")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/AppFile/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="/Pharmacy/Product" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Products</a></li>
+                                        <li> <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Transactions</a></li>
+                                        <li><a href="" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                    </span>
+                </div>
+            </div>
+        </nav>
+
 
 
         <main>

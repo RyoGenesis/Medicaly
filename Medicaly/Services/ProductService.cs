@@ -1,4 +1,5 @@
-﻿using Medicaly.Models;
+﻿using Medicaly.Factories;
+using Medicaly.Models;
 using Medicaly.Repositories;
 using Medicaly.ViewModels;
 using System;
@@ -29,6 +30,19 @@ namespace Medicaly.Services
             productView.product = products;
 
             return productView;
+        }
+
+        public static Product getProductById(int id)
+        {
+            if (id.ToString() != null)
+            {
+                if (ProductRepository.getProductById(id) != null)
+                {
+                    return ProductRepository.getProductById(id);
+                }
+            }
+
+            return null;
         }
 
         public static bool addProduct(int pharmacyId, string pharmacyName, Product product, string path)

@@ -1,4 +1,5 @@
-﻿using Medicaly.Services;
+﻿using Medicaly.Models;
+using Medicaly.Services;
 using Medicaly.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,20 @@ namespace Medicaly.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Product(int id)
         {
-            ViewBag.Message = "Your contact page.";
+            try
+            {
+                ViewBag.Message = "Your contact page.";
+                Product product = ProductService.getProductById(id);
 
-            return View();
+                return View(product);
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Index", "Home"); ;
+            }
         }
     }
 }

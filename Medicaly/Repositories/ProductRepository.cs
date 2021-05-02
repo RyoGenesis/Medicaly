@@ -38,7 +38,7 @@ namespace Medicaly.Repositories
             }
         }
 
-        public static Product GetProductById(int id)
+        public static Product getProductById(int id)
         {
             return (
                     from x in db.Products
@@ -52,7 +52,7 @@ namespace Medicaly.Repositories
         {
             try
             {
-                Product product = GetProductById(productId);
+                Product product = getProductById(productId);
                 if (product != null)
                 {
                     db.Products.Remove(product);
