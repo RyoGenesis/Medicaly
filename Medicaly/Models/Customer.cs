@@ -15,6 +15,12 @@ namespace Medicaly.Models
 
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
+        }
+    
         public int Id { get; set; }
         public string Nama { get; set; }
         public string Email { get; set; }
@@ -24,5 +30,8 @@ namespace Medicaly.Models
         public string FotoProfile { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

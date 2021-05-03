@@ -45,6 +45,15 @@
           <Property Name="PharmacyId" Type="int" />
           <Property Name="ProductFoto" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
         <Association Name="FK__Products__Pharma__5CD6CB2B">
           <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -59,13 +68,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ShoppingC__Custo__6FE99F9F">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShoppingC__Produ__70DDC3D8">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedicalyModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pharmacy" EntityType="Self.Pharmacy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Products__Pharma__5CD6CB2B" Association="Self.FK__Products__Pharma__5CD6CB2B">
             <End Role="Pharmacy" EntitySet="Pharmacy" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShoppingC__Custo__6FE99F9F" Association="Self.FK__ShoppingC__Custo__6FE99F9F">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShoppingC__Produ__70DDC3D8" Association="Self.FK__ShoppingC__Produ__70DDC3D8">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -84,6 +130,7 @@
           <Property Name="NoHandphone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FotoProfile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Custo__6FE99F9F" FromRole="Customer" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="Pharmacy">
           <Key>
@@ -114,7 +161,33 @@
           <Property Name="PharmacyId" Type="Int32" />
           <Property Name="ProductFoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Pharmacy" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Products" ToRole="Pharmacy" />
+          <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Produ__70DDC3D8" FromRole="Products" ToRole="ShoppingCart" />
         </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__ShoppingC__Custo__6FE99F9F" FromRole="ShoppingCart" ToRole="Customer" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ShoppingC__Produ__70DDC3D8" FromRole="ShoppingCart" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK__ShoppingC__Custo__6FE99F9F">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Products__Pharma__5CD6CB2B">
           <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -129,13 +202,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ShoppingC__Produ__70DDC3D8">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShoppingCart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedicalyDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Pharmacies" EntityType="Self.Pharmacy" />
           <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ShoppingCarts" EntityType="Self.ShoppingCart" />
+          <AssociationSet Name="FK__ShoppingC__Custo__6FE99F9F" Association="Self.FK__ShoppingC__Custo__6FE99F9F">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
+          </AssociationSet>
           <AssociationSet Name="FK__Products__Pharma__5CD6CB2B" Association="Self.FK__Products__Pharma__5CD6CB2B">
             <End Role="Pharmacy" EntitySet="Pharmacies" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShoppingC__Produ__70DDC3D8" Association="Self.FK__ShoppingC__Produ__70DDC3D8">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -184,6 +280,16 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="PharmacyId" ColumnName="PharmacyId" />
                 <ScalarProperty Name="ProductFoto" ColumnName="ProductFoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCarts">
+            <EntityTypeMapping TypeName="MedicalyModel.ShoppingCart">
+              <MappingFragment StoreEntitySet="ShoppingCart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

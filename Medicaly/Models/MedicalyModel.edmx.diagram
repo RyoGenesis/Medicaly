@@ -4,11 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="36d2434550be4548a50d6300079dcb21" Name="Diagram1">
-        <EntityTypeShape EntityType="MedicalyModel.Customer" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Pharmacy" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="2173d44f85464435b2834fe1830b559d" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalyModel.Customer" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalyModel.Pharmacy" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalyModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="MedicalyModel.FK__ShoppingC__Custo__6FE99F9F" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalyModel.FK__Products__Pharma__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalyModel.FK__ShoppingC__Produ__70DDC3D8" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

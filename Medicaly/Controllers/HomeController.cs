@@ -11,33 +11,11 @@ namespace Medicaly.Controllers
 {
     public class HomeController : Controller
     {
+        // GET: Home
         public ActionResult Index()
         {
             ProductViewModel productView = ProductService.getAllProductView();
             return View(productView);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Product(int id)
-        {
-            try
-            {
-                ViewBag.Message = "Your contact page.";
-                Product product = ProductService.getProductById(id);
-
-                return View(product);
-            }
-            catch (Exception)
-            {
-
-                return RedirectToAction("Index", "Home"); ;
-            }
         }
     }
 }

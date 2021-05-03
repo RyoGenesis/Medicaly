@@ -131,6 +131,8 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -157,6 +159,9 @@
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShoppingCart.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +197,7 @@
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\PharmacyAuth.js" />
     <Content Include="Scripts\Product.js" />
+    <Content Include="Scripts\ProductCart.js" />
     <Content Include="Scripts\ProductDetail.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -206,8 +212,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Pharmacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +238,7 @@
     <Content Include="Views\Pharmacy\Auth\Login.cshtml" />
     <Content Include="Views\Pharmacy\Auth\Register.cshtml" />
     <Content Include="Views\Pharmacy\Products\Dashboard.cshtml" />
+    <Content Include="Views\Shopping\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
