@@ -63,16 +63,5 @@ namespace Medicaly.Services
 
             return true;
         }
-
-        public static bool addProductToCart(int customerId, int productId, int quantity)
-        {
-            ShoppingCart shoppingCart = ShoppingCartFactory.createCart(quantity, productId, customerId);
-            if (shoppingCart != null)
-            {
-                return CustomerRepository.addProductToCart(shoppingCart);
-            }
-
-            return false;
-        }
     }
 }

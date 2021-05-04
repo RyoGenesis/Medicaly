@@ -44,20 +44,5 @@ namespace Medicaly.Repositories
                     where x.Id == id
                     select x).FirstOrDefault();
         }
-
-        public static bool addProductToCart(ShoppingCart shoppingCart)
-        {
-            try
-            {
-                db.ShoppingCarts.Add(shoppingCart);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-
-                throw e;
-            }
-        }
     }
 }

@@ -170,10 +170,13 @@
     <Compile Include="Repositories\MedicalySingletonDB.cs" />
     <Compile Include="Repositories\PharmacyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\PharmacyService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ShoppingCartService.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MedicalyDB.mdf" />

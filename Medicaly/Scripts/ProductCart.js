@@ -32,3 +32,27 @@
     });
 
 });
+
+function deleteCart(val) {
+    var id = val;
+    console.log("masuk");
+    console.log(id);
+
+    $.ajax({
+        type: "POST",
+        url: "/Shopping/DeleteCart",
+        data: {
+            id: id
+        },
+        success: function (result) {
+            console.log(result.message)
+            if (result.success) {
+                alert("Success Remove Product");
+                $('#Cart').load('/Shopping/Cart #Cart');
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+}
