@@ -1,7 +1,7 @@
 ﻿var url_string = window.location.href;
 var url = new URL(url_string);
 var id = url.searchParams.get("Id");
-console.log(id);
+
 
 $(document).ready(function () {
 
@@ -36,4 +36,45 @@ $(document).ready(function () {
         }
     });
 
+});
+
+$("#formAddToCart").submit(function (event) {
+
+    // Stop form from submitting normally
+    event.preventDefault();
+
+    // Get some values from elements on the page:
+    var quantity = $('#quantity').val();
+    var productId = $('#ProductId').val();
+    var customerId = $('#CustomerId').val();
+    var stock = $('#Stock').val();
+
+    if (customerId == null) {
+        alert("Please log in first");
+        return;
+    }
+
+    if (quantity > stock) {
+        alert("You reach the maximum quantity");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/Shopping/AddToCart",
+        data: {
+            customerId: customerId,
+            quantity: quantity,
+            productId: productId
+        },
+        success: function (result) {
+            console.log(result.message)
+            if (result.success) {
+                alert("Success add product to cart");
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
 });

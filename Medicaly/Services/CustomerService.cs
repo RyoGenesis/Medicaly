@@ -1,4 +1,5 @@
-﻿using Medicaly.Models;
+﻿using Medicaly.Factories;
+using Medicaly.Models;
 using Medicaly.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Medicaly.Services
 {
     public static class CustomerService
     {
-        public static Customer Login(Customer customer)
+        public static Customer login(Customer customer)
         {
             string email = customer.Email;
             string password = customer.Password;
@@ -27,7 +28,7 @@ namespace Medicaly.Services
             return csr;
         }
 
-        public static Customer AddCustomer(Customer customer, string path)
+        public static Customer addCustomer(Customer customer, string path)
         {
             if (!validateEmail(customer.Email))
             {
@@ -61,6 +62,17 @@ namespace Medicaly.Services
             }
 
             return true;
+        }
+
+        public static bool addProductToCart(int customerId, int productId, int quantity)
+        {
+            ShoppingCart shoppingCart = ShoppingCartFactory.createCart(quantity, productId, customerId);
+            if (shoppingCart != null)
+            {
+                return CustomerRepository.addProductToCart(shoppingCart);
+            }
+
+            return false;
         }
     }
 }
