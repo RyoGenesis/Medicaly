@@ -15,99 +15,95 @@
 
         <!--Grid column-->
         <div class="col-lg-8">
-            @if (Model.shoppingCarts.Count() > 0)
-            {
+
                 <!-- Card -->
                 <div class="card wish-list mb-3">
                     <div id="Cart" class="card-body">
-
-                        <h5 class="mb-4">Cart (<span>@Model.shoppingCarts.Count()</span> items)</h5>
-
                         @{
-                            foreach (var item in Model.shoppingCarts)
+                            if (Model.shoppingCarts.Count() > 0)
                             {
-                                <div class="row mb-4">
-                                    <div class="col-md-5 col-lg-3 col-xl-3">
-                                        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <a href="~/App_File/Images/Products/@item.Product.ProductFoto" target="_blank">
-                                                <div class="mask waves-effect waves-light">
-                                                    <img class="img-fluid w-100"
-                                                         src="~/App_File/Images/Products/@item.Product.ProductFoto" alt="Card image cap">
-                                                    <div class="mask rgba-black-slight waves-effect waves-light"></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-7 col-lg-9 col-xl-9">
-                                        <div>
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h5>@item.Product.Nama</h5>
-                                                    <p class="mb-3 text-muted text-uppercase small">@item.Product.Pharmacy.NamaPharmacy</p>
-                                                    <p class="mb-2 text-muted text-uppercase small">Kategori: @item.Product.Category</p>
-                                                    <p class="mb-3 text-muted text-uppercase small">Stok: @item.Product.Stock</p>
-                                                </div>
-                                                <div>
-                                                    <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"
-                                                                    data-type="minus" data-field="">
-                                                                <span class="glyphicon glyphicon-minus">-</span>
-                                                            </button>
-                                                        </span>
-                                                        <input type="text" id="quantity" name="quantity" class="input-number me-2 ms-2"
-                                                               value="@item.Quantity" min="1" max="" style="width: 30px">
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="quantity-right-plus btn btn-success btn-number"
-                                                                    data-type="plus" data-field="">
-                                                                <span class="glyphicon glyphicon-plus">+</span>
-                                                            </button>
-                                                        </span>
+                                <h5 class="mb-4">Cart (<span>@Model.shoppingCarts.Count()</span> items)</h5>
+
+                                foreach (var item in Model.shoppingCarts)
+                                {
+                                    <div class="row mb-4">
+                                        <div class="col-md-5 col-lg-3 col-xl-3">
+                                            <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                                                <a href="~/App_File/Images/Products/@item.Product.ProductFoto" target="_blank">
+                                                    <div class="mask waves-effect waves-light">
+                                                        <img class="img-fluid w-100"
+                                                             src="~/App_File/Images/Products/@item.Product.ProductFoto" alt="Card image cap">
+                                                        <div class="mask rgba-black-slight waves-effect waves-light"></div>
                                                     </div>
-                                                    <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                                                        (Note, 1 piece)
-                                                    </small>
-                                                </div>
+                                                </a>
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <a href="" type="button" class="card-link-secondary small text-uppercase me-3"
-                                                       onclick="deleteCart(@item.Id)">
-                                                        <i class="fas fa-trash-alt me-1"></i> Remove item
-                                                    </a>
-                                                    <a href="" type="button" class="card-link-secondary small text-uppercase">
-                                                        <i class="fas fa-heart me-1"></i> Move to wish list
-                                                    </a>
+                                        </div>
+                                        <div class="col-md-7 col-lg-9 col-xl-9">
+                                            <div>
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <h5>@item.Product.Nama</h5>
+                                                        <p class="mb-3 text-muted text-uppercase small">@item.Product.Pharmacy.NamaPharmacy</p>
+                                                        <p class="mb-2 text-muted text-uppercase small">Kategori: @item.Product.Category</p>
+                                                        <p class="mb-3 text-muted text-uppercase small">Stok: @item.Product.Stock</p>
+                                                    </div>
+                                                    <div>
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                                                                        data-type="minus" data-field="">
+                                                                    <span class="glyphicon glyphicon-minus">-</span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" id="quantity" name="quantity" class="input-number me-2 ms-2"
+                                                                   value="@item.Quantity" min="1" max="" style="width: 30px">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                                                                        data-type="plus" data-field="">
+                                                                    <span class="glyphicon glyphicon-plus">+</span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                        <small id="passwordHelpBlock" class="form-text text-muted text-center">
+                                                            (Note, 1 piece)
+                                                        </small>
+                                                    </div>
                                                 </div>
-                                                <p class="mb-0"><span><strong>Rp.@item.Product.Price</strong></span></p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <a href="javascript:void(0)" type="button" class="card-link-secondary small text-uppercase me-3"
+                                                           onclick="deleteCart(@item.Id)">
+                                                            <i class="fas fa-trash-alt me-1"></i> Remove item
+                                                        </a>
+                                                        <a href="" type="button" class="card-link-secondary small text-uppercase">
+                                                            <i class="fas fa-heart me-1"></i> Move to wish list
+                                                        </a>
+                                                    </div>
+                                                    <p class="mb-0"><span><strong>Rp.@item.Product.Price</strong></span></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="mb-4">
-                                totalHarga += item.Product.Price;
+                                    <hr class="mb-4">
+                                    totalHarga += item.Product.Price;
+                                }
+
+                                <p class="text-primary mb-0">
+                                    <i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
+                                    items to your cart does not mean booking them.
+                                </p>
+                            }
+                            else
+                            {
+                                <h1>Keranjang Belanja Kosong</h1>
+                                <a href="/" type="button" class="card-link-secondary small text-uppercase">
+                                    Mulai Belanja
+                                </a>
                             }
                         }
-
-
-                        <p class="text-primary mb-0">
-                            <i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
-                            items to your cart does not mean booking them.
-                        </p>
-
                     </div>
                 </div>
                 <!-- Card -->
-
-            }
-            else
-            {
-                <h1>Keranjang Belanja Kosong</h1>
-                <a href="/" type="button" class="card-link-secondary small text-uppercase">
-                    Mulai Belanja
-                </a>
-            }
-
         </div>
             <!--Grid column-->
             <!--Grid column-->
