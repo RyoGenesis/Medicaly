@@ -141,6 +141,12 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailTransaction.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeaderTransaction.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MedicalyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,9 +226,9 @@
     <Content Include="Views\Pharmacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppFile\Images\Customers\" />
-    <Folder Include="AppFile\Images\Pharmacies\" />
-    <Folder Include="AppFile\Images\Products\" />
+    <Folder Include="App_File\Images\Customers\" />
+    <Folder Include="App_File\Images\Pharmacies\" />
+    <Folder Include="App_File\Images\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -20,7 +20,7 @@
                 foreach (var item in Model.product)
                 {
                     <div class="carousel-item @if (i == 0) { @active }">
-                        <img src="~/AppFile/Images/Products/@item.ProductFoto" class="d-block w-100" width="600px" 
+                        <img src="~/App_File/Images/Products/@item.ProductFoto" class="d-block w-100" width="600px" 
                              height="400px" alt="...">
                     </div>
 
@@ -60,7 +60,7 @@
             <div class="filterDiv @item.Category col-3  mt-3">
                 <div class="card" style="width: 18rem;">
                     <a href="/Product/Detail?Id=@item.Id">
-                        <img class="card-img-top" width="300px" height="150px" src="~/AppFile/Images/Products/@item.ProductFoto"
+                        <img class="card-img-top" width="300px" height="150px" src="~/App_File/Images/Products/@item.ProductFoto"
                              alt="Card image cap">
                     </a>
                     <div class="card-body">

@@ -29,10 +29,10 @@
                                 <div class="row mb-4">
                                     <div class="col-md-5 col-lg-3 col-xl-3">
                                         <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                            <a href="~/AppFile/Images/Products/@item.Product.ProductFoto" target="_blank">
+                                            <a href="~/App_File/Images/Products/@item.Product.ProductFoto" target="_blank">
                                                 <div class="mask waves-effect waves-light">
                                                     <img class="img-fluid w-100"
-                                                         src="~/AppFile/Images/Products/@item.Product.ProductFoto" alt="Card image cap">
+                                                         src="~/App_File/Images/Products/@item.Product.ProductFoto" alt="Card image cap">
                                                     <div class="mask rgba-black-slight waves-effect waves-light"></div>
                                                 </div>
                                             </a>
@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div>
-                                                    <a href="" type="button" class="card-link-secondary small text-uppercase me-3" 
+                                                    <a href="" type="button" class="card-link-secondary small text-uppercase me-3"
                                                        onclick="deleteCart(@item.Id)">
                                                         <i class="fas fa-trash-alt me-1"></i> Remove item
                                                     </a>
@@ -99,9 +99,13 @@
                 </div>
                 <!-- Card -->
 
-            } else
+            }
+            else
             {
-                <h1>Shopping cart is empty</h1>
+                <h1>Keranjang Belanja Kosong</h1>
+                <a href="/" type="button" class="card-link-secondary small text-uppercase">
+                    Mulai Belanja
+                </a>
             }
 
         </div>

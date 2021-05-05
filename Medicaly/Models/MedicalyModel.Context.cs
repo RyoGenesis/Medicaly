@@ -12,6 +12,8 @@ namespace Medicaly.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MedicalyDBEntities : DbContext
     {
@@ -26,8 +28,68 @@ namespace Medicaly.Models
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<DetailTransaction> DetailTransactions { get; set; }
+        public virtual DbSet<HeaderTransaction> HeaderTransactions { get; set; }
         public virtual DbSet<Pharmacy> Pharmacies { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
+    
+        public virtual int AddTransaction(Nullable<int> customerId, string transactionDate, string paymentType, string bankName, string bankAccountName, string bankAccountNumber, string transferNominal, string transferProof, Nullable<int> productId, Nullable<int> quantity)
+        {
+            var customerIdParameter = customerId.HasValue ?
+                new ObjectParameter("CustomerId", customerId) :
+                new ObjectParameter("CustomerId", typeof(int));
+    
+            var transactionDateParameter = transactionDate != null ?
+                new ObjectParameter("TransactionDate", transactionDate) :
+                new ObjectParameter("TransactionDate", typeof(string));
+    
+            var paymentTypeParameter = paymentType != null ?
+                new ObjectParameter("PaymentType", paymentType) :
+                new ObjectParameter("PaymentType", typeof(string));
+    
+            var bankNameParameter = bankName != null ?
+                new ObjectParameter("BankName", bankName) :
+                new ObjectParameter("BankName", typeof(string));
+    
+            var bankAccountNameParameter = bankAccountName != null ?
+                new ObjectParameter("BankAccountName", bankAccountName) :
+                new ObjectParameter("BankAccountName", typeof(string));
+    
+            var bankAccountNumberParameter = bankAccountNumber != null ?
+                new ObjectParameter("BankAccountNumber", bankAccountNumber) :
+                new ObjectParameter("BankAccountNumber", typeof(string));
+    
+            var transferNominalParameter = transferNominal != null ?
+                new ObjectParameter("TransferNominal", transferNominal) :
+                new ObjectParameter("TransferNominal", typeof(string));
+    
+            var transferProofParameter = transferProof != null ?
+                new ObjectParameter("TransferProof", transferProof) :
+                new ObjectParameter("TransferProof", typeof(string));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddTransaction", customerIdParameter, transactionDateParameter, paymentTypeParameter, bankNameParameter, bankAccountNameParameter, bankAccountNumberParameter, transferNominalParameter, transferProofParameter, productIdParameter, quantityParameter);
+        }
+    
+        public virtual int UpdateTransactionStatus(Nullable<int> transactionId, string status)
+        {
+            var transactionIdParameter = transactionId.HasValue ?
+                new ObjectParameter("TransactionId", transactionId) :
+                new ObjectParameter("TransactionId", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTransactionStatus", transactionIdParameter, statusParameter);
+        }
     }
 }
