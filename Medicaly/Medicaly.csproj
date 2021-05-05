@@ -190,6 +190,28 @@
     <Content Include="App_Data\MedicalyDB_log.ldf">
       <DependentUpon>MedicalyDB.mdf</DependentUpon>
     </Content>
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.rtl.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.rtl.min.css" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.esm.js" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.esm.min.js" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.min.js" />
     <Content Include="Content\error.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -245,6 +267,28 @@
     <Content Include="Models\MedicalyModel.edmx.diagram">
       <DependentUpon>MedicalyModel.edmx</DependentUpon>
     </Content>
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.rtl.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\css\bootstrap.rtl.min.css.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.esm.js.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.esm.min.js.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.js.map" />
+    <Content Include="bootstrap-5.0.0-beta3-dist\js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
