@@ -63,9 +63,10 @@
                     </ul>
                     @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
                     {
+
                         <ul class="navbar-nav ml-auto me-2 my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                             <li class="nav-item me-2">
-                                <a href="/Shopping/Cart" class="nav-link navbar-link-2 waves-effect">
+                                <a id="keranjang" href="/Shopping/Cart" class="nav-link navbar-link-2 waves-effect">
                                     <span class="badge badge-pill red">1</span>
                                     <i class="fas fa-shopping-cart pl-0"></i> Keranjang
                                 </a>
@@ -161,13 +162,12 @@
     </div>
     @RenderSection("scripts", required: false)
 
-    @section scripts {
-        <script>
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-            }
-        </script>
-    }
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
 
 </body>
 </html>
