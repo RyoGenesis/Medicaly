@@ -30,47 +30,61 @@
 </head>
 <body>
     <div id="App">
-        <!-- NavBar -->
-        @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
-        {
-            <nav class="navbar navbar-expand-sm navbar-light bg-light mb-lg-0 pb-0">
-                <div class="container">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        </ul>
-                        <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0 pe-2">
-                            <a href="/Pharmacy/Login">Masuk Toko</a>
-                        </p>
-                        <p class="navbar-text fs-6 mb-lg-0 pb-0 mt-0">
-                            <a href="/Pharmacy/Register">Buka Toko</a>
-                        </p>
-                </div>
-            </nav>
-        }
-        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-            <div class="container">
+
+        <!-- Navbar -->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <div class="container pt-1 pb-1">
                 <a class="navbar-brand" href="/">Medicaly</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-flex justify-content-betwee" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse pt-1 pt-1" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/Home/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Link
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
                         </li>
                     </ul>
-                    <div class="ml-auto">
-                        <a href="/Shopping/Cart" class="nav-link navbar-link-2 waves-effect">
-                            <span class="badge badge-pill red">1</span>
-                            <i class="fas fa-shopping-cart pl-0"></i>
-                        </a>
-                    </div>
-                    <span class="navbar-text">
+                    @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
+                    {
+                        <ul class="navbar-nav ml-auto me-2 my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item me-2">
+                                <a href="/Shopping/Cart" class="nav-link navbar-link-2 waves-effect">
+                                    <span class="badge badge-pill red">1</span>
+                                    <i class="fas fa-shopping-cart pl-0"></i> Keranjang
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown me-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-store"></i> Toko
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="/Pharmacy/Register">Buka Toko</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/Pharmacy/Login">Masuk</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    }
+                    <div class="ml-auto pb-1">
                         @{
                             if (Session["Nama"] == null)
                             {
@@ -111,15 +125,14 @@
                                 </div>
                             }
                         }
-                    </span>
+                    </div>
                 </div>
             </div>
         </nav>
-
-
+        <!-- Navbar -->
 
         <main>
-            <div class="container body-content" style="margin-top: 50px; margin-bottom: 120px;">
+            <div class="container body-content" style="margin-top: 40px; margin-bottom: 120px;">
                 @RenderBody()
             </div>
         </main>
