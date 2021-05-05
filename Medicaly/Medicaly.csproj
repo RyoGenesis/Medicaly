@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -189,6 +190,7 @@
     <Content Include="App_Data\MedicalyDB_log.ldf">
       <DependentUpon>MedicalyDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\error.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -229,6 +231,7 @@
     <Folder Include="App_File\Images\Customers\" />
     <Folder Include="App_File\Images\Pharmacies\" />
     <Folder Include="App_File\Images\Products\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
