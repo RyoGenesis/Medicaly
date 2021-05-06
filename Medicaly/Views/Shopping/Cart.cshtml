@@ -1,10 +1,10 @@
 ﻿@model Medicaly.ViewModels.ShoppingCartViewModel
 @{
-    ViewBag.Title = "Medicaly - Shopping Cart";
+    ViewBag.Title = "Medicaly - Keranjang";
 
-    long totalHarga = 0;
-    long ongkosKirim = 0;
-    long hargPlusKirim = 0;
+    long? totalHarga = 0;
+    long? ongkosKirim = 0;
+    long? hargPlusKirim = 0;
 }
 
 <!--Section: Block Content-->
@@ -111,7 +111,7 @@
 
                 <!-- Card -->
                 <div class="card mb-3">
-                    <div class="card-body">
+                    <div id="checkoutCart" class="card-body">
 
                         <h5 class="mb-3">The total amount of</h5>
 

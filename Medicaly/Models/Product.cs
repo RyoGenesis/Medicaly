@@ -25,8 +25,8 @@ namespace Medicaly.Models
         public int Id { get; set; }
         public string Nama { get; set; }
         public string Deskripsi { get; set; }
-        public int Stock { get; set; }
-        public long Price { get; set; }
+        public Nullable<int> Stock { get; set; }
+        public Nullable<long> Price { get; set; }
         public string Category { get; set; }
         public string Type { get; set; }
         public Nullable<int> PharmacyId { get; set; }

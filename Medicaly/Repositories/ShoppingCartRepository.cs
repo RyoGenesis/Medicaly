@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Medicaly.Models;
@@ -25,6 +26,14 @@ namespace Medicaly.Repositories
             }
         }
 
+        public static ShoppingCart getShoppingCartByCustomerIdAndProductId(int productId, int customerId)
+        {
+            return (from x in db.ShoppingCarts
+                    where x.CustomerId == customerId && x.ProductId == productId
+                    select x).FirstOrDefault();
+
+        }
+
         public static List<ShoppingCart> getShoppingCartByCustomerId(int customerId)
         {
             return (from x in db.ShoppingCarts
@@ -37,6 +46,21 @@ namespace Medicaly.Repositories
             return (from x in db.ShoppingCarts
                     where x.Id == id
                     select x).FirstOrDefault();
+        }
+
+        public static bool updateCart(ShoppingCart shoppingCart)
+        {
+            try
+            {
+                db.Entry(shoppingCart).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         public static bool deleteCart(int cartId)

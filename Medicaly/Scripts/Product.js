@@ -27,7 +27,7 @@ function AddProductPost(formData) {
             console.log(result.message);
             if (result.success) {
                 alert("Success Add Product");
-                $('#tableList').load('/Pharmacy/Product #tableList');
+                $('#tableList').load('/Pharmacy/Products/Manages #tableList');
                 $("#add-product .closeModal").click();
                 $("#formAddProduct").trigger("reset");
             } else {
@@ -64,7 +64,7 @@ function deleteProduct(val) {
             console.log(result.message)
             if (result.success) {
                 alert("Success Delete Product");
-                $('#tableList').load('/Pharmacy/Product #tableList');
+                $('#tableList').load('/Pharmacy/Products/Manages #tableList');
             }
         },
         error: function (err) {

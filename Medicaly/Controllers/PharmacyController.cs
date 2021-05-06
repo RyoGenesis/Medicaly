@@ -23,7 +23,8 @@ namespace Medicaly.Controllers
         }
 
         // GET: Product
-        public ActionResult Product()
+        [Route("")]
+        public ActionResult Products()
         {
             if (Session["Nama"] != null && Session["UserType"].ToString() == "Pharmacy")
             {
@@ -42,7 +43,7 @@ namespace Medicaly.Controllers
         {
             if (product != null && product.ImageUpload != null)
             {
-                string path = Server.MapPath("~/AppFile/Images/Products");
+                string path = Server.MapPath("~/App_File/Images/Products");
                 int pharmacyId = int.Parse(Session["PharmacyId"].ToString());
 
                 if (ProductService.addProduct(pharmacyId, Session["Nama"].ToString(), product, path))
@@ -116,7 +117,7 @@ namespace Medicaly.Controllers
         {
             if (pharmacy != null && pharmacy.ImageUpload != null)
             {
-                string path = Server.MapPath("~/AppFile/Images/Pharmacies");
+                string path = Server.MapPath("~/App_File/Images/Pharmacies");
                 Pharmacy prc = PharmacyService.AddPharmacy(pharmacy, path);
                 if (prc != null)
                 {

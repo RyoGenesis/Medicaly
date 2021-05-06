@@ -49,6 +49,7 @@ function deleteCart(val) {
             if (result.success) {
                 alert("Success Remove Product");
                 $('#Cart').load('/Shopping/Cart #Cart');
+                $('#checkoutCart').load('/Shopping/Cart #checkoutCart');
             }
         },
         error: function (err) {

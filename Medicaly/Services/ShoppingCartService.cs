@@ -13,10 +13,20 @@ namespace Medicaly.Services
     {
         public static bool addProductToCart(int customerId, int productId, int quantity)
         {
-            ShoppingCart shoppingCart = ShoppingCartFactory.createCart(quantity, productId, customerId);
-            if (shoppingCart != null)
+            ShoppingCart cekShoppingCart = ShoppingCartRepository.getShoppingCartByCustomerIdAndProductId(productId, customerId);
+
+            if (cekShoppingCart != null)
             {
-                return ShoppingCartRepository.addProductToCart(shoppingCart);
+                cekShoppingCart.Quantity += quantity;
+
+                return ShoppingCartRepository.updateCart(cekShoppingCart);
+            } else
+            {
+                ShoppingCart shoppingCart = ShoppingCartFactory.createCart(quantity, productId, customerId);
+                if (shoppingCart != null)
+                {
+                    return ShoppingCartRepository.addProductToCart(shoppingCart);
+                }
             }
 
             return false;
