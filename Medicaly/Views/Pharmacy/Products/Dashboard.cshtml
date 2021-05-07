@@ -40,7 +40,9 @@
                                                 @Html.DisplayFor(modelItem => item.Id)
                                             </td>
                                             <td class="align-middle text-center">
-                                                <img src="~/App_File/Images/Products/@item.ProductFoto" class="img-thumbnail" width="100px" alt="No Images">
+                                                <a href="~/App_File/Images/Products/@item.ProductFoto" target="_blank">
+                                                    <img src="~/App_File/Images/Products/@item.ProductFoto" class="img-thumbnail" width="100px" alt="No Images">
+                                                </a>
                                             </td>
                                             <td class="align-middle text-center">
                                                 @Html.DisplayFor(modelItem => item.Nama)
