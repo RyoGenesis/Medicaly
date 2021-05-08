@@ -4,19 +4,37 @@
     ViewBag.Title = "Product - Dashboard";
 }
 
-<section id="tableList">
-    <div id="content" class="dashboard">
+<section id="productDashboardTitle">
+    <div id="" class="mb-5">
         <div class="container">
 
-            <button type="button" class="btn btn-primary pe-4 ps-4 mb-2" data-bs-toggle="modal" data-bs-target="#add-product">
+            <button type="button" class="btn btn-primary pe-4 ps-4 mb-3" data-bs-toggle="modal" data-bs-target="#add-product">
                 New Product
             </button>
 
             <div class="card border-0 rounded-20 shadow-sm">
-                <div class="card-body text-center my-3">
+                <div class="card-body text-center my-0">
                     <div class="section-line mx-auto"></div>
-                    <h6 class="text-muted">PRODUCTS MANAGEMENT</h6>
-                    <h2 class="mb-4">Products List</h2>
+                    <h6 class="text-muted pt-3">PRODUCTS MANAGEMENT</h6>
+                    <h2 class="mb-4">List Produk</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="tableList">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">OBAT - OBATAN</h6>
+                </div>
+                <div class="card-body text-center my-3">
+
 
                     @if (Model.product.Count() > 0)
                     {
@@ -61,7 +79,84 @@
                                                                 data-bs-target="#exampleEdit">
                                                             <i class="fas fa-pen"></i>
                                                         </button>
-                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value)">
+                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No products.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableListAlat" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">ALAT - KESEHATAN</h6>
+                </div>
+                <div class="card-body text-center my-3">
+
+
+                    @if (Model.product.Count() > 0)
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="products">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Images</th>
+                                        <th class="align-middle text-center">Name</th>
+                                        <th class="align-middle text-center">Stock</th>
+                                        <th class="align-middle text-center">Harga Barang</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.product)
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="~/App_File/Images/Products/@item.ProductFoto" target="_blank">
+                                                    <img src="~/App_File/Images/Products/@item.ProductFoto" class="img-thumbnail" width="100px" alt="No Images">
+                                                </a>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Stock)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <button type="button" class="btn btn-outline-dark editProduct" data-bs-toggle="modal" data-bs-id="@item.Id"
+                                                                data-bs-target="#exampleEdit">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </div>

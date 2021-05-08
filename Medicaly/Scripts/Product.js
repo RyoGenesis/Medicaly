@@ -53,7 +53,7 @@ function AddProductPost(formData) {
     return false;
 }
 
-function deleteProduct(val) {
+function deleteProduct(val, element) {
     var id = val;
     console.log("masuk");
     console.log(id);
@@ -69,7 +69,7 @@ function deleteProduct(val) {
             if (result.success) {
                 alert("Success Delete Product");
                 $('#tableList').load('/Pharmacy/Products/Manages #tableList');
-                $('#products').DataTable();
+                $('#products').data.reload();
             }
         },
         error: function (err) {
