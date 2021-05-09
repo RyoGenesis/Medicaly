@@ -61,13 +61,22 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nama" Type="varchar" MaxLength="255" />
-          <Property Name="Deskripsi" Type="varchar" MaxLength="4000" />
+          <Property Name="Deskripsi" Type="text" />
           <Property Name="Stock" Type="int" />
           <Property Name="Price" Type="bigint" />
           <Property Name="Category" Type="varchar" MaxLength="255" />
           <Property Name="Type" Type="varchar" MaxLength="255" />
           <Property Name="PharmacyId" Type="int" />
           <Property Name="ProductFoto" Type="varchar" MaxLength="255" />
+          <Property Name="IndikasiUmum" Type="varchar" MaxLength="4000" />
+          <Property Name="Komposisi" Type="varchar" MaxLength="255" />
+          <Property Name="Dosis" Type="varchar" MaxLength="4000" />
+          <Property Name="AturanPakai" Type="text" />
+          <Property Name="Kemasan" Type="varchar" MaxLength="255" />
+          <Property Name="KontraIndikasi" Type="varchar" MaxLength="255" />
+          <Property Name="Perhatian" Type="varchar" MaxLength="255" />
+          <Property Name="Segmentasi" Type="varchar" MaxLength="255" />
+          <Property Name="Manufaktur" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
@@ -278,13 +287,22 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Deskripsi" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Deskripsi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Stock" Type="Int32" />
           <Property Name="Price" Type="Int64" />
           <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PharmacyId" Type="Int32" />
           <Property Name="ProductFoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IndikasiUmum" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Komposisi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Dosis" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="AturanPakai" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Kemasan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="KontraIndikasi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Perhatian" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Segmentasi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Manufaktur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DetailTransactions" Relationship="Self.FK__DetailTra__Produ__0D7A0286" FromRole="Products" ToRole="DetailTransaction" />
           <NavigationProperty Name="Pharmacy" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Products" ToRole="Pharmacy" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Produ__70DDC3D8" FromRole="Products" ToRole="ShoppingCart" />
@@ -504,6 +522,15 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="PharmacyId" ColumnName="PharmacyId" />
                 <ScalarProperty Name="ProductFoto" ColumnName="ProductFoto" />
+                <ScalarProperty Name="IndikasiUmum" ColumnName="IndikasiUmum" />
+                <ScalarProperty Name="Komposisi" ColumnName="Komposisi" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="AturanPakai" ColumnName="AturanPakai" />
+                <ScalarProperty Name="Kemasan" ColumnName="Kemasan" />
+                <ScalarProperty Name="KontraIndikasi" ColumnName="KontraIndikasi" />
+                <ScalarProperty Name="Perhatian" ColumnName="Perhatian" />
+                <ScalarProperty Name="Segmentasi" ColumnName="Segmentasi" />
+                <ScalarProperty Name="Manufaktur" ColumnName="Manufaktur" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

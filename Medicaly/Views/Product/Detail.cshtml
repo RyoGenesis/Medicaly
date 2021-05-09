@@ -38,30 +38,100 @@
                 </div>
                 <div class="col-md-6">
 
+
                     <h5>@Model.Nama</h5>
                     <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
                     <p><span class="mr-1"><strong>Rp. @Model.Price</strong></span></p>
-                    <p class="pt-1">
-                        @Model.Deskripsi
-                    </p>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-borderless mb-0">
-                            <tbody>
-                                <tr>
-                                    <th class="ps-0 w-25 fw-normal" scope="row"><strong>Kategori</strong></th>
-                                    <td>@Model.Category</td>
-                                </tr>
-                                <tr>
-                                    <th class="ps-0 w-25 fw-normal" scope="row"><strong>Stok</strong></th>
-                                    <td>@Model.Stock</td>
-                                </tr>
-                                <tr>
-                                    <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
-                                    <td>@Model.Pharmacy.NamaPharmacy</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+                    @if (Model.Type.Equals("Alat-Kesehatan"))
+                    {
+                        <p class="pt-1">
+                            @Model.Deskripsi
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
+                                        <td>@Model.Pharmacy.NamaPharmacy</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Stok</strong></th>
+                                        <td>@Model.Stock</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="pt-0">
+                            <strong>Indikasi Umum</strong>
+                            <br />
+                            @Model.IndikasiUmum
+                        </p>
+                        <p class="pt-0">
+                            <strong>Deskripsi</strong>
+                            <br />
+                            @Model.Deskripsi
+                        </p>
+                        <p class="pt-0">
+                            <strong>Komposisi</strong>
+                            <br />
+                            @Model.Komposisi
+                        </p>
+                        <p class="pt-0">
+                            <strong>Dosis</strong>
+                            <br />
+                            @Model.Dosis
+                        </p>
+                        <p class="pt-0">
+                            <strong>Aturan Pakai</strong>
+                            <br />
+                            @Model.AturanPakai
+                        </p>
+                        <p class="pt-0">
+                            <strong>Kemasan</strong>
+                            <br />
+                            @Model.Kemasan
+                        </p>
+                        <p class="pt-0">
+                            <strong>Kontra Indikasi</strong>
+                            <br />
+                            @Model.KontraIndikasi
+                        </p>
+                        <p class="pt-0">
+                            <strong>Perhatian</strong>
+                            <br />
+                            @Model.Perhatian
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Kategori</strong></th>
+                                        <td>@Model.Category</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Segmentasi</strong></th>
+                                        <td>@Model.Segmentasi</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Stok</strong></th>
+                                        <td>@Model.Stock</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
+                                        <td>@Model.Pharmacy.NamaPharmacy</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Manufaktur</strong></th>
+                                        <td>@Model.Manufaktur</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
                     <hr>
                     <form id="formAddToCart" method="POST">
                         <div class="table-responsive mb-2">

@@ -8,8 +8,12 @@
     <div id="" class="mb-5">
         <div class="container">
 
-            <button type="button" class="btn btn-primary pe-4 ps-4 mb-3" data-bs-toggle="modal" data-bs-target="#add-product">
-                New Product
+            <button type="button" class="btn btn-primary pe-4 ps-4 mb-3" data-bs-toggle="modal" data-bs-target="#add-alat">
+                Tambah Produk (Alat)
+            </button>
+
+            <button type="button" class="btn btn-primary pe-4 ps-4 mb-3" data-bs-toggle="modal" data-bs-target="#add-obat">
+                Tambah Produk (Obat)
             </button>
 
             <div class="card border-0 rounded-20 shadow-sm">
@@ -35,11 +39,10 @@
                 </div>
                 <div class="card-body text-center my-3">
 
-
-                    @if (Model.product.Count() > 0)
+                    @if (Model.product.Count() > 0 && Model.product.Any(x => x.Type.Equals("Obat-obatan")))
                     {
                         <div id="ProductList" class="table-responsive">
-                            <table class="table table-hover" id="products">
+                            <table class="table table-hover" id="products-obat">
                                 <thead class="bg-blue text-white">
                                     <tr>
                                         <th class="align-middle text-center">ID</th>
@@ -47,11 +50,12 @@
                                         <th class="align-middle text-center">Name</th>
                                         <th class="align-middle text-center">Stock</th>
                                         <th class="align-middle text-center">Harga Barang</th>
+                                        <th class="align-middle text-center">Kategori</th>
                                         <th class="align-middle text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="List">
-                                    @foreach (var item in Model.product)
+                                    @foreach (var item in Model.product.Where(x => x.Type.Equals("Obat-obatan")))
                                     {
                                         <tr>
                                             <td class="align-middle text-center">
@@ -70,6 +74,9 @@
                                             </td>
                                             <td class="align-middle text-center">
                                                 @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Category)
                                             </td>
                                             <td class="align-middle text-center">
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
@@ -93,7 +100,7 @@
                     }
                     else
                     {
-                        <p class="text-center">No products.</p>
+                        <p class="text-center">No products (Obat-Obatan).</p>
                     }
                 </div>
             </div>
@@ -113,10 +120,11 @@
                 <div class="card-body text-center my-3">
 
 
-                    @if (Model.product.Count() > 0)
+
+                    @if (Model.product.Count() > 0 && Model.product.Any(x => x.Type.Equals("Alat-Kesehatan")))
                     {
                         <div id="" class="table-responsive">
-                            <table class="table table-hover" id="products">
+                            <table class="table table-hover" id="products-alat">
                                 <thead class="bg-blue text-white">
                                     <tr>
                                         <th class="align-middle text-center">ID</th>
@@ -128,7 +136,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="List">
-                                    @foreach (var item in Model.product)
+                                    @foreach (var item in Model.product.Where(x => x.Type.Equals("Alat-Kesehatan")))
                                     {
                                         <tr>
                                             <td class="align-middle text-center">
@@ -170,7 +178,7 @@
                     }
                     else
                     {
-                        <p class="text-center">No products.</p>
+                        <p class="text-center">No products (Alat-Kesehatan).</p>
                     }
                 </div>
             </div>
@@ -228,16 +236,16 @@
 </section>
 
 <section id="modalAddProduct">
-    <div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-labelledby="add-securityLabel" aria-hidden="true">
+    <div class="modal fade" id="add-alat" tabindex="-1" role="dialog" aria-labelledby="add-securityLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Product</h5>
+                    <h5 class="modal-title">Tambah Produk (Alat Kesehatan)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form id="formAddProduct" enctype="multipart/form-data" method="post" onsubmit="return AddProductPost(this)">
+                        <form id="formAddAlat" enctype="multipart/form-data" method="post" onsubmit="return AddProductPost(this)">
                             <div class="form-group row">
                                 <label class="col-sm-12 col-form-label" for="Nama">Nama Produk</label>
                                 <div class="col-sm-12">
@@ -247,7 +255,67 @@
                             <div class="form-group row mt-2">
                                 <label class="col-sm-12 col-form-label" for="Deskripsi">Deskripsi Produk</label>
                                 <div class="col-sm-12">
-                                    <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" placeholder="Deskripsi Produk" required></textarea>
+                                    <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" placeholder="Deskripsi Produk" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Stock">Stock</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control mt-2" id="Stock" name="Stock" placeholder="Jumlah Stok" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Price">Price</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control mt-2" id="Price" name="Price" placeholder="Harga Produk" required>
+                                </div>
+                            </div>
+
+                            <input type="text" class="form-control mt-2" id="Type" name="Type" value="Alat-Kesehatan" hidden>
+
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="ProductFoto">Photo Produk</label>
+                                <div class="col-sm-12 mt-2">
+                                    <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
+                                </div>
+                            </div>
+                            <div class="text-left mt-4">
+                                <button type="submit" class="btn btn-primary pe-3 ps-3">Save and Close</button>
+                                <button type="button" class="btn btn-secondary ps-5 pe-5 closeModal" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="add-obat" tabindex="-1" role="dialog" aria-labelledby="add-securityLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Produk (Obat-Obatan)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form id="formAddObat" enctype="multipart/form-data" method="post" onsubmit="return AddProductPost(this)">
+                            <div class="form-group row">
+                                <label class="col-sm-12 col-form-label" for="Nama">Nama Obat</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Nama" name="Nama" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="IndikasiUmum">Indikasi Umum</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control mt-2" id="IndikasiUmum" name="IndikasiUmum" placeholder="Isi Indikasi Umum" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Deskripsi">Deskripsi Obat</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" placeholder="Deskripsi Obat" rows="5" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
@@ -263,19 +331,57 @@
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
-                                <label class="col-sm-12 col-form-label" for="Category">Category Produk</label>
+                                <label class="col-sm-12 col-form-label" for="Category">Kategori</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control mt-2" id="Category" name="Category" placeholder="Kategori Produk" required>
+                                    <input type="text" class="form-control mt-2" id="Category" name="Category" placeholder="Ketgori Obat" required>
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
-                                <label class="col-sm-12 col-form-label" for="Type">Tipe Produk</label>
+                                <label class="col-sm-12 col-form-label" for="Komposisi">Komposisi</label>
                                 <div class="col-sm-12">
-                                    <select id="Type" name="Type" class="form-control mt-2">
-                                        <option selected>Choose...</option>
-                                        <option value="Obat">Obat - Obatan</option>
-                                        <option value="Alat">Alat Kesehatan</option>
-                                    </select>
+                                    <input type="text" class="form-control mt-2" id="Komposisi" name="Komposisi" placeholder="Komposisi Obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Dosis">Dosis</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Dosis" name="Dosis" placeholder="Dosis Obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="AturanPakai">Aturan Pakai</label>
+                                <div class="col-sm-12">
+                                    <textarea class="form-control mt-2" id="AturanPakai" name="AturanPakai" placeholder="Aturan Pakai Obat" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Kemasan">Kemasan</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Kemasan" name="Kemasan" placeholder="Kemasan Obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="KontraIndikasi">Kontra Indikasi</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="KontraIndikasi" name="KontraIndikasi" placeholder="Kontra Indikasi Obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Perhatian">Perhatian</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Perhatian" name="Perhatian" placeholder="Perhatian pada obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Segmentasi">Segmentasi</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Segmentasi" name="Segmentasi" placeholder="Segmentasi pada obat" required>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-2">
+                                <label class="col-sm-12 col-form-label" for="Manufaktur">Manufaktur</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control mt-2" id="Manufaktur" name="Manufaktur" placeholder="Manufaktur pada obat" required>
                                 </div>
                             </div>
                             <div class="form-group row mt-2">
@@ -283,7 +389,10 @@
                                 <div class="col-sm-12 mt-2">
                                     <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
                                 </div>
-                            </div>                            
+                            </div>
+
+                            <input type="text" class="form-control mt-2" id="Type" name="Type" value="Obat-obatan" hidden>
+
                             <div class="text-left mt-4">
                                 <button type="submit" class="btn btn-primary pe-3 ps-3">Save and Close</button>
                                 <button type="button" class="btn btn-secondary ps-5 pe-5 closeModal" data-bs-dismiss="modal">Cancel</button>

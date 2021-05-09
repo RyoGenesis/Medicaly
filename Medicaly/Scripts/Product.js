@@ -19,8 +19,18 @@
 //document.querySelector('#mySearch').addEventListener('keyup', filterTable, false);
 
 $(document).ready(function () {
-    $('#products').DataTable();
+    $('#products-obat').DataTable();
+    $('#products-alat').DataTable();
 });
+
+function responseAfterAdd() {
+    $('#tableListAlat').load('/Pharmacy/Products/Manages #tableListAlat');
+    $('#tableList').load('/Pharmacy/Products/Manages #tableList');
+    $("#add-alat .closeModal").click();
+    $("#add-obat .closeModal").click();
+    $("#formAddObat").trigger("reset");
+    $("#formAddAlat").trigger("reset");
+}
 
 function AddProductPost(formData) {
     var ajaxConfig = {
@@ -31,9 +41,8 @@ function AddProductPost(formData) {
             console.log(result.message);
             if (result.success) {
                 alert("Success Add Product");
-                $('#tableList').load('/Pharmacy/Products/Manages #tableList');
-                $("#add-product .closeModal").click();
-                $("#formAddProduct").trigger("reset");
+                
+                responseAfterAdd();
             } else {
                 console.log(result.message);
                 alert("Failed Add Product");
@@ -69,6 +78,7 @@ function deleteProduct(val, element) {
             if (result.success) {
                 alert("Success Delete Product");
                 $('#tableList').load('/Pharmacy/Products/Manages #tableList');
+                $('#tableListAlat').load('/Pharmacy/Products/Manages #tableListAlat');
                 $('#products').data.reload();
             }
         },

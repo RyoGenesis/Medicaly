@@ -31,6 +31,15 @@ namespace Medicaly.Models
         public string Type { get; set; }
         public Nullable<int> PharmacyId { get; set; }
         public string ProductFoto { get; set; }
+        public string IndikasiUmum { get; set; }
+        public string Komposisi { get; set; }
+        public string Dosis { get; set; }
+        public string AturanPakai { get; set; }
+        public string Kemasan { get; set; }
+        public string KontraIndikasi { get; set; }
+        public string Perhatian { get; set; }
+        public string Segmentasi { get; set; }
+        public string Manufaktur { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
 

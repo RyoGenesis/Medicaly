@@ -46,18 +46,21 @@
 
     <div id="myBtnContainer" class="pt-2">
         <button class="btn btn-outline-primary btnFilter active" onclick="filterSelection('all')"> Show all</button>
-        @foreach (var item in Model.product)
-        {
-            <button class="btn btn-outline-primary btnFilter" onclick="filterSelection('@item.Category')"> 
-                @item.Category
-            </button>
-        }
+
+        <button class="btn btn-outline-primary btnFilter" onclick="filterSelection('Obat-obatan')">
+            Obat-Obatan
+        </button>
+
+        <button class="btn btn-outline-primary btnFilter" onclick="filterSelection('Alat-Kesehatan')">
+            Alat-Kesehatan
+        </button>
+
     </div>
 
     <div class="row justify-content-md-center mt-3">
         @foreach (var item in Model.product)
         {
-            <div class="filterDiv @item.Category col-3  mt-3">
+            <div class="filterDiv @item.Type col-3  mt-3">
                 <div class="card" style="width: 18rem;">
                     <a href="/Product/Detail/@item.Id">
                         <img class="card-img-top" width="300px" height="150px" src="~/App_File/Images/Products/@item.ProductFoto"
@@ -65,7 +68,7 @@
                     </a>
                     <div class="card-body">
                         <a href=""><h5 class="text-dark card-title">@item.Nama</h5></a>
-                        <p style="color: grey;">@item.Pharmacy.NamaPharmacy</p>
+                        <p style="color: grey;">@item.Pharmacy.NamaPharmacy - (@item.Type)</p>
                         <p class="card-text">Rp. @item.Price</p>
                     </div>
                 </div>

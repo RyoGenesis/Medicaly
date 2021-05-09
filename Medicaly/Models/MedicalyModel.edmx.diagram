@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="197def36bd0f445182620b744e3adb02" Name="Diagram1">
-        <EntityTypeShape EntityType="MedicalyDBModel.Customer" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+      <Diagram DiagramId="7bad6818ac094fb3902c5843dc6b6a84" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalyDBModel.Customer" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyDBModel.DetailTransaction" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyDBModel.HeaderTransaction" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalyDBModel.HeaderTransaction" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyDBModel.Pharmacy" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyDBModel.Product" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalyDBModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyDBModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="MedicalyDBModel.FK__HeaderTra__Custo__09A971A2" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalyDBModel.FK__ShoppingC__Custo__6FE99F9F" ManuallyRouted="false" />
