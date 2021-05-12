@@ -145,7 +145,13 @@
     <Compile Include="Models\DetailTransaction.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Doctor.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HeaderTransaction.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Konsultasi.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicalyModel.Context.cs">
@@ -170,6 +176,9 @@
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCart.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Spesiali.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,10 +29,13 @@ namespace Medicaly.Models
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DetailTransaction> DetailTransactions { get; set; }
+        public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<HeaderTransaction> HeaderTransactions { get; set; }
+        public virtual DbSet<Konsultasi> Konsultasis { get; set; }
         public virtual DbSet<Pharmacy> Pharmacies { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual DbSet<Spesiali> Spesialis { get; set; }
     
         public virtual int AddTransaction(Nullable<int> customerId, string transactionDate, string paymentType, string bankName, string bankAccountName, string bankAccountNumber, string transferNominal, string transferProof, Nullable<int> productId, Nullable<int> quantity)
         {
