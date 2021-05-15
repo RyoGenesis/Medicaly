@@ -1,75 +1,164 @@
-﻿@model IEnumerable<Medicaly.Models.Konsultasi>
+﻿@model Medicaly.ViewModels.KonsultasiViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Doctor - Dashboard";
 }
 
-<h2>Index</h2>
+<section id="konsultasiDashboardTitle">
+    <div id="" class="mb-5">
+        <div class="container">
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-body text-center my-0">
+                    <div class="section-line mx-auto"></div>
+                    <h6 class="text-muted pt-3">KONSULTASI MANAGEMENT</h6>
+                    <h2 class="mb-4">List Konsultasi</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nama)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Judul)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Detail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Jawaban)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FilePendukung)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor.Nama)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Spesiali.Nama)
-        </th>
-        <th></th>
-    </tr>
+</section>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nama)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Judul)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Detail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jawaban)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FilePendukung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.Nama)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Spesiali.Nama)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}*@
+<section id="tableListKonsultasi">
+    <div id="content" class="dashboard">
+        <div class="container">
 
-</table>
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">KONSULTASI - NOT ANSWERED</h6>
+                </div>
+                <div class="card-body text-center my-3">
+
+                    @if (Model.konsultasi.Count() > 0 && Model.konsultasi.Any(x => x.Status == 0))
+                    {
+                        <div id="KonsultasiListNot" class="table-responsive">
+                            <table class="table table-hover" id="konsultasi-not-answered">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Name</th>
+                                        <th class="align-middle text-center">Email</th>
+                                        <th class="align-middle text-center">Judul</th>
+                                        <th class="align-middle text-center">File Pendukung</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.konsultasi.Where(x => x.Status == 0))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Judul)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="~/App_File/Images/Products/@item.FilePendukung" target="_blank">
+
+                                                </a>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No konsultasi.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableList">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">KONSULTASI - ANSWERED</h6>
+                </div>
+                <div class="card-body text-center my-3">
+
+                    @if (Model.konsultasi.Count() > 0 && Model.konsultasi.Any(x => x.Status == 1))
+                    {
+                        <div id="KonsultasiList" class="table-responsive">
+                            <table class="table table-hover" id="konsultasi-answered">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Name</th>
+                                        <th class="align-middle text-center">Email</th>
+                                        <th class="align-middle text-center">Judul</th>
+                                        <th class="align-middle text-center">File Pendukung</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.konsultasi.Where(x => x.Status == 1))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Judul)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="~/App_File/Images/Products/@item.FilePendukung" target="_blank">
+
+                                                </a>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No konsultasi.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

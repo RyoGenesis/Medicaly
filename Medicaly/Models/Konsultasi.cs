@@ -24,6 +24,7 @@ namespace Medicaly.Models
         public string Jawaban { get; set; }
         public Nullable<long> DoktorId { get; set; }
         public string FilePendukung { get; set; }
+        public Nullable<int> Status { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
         public virtual Doctor Doctor { get; set; }

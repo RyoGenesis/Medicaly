@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c6c885cc58714f12afb1a59cab205643" Name="Diagram1">
+      <Diagram DiagramId="d30dc3a825454629adf0d5bfe022f4a8" Name="Diagram1">
         <EntityTypeShape EntityType="MedicalyModel.Customer" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.DetailTransaction" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.Doctor" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.HeaderTransaction" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Konsultasi" Width="1.5" PointX="10.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalyModel.Konsultasi" Width="1.5" PointX="10.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.Pharmacy" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalyModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />

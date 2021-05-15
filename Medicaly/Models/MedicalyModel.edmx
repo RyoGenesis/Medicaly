@@ -72,6 +72,7 @@
           <Property Name="Jawaban" Type="text" />
           <Property Name="DoktorId" Type="bigint" />
           <Property Name="FilePendukung" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="Pharmacy">
           <Key>
@@ -393,6 +394,7 @@
           <Property Name="Jawaban" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DoktorId" Type="Int64" />
           <Property Name="FilePendukung" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Doctor" Relationship="Self.FK__Konsultas__Dokto__1F98B2C1" FromRole="Konsultasi" ToRole="Doctor" />
           <NavigationProperty Name="Spesiali" Relationship="Self.FK__Konsultas__Spesi__1EA48E88" FromRole="Konsultasi" ToRole="Spesialis" />
         </EntityType>
@@ -720,6 +722,7 @@
                 <ScalarProperty Name="Jawaban" ColumnName="Jawaban" />
                 <ScalarProperty Name="DoktorId" ColumnName="DoktorId" />
                 <ScalarProperty Name="FilePendukung" ColumnName="FilePendukung" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
