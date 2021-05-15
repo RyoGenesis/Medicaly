@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Medicaly.Models.Konsultasi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Judul)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jawaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FilePendukung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor.Nama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Spesiali.Nama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Judul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jawaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FilePendukung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Doctor.Nama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Spesiali.Nama)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}*@
+
+</table>
