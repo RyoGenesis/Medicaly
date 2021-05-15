@@ -41,7 +41,7 @@
 
                     <h5>@Model.Nama</h5>
                     <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
-                    <p><span class="mr-1"><strong>Rp. @Model.Price</strong></span></p>
+                    <p><span class="mr-1"><strong>@Convert.ToDecimal(Model.Price).ToString("C2")</strong></span></p>
 
                     @if (Model.Type.Equals("Alat-Kesehatan"))
                     {

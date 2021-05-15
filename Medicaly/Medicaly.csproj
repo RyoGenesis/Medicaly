@@ -185,15 +185,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\DoctorRepository.cs" />
+    <Compile Include="Repositories\KonsultasiRepository.cs" />
     <Compile Include="Repositories\MedicalySingletonDB.cs" />
     <Compile Include="Repositories\PharmacyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DoctorService.cs" />
+    <Compile Include="Services\KonsultasiService.cs" />
     <Compile Include="Services\PharmacyService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ShoppingCartService.cs" />
+    <Compile Include="ViewModels\KonsultasiViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
@@ -241,6 +244,7 @@
     </Content>
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\KonsultasiScript.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\PharmacyAuth.js" />
     <Content Include="Scripts\Product.js" />

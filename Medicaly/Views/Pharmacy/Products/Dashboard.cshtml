@@ -73,7 +73,7 @@
                                                 @Html.DisplayFor(modelItem => item.Stock)
                                             </td>
                                             <td class="align-middle text-center">
-                                                @Html.DisplayFor(modelItem => item.Price)
+                                                @Convert.ToDecimal(item.Price).ToString("C2")
                                             </td>
                                             <td class="align-middle text-center">
                                                 @Html.DisplayFor(modelItem => item.Category)
@@ -154,7 +154,7 @@
                                                 @Html.DisplayFor(modelItem => item.Stock)
                                             </td>
                                             <td class="align-middle text-center">
-                                                @Html.DisplayFor(modelItem => item.Price)
+                                                @Convert.ToDecimal(item.Price).ToString("C2")
                                             </td>
                                             <td class="align-middle text-center">
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
