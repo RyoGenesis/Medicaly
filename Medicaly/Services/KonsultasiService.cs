@@ -1,4 +1,5 @@
-﻿using Medicaly.Models;
+﻿using Medicaly.mails;
+using Medicaly.Models;
 using Medicaly.Repositories;
 using Medicaly.ViewModels;
 using System;
@@ -62,11 +63,24 @@ namespace Medicaly.Services
                 oldKonsultasi.Jawaban = konsultasi.Jawaban;
                 oldKonsultasi.Status = 1;
                 oldKonsultasi.DoktorId = konsultasi.DoktorId;
+                oldKonsultasi.Doctor = DoctorRepository.getDoctorById(konsultasi.DoktorId);
+                sendEmail(oldKonsultasi);
 
                 return KonsultasiRepository.updateKonsultasi(oldKonsultasi);
             }
 
             return false;
+        }
+
+        private static void sendEmail(Konsultasi konsultasi)
+        {
+            GMailer mailer = new GMailer();
+            mailer.ToEmail = konsultasi.Email;
+            mailer.Subject = "Medicaly - Jawaban Konsultasi - " + konsultasi.Nama;
+            mailer.Body = "Dokter: " + konsultasi.Doctor.Nama + "<br>" + "Spesialis: " + konsultasi.Spesiali.Nama + "<br>Thanks sudah menggunakan fitur konsultasi.<br>" + 
+                          "Email: " + konsultasi.Doctor.Email + "<br>Jawaban:<br>" + konsultasi.Jawaban + "<br>Regards,<br><a href='https://localhost:44378/'>Medicaly</a>";
+            mailer.IsHtml = true;
+            mailer.Send();
         }
     }
 }

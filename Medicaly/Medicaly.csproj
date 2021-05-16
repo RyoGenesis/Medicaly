@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="mails\GMailer.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>

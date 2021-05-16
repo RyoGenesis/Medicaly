@@ -16,5 +16,12 @@ namespace Medicaly.Repositories
                     where x.Email.Equals(email) && x.Password.Equals(password)
                     select x).FirstOrDefault();
         }
+
+        public static Doctor getDoctorById(long? id)
+        {
+            return (from x in db.Doctors
+                    where x.Id == id
+                    select x).FirstOrDefault();
+        }
     }
 }
