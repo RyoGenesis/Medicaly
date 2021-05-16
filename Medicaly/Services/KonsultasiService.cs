@@ -43,12 +43,27 @@ namespace Medicaly.Services
             return false;
         }
 
-        public static bool editKonsultasi(int id)
+        public static Konsultasi getKonsultasiById(int id)
         {
-            if (KonsultasiRepository.getKonsultasiById(id) != null)
+            if (id.ToString() != null)
             {
+                return KonsultasiRepository.getKonsultasiById(id);
+            }
 
-                return KonsultasiRepository.updateKonsultasi(KonsultasiRepository.getKonsultasiById(id));
+            return null;
+        }
+
+        public static bool editKonsultasi(Konsultasi konsultasi)
+        {
+            if (KonsultasiRepository.getKonsultasiById(konsultasi.Id) != null)
+            {
+                Konsultasi oldKonsultasi = KonsultasiRepository.getKonsultasiById(konsultasi.Id);
+
+                oldKonsultasi.Jawaban = konsultasi.Jawaban;
+                oldKonsultasi.Status = 1;
+                oldKonsultasi.DoktorId = konsultasi.DoktorId;
+
+                return KonsultasiRepository.updateKonsultasi(oldKonsultasi);
             }
 
             return false;

@@ -18,6 +18,12 @@ namespace Medicaly
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
+                name: "Konsultasi",
+                url: " Doctor/Konsultasi/{id}",
+                defaults: new { controller = "Doctor", action = "Konsultasi" }
+            );
+
+            routes.MapRoute(
                 name: "Product",
                 url: " Product/Detail/{id}",
                 defaults: new { controller = "Product", action = "Detail" }

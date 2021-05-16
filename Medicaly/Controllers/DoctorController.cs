@@ -31,6 +31,16 @@ namespace Medicaly.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // View jawab konsultasi form
+        public ActionResult Konsultasi(int id)
+        {
+            if (Session["DoctorID"] == null)
+            {
+                return RedirectToAction("Login", "Doctor");
+            }
+            return View(KonsultasiService.getKonsultasiById(id));
+        }
+
         // View login form
         public ActionResult Login()
         {
@@ -60,16 +70,16 @@ namespace Medicaly.Controllers
 
         // Edit Konsultasi If (answered)
         [HttpPost]
-        public JsonResult EditKonsultasi(int id)
+        public JsonResult EditKonsultasi(Konsultasi konsultasi)
         {
-            if (id.ToString() != null)
+            if (konsultasi != null)
             {
-                if (KonsultasiService.editKonsultasi(id))
+                if (KonsultasiService.editKonsultasi(konsultasi))
                 {
-                    return Json(new { success = true, message = "Edit Successfully", JsonRequestBehavior.AllowGet });
+                    return Json(new { success = true, message = "Answer Successfully", JsonRequestBehavior.AllowGet });
                 }
 
-                return Json(new { success = false, message = "Failed Edit Konsultasi", JsonRequestBehavior.AllowGet });
+                return Json(new { success = false, message = "Failed Answer Konsultasi", JsonRequestBehavior.AllowGet });
             }
 
             return Json(new { success = false, message = "Konsultasi Not Found", JsonRequestBehavior.AllowGet });

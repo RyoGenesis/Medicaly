@@ -61,17 +61,24 @@
                                                 @Html.DisplayFor(modelItem => item.Judul)
                                             </td>
                                             <td class="align-middle text-center">
-                                                <a href="~/App_File/Images/Products/@item.FilePendukung" target="_blank">
-
-                                                </a>
+                                                @if (item.FilePendukung == null)
+                                                {
+                                                    <p class="pt-3">No File.</p>
+                                                                            }
+                                                else
+                                                {
+                                                    <a href="~/App_File/Konsultasi/@item.FilePendukung" target="_blank">
+                                                        view
+                                                    </a>
+                                                }
                                             </td>
                                             <td class="align-middle text-center">
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                        <a href="/Doctor/Konsultasi/@item.Id" class="btn btn-outline-dark">
+                                                            Jawab
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -92,7 +99,7 @@
 </section>
 
 <section id="tableList">
-    <div id="content" class="dashboard">
+    <div id="content" class="dashboard pt-5">
         <div class="container">
 
             <div class="card border-0 rounded-20 shadow-sm">
@@ -113,7 +120,6 @@
                                         <th class="align-middle text-center">Email</th>
                                         <th class="align-middle text-center">Judul</th>
                                         <th class="align-middle text-center">File Pendukung</th>
-                                        <th class="align-middle text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="List">
@@ -133,19 +139,16 @@
                                                 @Html.DisplayFor(modelItem => item.Judul)
                                             </td>
                                             <td class="align-middle text-center">
-                                                <a href="~/App_File/Images/Products/@item.FilePendukung" target="_blank">
-
-                                                </a>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
-                                                     aria-label="Toolbar">
-                                                    <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <button type="button" class="btn btn-outline-dark" value="@item.Id" onclick="deleteProduct(this.value, this)">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                                @if (item.FilePendukung == null)
+                                                {
+                                                    <p class="pt-3">No File.</p>
+                                                }
+                                                else
+                                                {
+                                                    <a href="~/App_File/Konsultasi/@item.FilePendukung" target="_blank">
+                                                        view
+                                                    </a>
+                                                }
                                             </td>
                                         </tr>
                                     }
@@ -162,3 +165,7 @@
         </div>
     </div>
 </section>
+
+@section scripts {
+    <script src="~/Scripts/KonsultasiScript.js"></script>
+}

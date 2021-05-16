@@ -1,0 +1,72 @@
+﻿@model Medicaly.Models.Konsultasi
+
+@{
+    ViewBag.Title = "Doctor - Konsultasi";
+}
+
+<section id="jawabKonsultasiPage" class="pt-3">
+    <div class="mx-auto mt-lg-3 mb-lg-5 shadow mb-5 bg-white rounded" style="width: 900px;">
+        <section id="title">
+            <div class="card-header bg-light">
+                <h3>Jawab Konsultasi (ID:@Model.Id)</h3>
+            </div>
+        </section>
+        <div class="card-body">
+            <section id="Form">
+                <form id="formKonsultasi" enctype="multipart/form-data" method="post" onsubmit="return jawabKonsultasi(this)">
+                    
+                    <input type="text" name="Id" value="@Model.Id" hidden/>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Nama">Nama Penanya</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Nama" name="Nama" value="@Model.Nama" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Email">Email</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control mt-2" id="Email" name="Email" value="@Model.Email" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Judul">
+                            Judul - 
+                            <a href="~/App_File/Konsultasi/@Model.FilePendukung"
+                               data-size="710x823" target="_blank">
+                                File Pendukung
+                            </a>
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Judul" name="Judul" value="@Model.Judul" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Detail">Pertanyaan</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control mt-2" id="Detail" name="Detail" cols="20" rows="15" value="@Model.Detail" readonly>@Model.Detail</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Jawaban">Jawab</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control mt-2" id="Jawaban" name="Jawaban" cols="20" rows="15" required></textarea>
+                        </div>
+                    </div>
+
+                    <input type="text" name="DoktorId" value="@int.Parse(Session["DoctorID"].ToString())" hidden/>
+
+                    <div class="text-left mt-3">
+                        <button type="submit" class="btn btn-primary ps-5 pe-5">Jawab</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="~/Scripts/JawabKonsultasi.js"></script>
+} 

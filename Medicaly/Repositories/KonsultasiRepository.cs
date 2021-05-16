@@ -18,7 +18,7 @@ namespace Medicaly.Repositories
                     select x).ToList();
         }
 
-        public static Konsultasi getKonsultasiById(int id)
+        public static Konsultasi getKonsultasiById(long id)
         {
             return (from x in db.Konsultasis
                     where x.Id == id

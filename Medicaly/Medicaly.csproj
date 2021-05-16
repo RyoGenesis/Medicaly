@@ -247,6 +247,7 @@
     <Content Include="Scripts\AskKonsultasi.js" />
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
+    <Content Include="Scripts\JawabKonsultasi.js" />
     <Content Include="Scripts\KonsultasiScript.js" />
     <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\PharmacyAuth.js" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Login.cshtml" />
     <Content Include="Views\Konsultasi\Index.cshtml" />
+    <Content Include="Views\Doctor\Konsultasi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
