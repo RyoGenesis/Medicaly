@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KonsultasiController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Repositories\PharmacyRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ShoppingCartRepository.cs" />
+    <Compile Include="Repositories\SpesialisRepository.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DoctorService.cs" />
     <Compile Include="Services\KonsultasiService.cs" />
@@ -242,6 +244,7 @@
       <DependentUpon>MedicalyModel.edmx</DependentUpon>
       <LastGenOutput>MedicalyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\AskKonsultasi.js" />
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\KonsultasiScript.js" />
@@ -270,6 +273,7 @@
     <Folder Include="App_File\Images\Customers\" />
     <Folder Include="App_File\Images\Pharmacies\" />
     <Folder Include="App_File\Images\Products\" />
+    <Folder Include="App_File\Konsultasi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -314,6 +318,7 @@
     <Content Include="Views\Shopping\Cart.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Login.cshtml" />
+    <Content Include="Views\Konsultasi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

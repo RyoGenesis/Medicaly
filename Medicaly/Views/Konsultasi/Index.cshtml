@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Medicaly.Models.Spesiali>
+
+
+@{
+    ViewBag.Title = "Medicaly - Konsultasi";
+}
+
+<section id="loginPage" class="pt-3">
+    <div class="mx-auto mt-lg-3 mb-lg-5 shadow mb-5 bg-white rounded" style="width: 900px;">
+        <section id="title">
+            <div class="card-header bg-light">
+                <h3>Form Konsultasi</h3>
+            </div>
+        </section>
+        <div class="card-body">
+            <section id="Form">
+                <form id="formKonsultasi" enctype="multipart/form-data" method="post" onsubmit="return konsultasi(this)">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Nama">Nama Anda</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Nama" name="Nama" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Email">Email Anda</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control mt-2" id="Email" name="Email" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Judul">Judul</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Judul" name="Judul" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="SpesialisId">Spesialis</label>
+                        <div class="col-sm-12">
+                            <select name="SpesialisId" class="form-select rounded-20" required
+                                    placeholder="ABCDE">
+                                <option value="" selected disabled>
+                                    Choose...
+                                </option>
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@item.Id">
+                                        @item.Nama
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Detail">Detail Keluhan</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control mt-2" id="Detail" name="Detail" cols="20" rows="15" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="FilePendukung">Upload File Pendukung</label>
+                        <div class="col-sm-12">
+                            <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen">
+                        </div>
+                    </div>
+                    <div class="text-left mt-3">
+                        <button type="submit" class="btn btn-primary ps-5 pe-5">Tanyakan</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="~/Scripts/AskKonsultasi.js"></script>
+}

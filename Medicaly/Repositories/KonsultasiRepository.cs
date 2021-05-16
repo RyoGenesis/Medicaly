@@ -25,6 +25,21 @@ namespace Medicaly.Repositories
                     select x).FirstOrDefault();
         }
 
+        public static bool addKonsultasi(Konsultasi konsultasi)
+        {
+            try
+            {
+                db.Konsultasis.Add(konsultasi);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
         public static bool updateKonsultasi(Konsultasi konsultasi)
         {
             try
