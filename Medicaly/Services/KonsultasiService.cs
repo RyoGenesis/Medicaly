@@ -27,7 +27,7 @@ namespace Medicaly.Services
             {
                 string fileName = Path.GetFileNameWithoutExtension(konsultasi.ImageUpload.FileName);
                 string extension = Path.GetExtension(konsultasi.ImageUpload.FileName);
-                fileName = konsultasi.Nama + "_" + konsultasi.Spesiali.Nama + "_" + fileName + extension;
+                fileName = konsultasi.Nama + "_" + konsultasi.SpesialisId + "_" + fileName + extension;
                 konsultasi.FilePendukung = fileName;
                 konsultasi.ImageUpload.SaveAs(Path.Combine(path, fileName));
             }
