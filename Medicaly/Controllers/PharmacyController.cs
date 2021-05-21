@@ -22,6 +22,17 @@ namespace Medicaly.Controllers
             return View();
         }
 
+        // GET: Udpate Product
+        public ActionResult UpdateProduct(int id)
+        {
+            if (Session["PharmacyID"] == null)
+            {
+                return RedirectToAction("Login", "Pharmacy");
+            }
+
+            return View("~/Views/Pharmacy/Products/Update.cshtml", ProductService.getProductById(id));
+        }
+
         // GET: Product
         [Route("")]
         public ActionResult Products()
@@ -52,6 +63,27 @@ namespace Medicaly.Controllers
                 }
 
                 return Json(new { success = false, message = "Failed Add Product", JsonRequestBehavior.AllowGet });
+            }
+
+            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+
+        }
+
+        // Update Product
+        [HttpPost]
+        public JsonResult UpdateProductPost(Product product)
+        {
+            if (product != null)
+            {
+                string path = Server.MapPath("~/App_File/Images/Products");
+                int pharmacyId = int.Parse(Session["PharmacyId"].ToString());
+
+                if (ProductService.updateProduct(pharmacyId, Session["Nama"].ToString(), product, path))
+                {
+                    return Json(new { success = true, message = "Update Successfully", JsonRequestBehavior.AllowGet });
+                }
+
+                return Json(new { success = false, message = "Failed Update Product", JsonRequestBehavior.AllowGet });
             }
 
             return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });

@@ -36,6 +36,12 @@ namespace Medicaly
             );
 
             routes.MapRoute(
+            name: "Pharmacy",
+            url: " Pharmacy/UpdateProduct/{id}",
+            defaults: new { controller = "Pharmacy", action = "UpdateProduct" }
+        );
+
+            routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults

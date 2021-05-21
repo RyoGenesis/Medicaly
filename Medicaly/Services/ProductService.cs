@@ -62,6 +62,28 @@ namespace Medicaly.Services
             return false;
         }
 
+        public static bool updateProduct(int pharmacyId, string pharmacyName, Product product, string path)
+        {
+            if (product.ImageUpload != null)
+            {
+                if (File.Exists(Path.Combine(path, product.ProductFoto))) { File.Delete(Path.Combine(path, product.ProductFoto)); }
+
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageUpload.FileName);
+                string extension = Path.GetExtension(product.ImageUpload.FileName);
+                fileName = pharmacyName + "_" + product.Nama + "_" + fileName + extension;
+                product.ProductFoto = fileName;
+                product.ImageUpload.SaveAs(Path.Combine(path, fileName));
+                product.PharmacyId = pharmacyId;
+            }
+
+            if (ProductRepository.updateProduct(product))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool deleteProduct(int productId)
         {
 

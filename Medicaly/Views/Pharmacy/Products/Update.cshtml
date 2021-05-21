@@ -1,0 +1,177 @@
+﻿@model Medicaly.Models.Product
+
+@{
+    ViewBag.Title = "Product - Update";
+}
+
+<section id="updateProductPage" class="pt-3">
+    <div class="mx-auto mt-lg-3 mb-lg-5 mt-5 shadow mb-5 bg-white rounded" style="width: 800px;">
+        <section id="title">
+            <div class="card-header bg-light">
+                <h3>Product - Update (ID: @Model.Id)</h3>
+
+            </div>
+        </section>
+        <div class="card-body">
+            <section id="updateForm">
+                <form id="formUpdateProduct" enctype="multipart/form-data" method="post" onsubmit="return UpdateProductPost(this)">
+                    <input type="text" class="form-control mt-2" id="Id" name="Id" value="@Model.Id" hidden>
+                    <input type="text" class="form-control mt-2" id="Id" name="PharmacyId" value="@Model.PharmacyId" hidden>
+
+                    @if (Model.Type.Equals("Obat-obatan"))
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-form-label" for="Type">Type</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Type" name="Type" value="Obat-obatan" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-form-label" for="Nama">Nama Obat</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Nama" name="Nama" value="@Model.Nama" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="IndikasiUmum">Indikasi Umum</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control mt-2" id="IndikasiUmum" name="IndikasiUmum" value="@Model.IndikasiUmum" required>@Model.IndikasiUmum</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Deskripsi">Deskripsi Obat</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" value="@Model.Deskripsi" rows="5" required>@Model.Deskripsi</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Stock">Stock</label>
+                            <div class="col-sm-12">
+                                <input type="number" class="form-control mt-2" id="Stock" name="Stock" value="@Model.Stock" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Price">Price</label>
+                            <div class="col-sm-12">
+                                <input type="number" class="form-control mt-2" id="Price" name="Price" value="@Model.Price" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Category">Kategori</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Category" name="Category" value="@Model.Category" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Komposisi">Komposisi</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Komposisi" name="Komposisi" value="@Model.Komposisi" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Dosis">Dosis</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Dosis" name="Dosis" value="@Model.Dosis" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="AturanPakai">Aturan Pakai</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control mt-2" id="AturanPakai" name="AturanPakai" value="@Model.AturanPakai" rows="5" required>@Model.AturanPakai</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Kemasan">Kemasan</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Kemasan" name="Kemasan" value="@Model.Kemasan" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="KontraIndikasi">Kontra Indikasi</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="KontraIndikasi" name="KontraIndikasi" value="@Model.KontraIndikasi" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Perhatian">Perhatian</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Perhatian" name="Perhatian" value="@Model.Perhatian" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Segmentasi">Segmentasi</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Segmentasi" name="Segmentasi" value="@Model.Segmentasi" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Manufaktur">Manufaktur</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Manufaktur" name="Manufaktur" value="@Model.Manufaktur" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="ProductFoto">Photo Produk</label>
+                            <div class="col-sm-12 mt-2">
+                                <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" title="@Model.ProductFoto" />
+                                <input type="text" name="ProductFoto" id="ProductFoto" value="@Model.ProductFoto" hidden />
+                            </div>
+                        </div>
+
+
+                    }
+                    else
+                    {
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-form-label" for="Type">Type</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Type" name="Type" value="Alat-Kesehatan" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-form-label" for="Nama">Nama Produk</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control mt-2" id="Nama" name="Nama" value="@Model.Nama" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Deskripsi">Deskripsi Produk</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control mt-2" id="Deskripsi" name="Deskripsi" value="@Model.Deskripsi" rows="5" required>@Model.Deskripsi</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Stock">Stock</label>
+                            <div class="col-sm-12">
+                                <input type="number" class="form-control mt-2" id="Stock" name="Stock" value="@Model.Stock" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="Price">Price</label>
+                            <div class="col-sm-12">
+                                <input type="number" class="form-control mt-2" id="Price" name="Price" value="@Model.Price" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-2">
+                            <label class="col-sm-12 col-form-label" for="ProductFoto">Photo Produk</label>
+                            <div class="col-sm-12 mt-2">
+                                <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" title=" " />
+
+                                <input type="text" name="ProductFoto" id="ProductFoto" value="@Model.ProductFoto" hidden />
+                            </div>
+                        </div>
+                    }
+                    <div class="text-left mt-3">
+                        <button type="submit" class="btn btn-primary pe-5 ps-5">Save</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    <script src="~/Scripts/UpdateProduct.js"></script>
+}

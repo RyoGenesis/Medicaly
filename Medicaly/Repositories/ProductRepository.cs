@@ -1,6 +1,8 @@
 ﻿using Medicaly.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -38,6 +40,20 @@ namespace Medicaly.Repositories
             }
         }
 
+        public static bool updateProduct(Product product)
+        {
+            try
+            {
+                db.Products.AddOrUpdate(product);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public static Product getProductById(int id)
         {
             return (
