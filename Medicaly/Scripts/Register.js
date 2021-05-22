@@ -6,7 +6,7 @@
         success: function (result) {
             if (result.success) {
                 alert("Success Register Customer");
-                window.location.href = "/Home";
+                window.location.href = "/Auth/Login";
             } else {
                 console.log(result.message);
                 if (result.message == "Email Already Registered") {

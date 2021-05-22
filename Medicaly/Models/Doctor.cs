@@ -36,7 +36,6 @@ namespace Medicaly.Models
         public string FotoProfile { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
-
         public virtual Spesiali Spesiali { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Konsultasi> Konsultasis { get; set; }

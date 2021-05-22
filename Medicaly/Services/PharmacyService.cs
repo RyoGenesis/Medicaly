@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Medicaly.Password;
 
 namespace Medicaly.Services
 {
@@ -15,22 +16,24 @@ namespace Medicaly.Services
             string emailPharmacy = pharmacy.EmailPharmacy;
             string password = pharmacy.Password;
 
-            Pharmacy pcr = PharmacyRepository.getPharmacyByEmailAndPassword(emailPharmacy, password);
+            Pharmacy pcr = PharmacyRepository.getPharmacyByEmail(emailPharmacy);
 
-            if (pcr != null)
-            {
+            if (pcr != null) {
 
-                return pcr;
+                if (Hashing.Verify(password, pcr.Password)) { return pcr; }
+
+                return null; 
             }
 
-            return pcr;
+            return null;
         }
 
-        public static Pharmacy AddPharmacy(Pharmacy pharmacy, string path)
+        public static bool AddPharmacy(Pharmacy pharmacy, string path)
         {
-            if (!validateEmail(pharmacy.EmailPharmacy))
+
+            if (PharmacyRepository.getPharmacyByEmail(pharmacy.EmailPharmacy) != null)
             {
-                return null;
+                return false;
             }
 
             string fileName = Path.GetFileNameWithoutExtension(pharmacy.ImageUpload.FileName);
@@ -39,27 +42,15 @@ namespace Medicaly.Services
             pharmacy.FotoPharmacy = fileName;
             pharmacy.ImageUpload.SaveAs(Path.Combine(path, fileName));
 
+            //Hash Password
+            pharmacy.Password = Hashing.Hash(pharmacy.Password);
+
             if (PharmacyRepository.addPharmacy(pharmacy))
             {
-                return pharmacy;
+                return true;
             }
 
-            return null;
-        }
-
-        private static bool validateEmail(string email)
-        {
-            List<Pharmacy> PharmaciesList = PharmacyRepository.getAllPharmacy();
-
-            foreach (var item in PharmaciesList)
-            {
-                if (email == item.EmailPharmacy)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return false;
         }
     }
 }

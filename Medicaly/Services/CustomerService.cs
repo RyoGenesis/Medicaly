@@ -1,5 +1,6 @@
 ﻿using Medicaly.Factories;
 using Medicaly.Models;
+using Medicaly.Password;
 using Medicaly.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,22 +18,22 @@ namespace Medicaly.Services
             string email = customer.Email;
             string password = customer.Password;
 
-            Customer csr = CustomerRepository.getCustomerByEmailAndPassword(email, password);
+            Customer csr = CustomerRepository.getCustomerByEmail(email);
 
             if (csr != null)
             {
-
-                return csr;
+                if (Hashing.Verify(password, csr.Password)) { return csr; }
+                return null;
             }
 
             return csr;
         }
 
-        public static Customer addCustomer(Customer customer, string path)
+        public static bool addCustomer(Customer customer, string path)
         {
-            if (!validateEmail(customer.Email))
+            if (CustomerRepository.getCustomerByEmail(customer.Email) != null)
             {
-                return null;
+                return false;
             }
 
             string fileName = Path.GetFileNameWithoutExtension(customer.ImageUpload.FileName);
@@ -41,27 +42,14 @@ namespace Medicaly.Services
             customer.FotoProfile = fileName;
             customer.ImageUpload.SaveAs(Path.Combine(path, fileName));
 
+            customer.Password = Hashing.Hash(customer.Password);
+
             if (CustomerRepository.addCustomer(customer))
             {
-                return customer;
+                return true;
             }
 
-            return null;
-        }
-
-        private static bool validateEmail(string email)
-        {
-            List<Customer> customersList = CustomerRepository.getAllCustomer();
-
-            foreach (var item in customersList)
-            {
-                if (email == item.Email)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return false;
         }
     }
 }

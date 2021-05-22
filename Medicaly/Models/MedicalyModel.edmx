@@ -14,7 +14,7 @@
           <Property Name="Email" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NoHandphone" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="4000" />
           <Property Name="FotoProfile" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="DetailTransaction">
@@ -85,7 +85,7 @@
           <Property Name="NoTelephone" Type="varchar" MaxLength="32" />
           <Property Name="NamaPIC" Type="varchar" MaxLength="32" />
           <Property Name="EmailPIC" Type="varchar" MaxLength="32" />
-          <Property Name="Password" Type="varchar" MaxLength="10" />
+          <Property Name="Password" Type="varchar" MaxLength="4000" />
           <Property Name="FotoPharmacy" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Products">
@@ -328,7 +328,7 @@
           <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NoHandphone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="FotoProfile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="HeaderTransactions" Relationship="Self.FK__HeaderTra__Custo__09A971A2" FromRole="Customer" ToRole="HeaderTransaction" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Custo__6FE99F9F" FromRole="Customer" ToRole="ShoppingCart" />
@@ -409,7 +409,7 @@
           <Property Name="NoTelephone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="NamaPIC" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="EmailPIC" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="FotoPharmacy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Pharmacy" ToRole="Products" />
         </EntityType>

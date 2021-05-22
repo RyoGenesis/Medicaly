@@ -10,10 +10,10 @@ namespace Medicaly.Repositories
     {
         private static MedicalyDBEntities db = MedicalySingletonDB.getInstance();
 
-        public static Customer getCustomerByEmailAndPassword(string email, string password)
+        public static Customer getCustomerByEmail(string email)
         {
             return (from x in db.Customers
-                    where x.Email.Equals(email) && x.Password.Equals(password)
+                    where x.Email.Equals(email)
                     select x).FirstOrDefault();
         }
 

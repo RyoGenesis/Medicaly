@@ -150,10 +150,8 @@ namespace Medicaly.Controllers
             if (pharmacy != null && pharmacy.ImageUpload != null)
             {
                 string path = Server.MapPath("~/App_File/Images/Pharmacies");
-                Pharmacy prc = PharmacyService.AddPharmacy(pharmacy, path);
-                if (prc != null)
+                if (PharmacyService.AddPharmacy(pharmacy, path))
                 {
-                    createSession(PharmacyService.Login(prc));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
 

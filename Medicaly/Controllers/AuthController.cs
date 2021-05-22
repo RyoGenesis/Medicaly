@@ -55,10 +55,8 @@ namespace Medicaly.Controllers
             if (customer != null && customer.ImageUpload != null)
             {
                 string path = Server.MapPath("~/App_File/Images/Customers");
-                Customer csr = CustomerService.addCustomer(customer, path);
-                if (csr != null)
+                if (CustomerService.addCustomer(customer, path))
                 {
-                    createSession(CustomerService.login(csr));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
 

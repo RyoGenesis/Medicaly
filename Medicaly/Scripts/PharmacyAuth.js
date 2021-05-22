@@ -7,7 +7,7 @@
         success: function (result) {
             if (result.success) {
                 alert("Success Register Pharmacy");
-                window.location.href = "/Pharmacy";
+                window.location.href = "/Pharmacy/Login";
             } else {
                 console.log(result.message);
                 if (result.message == "Email Already Registered") {
