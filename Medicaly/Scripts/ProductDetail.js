@@ -61,7 +61,7 @@ $("#formAddToCart").submit(function (event) {
 
     $.ajax({
         type: "POST",
-        url: "/Shopping/AddToCart",
+        url: "/Cart/AddToCart",
         data: {
             customerId: customerId,
             quantity: quantity,

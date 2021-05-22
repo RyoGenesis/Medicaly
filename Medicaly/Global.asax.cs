@@ -30,15 +30,15 @@ namespace Medicaly
             );
 
             routes.MapRoute(
-                name: "Pharmacy",
-                url: " Pharmacy/Products/Manages",
-                defaults: new { controller = "Pharmacy", action = "Products", id = "" }
+                name: "Product",
+                url: " Product/Manage",
+                defaults: new { controller = "Product", action = "Manage" }
             );
 
             routes.MapRoute(
-            name: "Pharmacy",
-            url: " Pharmacy/UpdateProduct/{id}",
-            defaults: new { controller = "Pharmacy", action = "UpdateProduct" }
+                name: "Product",
+                url: " Product/Update/{id}",
+                defaults: new { controller = "Product", action = "Update" }
         );
 
             routes.MapRoute(

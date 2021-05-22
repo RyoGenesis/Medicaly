@@ -40,7 +40,7 @@ function deleteCart(val) {
 
     $.ajax({
         type: "POST",
-        url: "/Shopping/DeleteCart",
+        url: "/Cart/DeleteCart",
         data: {
             id: id
         },
@@ -48,8 +48,8 @@ function deleteCart(val) {
             console.log(result.message)
             if (result.success) {
                 alert("Success Remove Product");
-                $('#Cart').load('/Shopping/Cart #Cart');
-                $('#checkoutCart').load('/Shopping/Cart #checkoutCart');
+                $('#Cart').load('/Cart/ #Cart');
+                $('#checkoutCart').load('/Cart/ #checkoutCart');
             }
         },
         error: function (err) {

@@ -28,6 +28,16 @@ namespace Medicaly.Services
             return null;
         }
 
+        public static Pharmacy getPharmacy(int id)
+        {
+            if (PharmacyRepository.getPharmacyById(id) != null)
+            {
+                return PharmacyRepository.getPharmacyById(id);
+            }
+
+            return null;
+        }
+
         public static bool AddPharmacy(Pharmacy pharmacy, string path)
         {
 

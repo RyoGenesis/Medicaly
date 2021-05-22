@@ -17,6 +17,13 @@ namespace Medicaly.Repositories
                     select x).FirstOrDefault();
         }
 
+        public static Pharmacy getPharmacyById(int id)
+        {
+            return (from x in db.Pharmacies
+                    where x.Id == id
+                    select x).FirstOrDefault();
+        }
+
         public static List<Pharmacy> getAllPharmacy()
         {
             return (from x in db.Pharmacies

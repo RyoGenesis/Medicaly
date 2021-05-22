@@ -1,13 +1,13 @@
 ﻿function UpdateProductPost(formData) {
     var ajaxConfig = {
         type: "post",
-        url: "/Pharmacy/UpdateProductPost",
+        url: "/Product/Edit",
         data: new FormData(formData),
         success: function (result) {
             console.log(result.message);
             if (result.success) {
                 alert("Success Update Product");
-                window.location.href = "/Pharmacy/Products/Manages";
+                window.location.href = "/Product/Manage";
             } else {
                 console.log(result.message);
                 alert("Failed Update Product");

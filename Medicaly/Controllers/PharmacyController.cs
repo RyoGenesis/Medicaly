@@ -22,91 +22,6 @@ namespace Medicaly.Controllers
             return View();
         }
 
-        // GET: Udpate Product
-        public ActionResult UpdateProduct(int id)
-        {
-            if (Session["PharmacyID"] == null)
-            {
-                return RedirectToAction("Login", "Pharmacy");
-            }
-
-            return View("~/Views/Pharmacy/Products/Update.cshtml", ProductService.getProductById(id));
-        }
-
-        // GET: Product
-        [Route("")]
-        public ActionResult Products()
-        {
-            if (Session["Nama"] != null && Session["UserType"].ToString() == "Pharmacy")
-            {
-                ProductViewModel productView = ProductService.getProductView(int.Parse(Session["PharmacyId"].ToString()));
-
-                return View("~/Views/Pharmacy/Products/Dashboard.cshtml", productView);
-            }
-
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        // Add Product
-        [HttpPost]
-        public JsonResult AddProduct(Product product)
-        {
-            if (product != null && product.ImageUpload != null)
-            {
-                string path = Server.MapPath("~/App_File/Images/Products");
-                int pharmacyId = int.Parse(Session["PharmacyId"].ToString());
-
-                if (ProductService.addProduct(pharmacyId, Session["Nama"].ToString(), product, path))
-                {
-                    return Json(new { success = true, message = "Added Successfully", JsonRequestBehavior.AllowGet });
-                }
-
-                return Json(new { success = false, message = "Failed Add Product", JsonRequestBehavior.AllowGet });
-            }
-
-            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
-
-        }
-
-        // Update Product
-        [HttpPost]
-        public JsonResult UpdateProductPost(Product product)
-        {
-            if (product != null)
-            {
-                string path = Server.MapPath("~/App_File/Images/Products");
-                int pharmacyId = int.Parse(Session["PharmacyId"].ToString());
-
-                if (ProductService.updateProduct(pharmacyId, Session["Nama"].ToString(), product, path))
-                {
-                    return Json(new { success = true, message = "Update Successfully", JsonRequestBehavior.AllowGet });
-                }
-
-                return Json(new { success = false, message = "Failed Update Product", JsonRequestBehavior.AllowGet });
-            }
-
-            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
-
-        }
-
-        // Delete Product
-        [HttpPost]
-        public JsonResult DeleteProduct(int id)
-        {
-            if (id.ToString() != null)
-            {
-                if (ProductService.deleteProduct(id))
-                {
-                    return Json(new { success = true, message = "Deleted Successfully", JsonRequestBehavior.AllowGet });
-                }
-
-                return Json(new { success = false, message = "Failed Add Product", JsonRequestBehavior.AllowGet });
-            }
-
-            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
-
-        }
 
         public ActionResult Login()
         {
@@ -114,7 +29,7 @@ namespace Medicaly.Controllers
             {
                 return RedirectToAction("Index", "Pharmacy");
             }
-            return View("~/Views/Pharmacy/Auth/Login.cshtml");
+            return View();
         }
 
         public ActionResult Register()
@@ -123,7 +38,7 @@ namespace Medicaly.Controllers
             {
                 return RedirectToAction("Index", "Pharmacy");
             }
-            return View("~/Views/Pharmacy/Auth/Register.cshtml");
+            return View();
         }
 
         //Login

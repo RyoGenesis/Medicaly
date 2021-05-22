@@ -135,7 +135,8 @@
     <Compile Include="Controllers\KonsultasiController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ShoppingController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Factories\ShoppingCartFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,7 +200,7 @@
     <Compile Include="Services\KonsultasiService.cs" />
     <Compile Include="Services\PharmacyService.cs" />
     <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\ShoppingCartService.cs" />
+    <Compile Include="Services\CartService.cs" />
     <Compile Include="ViewModels\KonsultasiViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
@@ -316,15 +317,16 @@
     <None Include="packages.config" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
-    <Content Include="Views\Pharmacy\Auth\Login.cshtml" />
-    <Content Include="Views\Pharmacy\Auth\Register.cshtml" />
-    <Content Include="Views\Pharmacy\Products\Dashboard.cshtml" />
-    <Content Include="Views\Shopping\Cart.cshtml" />
+    <Content Include="Views\Pharmacy\Login.cshtml" />
+    <Content Include="Views\Pharmacy\Register.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Login.cshtml" />
     <Content Include="Views\Konsultasi\Index.cshtml" />
     <Content Include="Views\Doctor\Konsultasi.cshtml" />
-    <Content Include="Views\Pharmacy\Products\Update.cshtml" />
+    <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Product\Manage.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
