@@ -1,4 +1,5 @@
-﻿using Medicaly.Services;
+﻿using Medicaly.Models;
+using Medicaly.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,22 @@ namespace Medicaly.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        // Edit Customer
+        [HttpPost]
+        public JsonResult EditCustomer(Customer customer)
+        {
+            if (customer != null)
+            {
+                string message = CustomerService.update(customer);
+
+                return Json(new { success = true, message = message, JsonRequestBehavior.AllowGet });
+
+            }
+
+            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+
         }
     }
 }

@@ -261,6 +261,7 @@
     <Content Include="Scripts\ProductDetail.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\UpdateProduct.js" />
+    <Content Include="Scripts\UpdateProfile.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -29,6 +29,63 @@ namespace Medicaly.Services
             return csr;
         }
 
+        public static string update(Customer customer)
+        {
+            if (!validateUpdateEmail(customer.Id, customer.Email))
+            {
+                return "Email already registered!";
+            }
+
+            string response = cekInput(customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat);
+            if (response != null) { return response; }
+
+
+            if (CustomerRepository.updateCustomer(customer.Id, customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat))
+            {
+                return "Success update customer!";
+            }
+
+            return "Cannot update customer!";
+        }
+
+        private static string cekInput(string nama, string email, string handphone, string alamat)
+        {
+            if (nama == null)
+            {
+                return "Name cannot be empty!"; ;
+            }
+
+            if (email == null)
+            {
+                return "Email cannot be empty!"; ;
+            }
+
+            if (handphone == null)
+            {
+                return "NoHandphone cannot be empty!"; ;
+            }
+
+            if (alamat == null)
+            {
+                return "Alamat cannot be empty!"; ;
+            }
+
+            return null;
+        }
+
+        private static bool validateUpdateEmail(int id, string email)
+        {
+            List<Customer> customerList = CustomerRepository.getCustomerWherIdNot(id);
+            foreach (var item in customerList)
+            {
+                if (item.Email.Equals(email))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static bool addCustomer(Customer customer, string path)
         {
             if (CustomerRepository.getCustomerByEmail(customer.Email) != null)
