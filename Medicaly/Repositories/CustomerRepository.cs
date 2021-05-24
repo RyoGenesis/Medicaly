@@ -47,7 +47,7 @@ namespace Medicaly.Repositories
             }
         }
 
-        public static bool updateCustomer(int id, string nama, string email, string handphone, string alamat)
+        public static bool updateCustomer(int id, string nama, string email, string handphone)
         {
             try
             {
@@ -56,7 +56,6 @@ namespace Medicaly.Repositories
                 customer.Nama = nama;
                 customer.Email = email;
                 customer.NoHandphone = handphone;
-                customer.Alamat = alamat;
 
                 db.SaveChanges();
                 return true;

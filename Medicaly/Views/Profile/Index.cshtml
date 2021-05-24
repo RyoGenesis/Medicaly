@@ -75,10 +75,11 @@
                         @if (Model.pharmacies == null && Model.doctors == null)
                         {
                             <form id="formUpdateProduct" enctype="multipart/form-data" method="post" onsubmit="return updateCustomer(this)">
-                                <div class="row gutters pt-3 pb-5">
+                                <div class="row gutters pb-5">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                                        <h6 class="mb-2 text-primary pb-2">Personal Details</h6>
                                     </div>
+                                    <hr />
                                     <input id="Id" name="Id" value="@Model.customers.Id" hidden />
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
                                         <div class="form-group">
@@ -98,18 +99,12 @@
                                             <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone" value="@Model.customers.NoHandphone" required>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                        <div class="form-group">
-                                            <label for="Alamat">Address</label>
-                                            <input type="text" class="form-control" id="Alamat" name="Alamat" value="@Model.customers.Alamat" required>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pt-5">
+                                <div class="row gutters pt-5">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="text-right">
-                                            <a href="/Home/" class="btn btn-secondary ps-5 pe-5">Back To Home</a>
-                                            <button type="submit" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update</button>
+                                            <a href="/Home/" class="btn btn-secondary ps-5 pe-5">Change Password</a>
+                                            <button type="submit" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update Personal</button>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +154,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="EmailPIC">Emai lPIC</label>
+                                            <label for="EmailPIC">Emai PIC</label>
                                             <input type="email" class="form-control" id="EmailPIC" name="EmailPIC" value="@Model.pharmacies.EmailPharmacy" required>
                                         </div>
                                     </div>
@@ -256,6 +251,94 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="card border-0 rounded-20 shadow-sm cards h-100">
+            <div class="card-body">
+                @if (Model.pharmacies == null && Model.doctors == null)
+                {
+                    if (Model.Alamat.Count() > 0)
+                    {
+                        int count = 1;
+                        foreach (var item in Model.Alamat)
+                        {
+                            <div class="row gutters pb-4">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary pb-2">Alamat Anda (@count)</h6>
+                                </div>
+                                <hr />
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="LabelAlamat">Label Alamat</label>
+                                        <input type="text" class="form-control" id="LabelAlamat" name="LabelAlamat" value="@item.LabelAlamat" placeholder="Enter full name" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="NamaPenerima">Nama Penerima</label>
+                                        <input type="text" class="form-control" id="NamaPenerima" name="NamaPenerima" value="@item.NamaPenerima" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="NoHandphone">Phone</label>
+                                        <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone" value="@item.NoHandphone" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="KotaKecamatan">Kota atau Kecamatan</label>
+                                        <input type="text" class="form-control" id="KotaKecamatan" name="KotaKecamatan" value="@item.KotaKecamatan" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="KodePos">Phone</label>
+                                        <input type="text" class="form-control" id="KodePos" name="KodePost" value="@item.KodePost" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                    <div class="form-group">
+                                        <label for="Alamat">Phone</label>
+                                        <textarea type="text" class="form-control" id="Alamat" name="Alamat!" readonly>@item.Alamat1</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <a href="/Profile/Alamat/@item.Id" class="btn btn-secondary ps-5 pe-5">Update Alamat (@count)</a>
+                                        <a href="/Profile/Alamat/" class="btn btn-primary ps-5 pe-5">Tambah Alamat</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            count++;
+                        }
+                    }
+                    else
+                    {
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-dark pb-2">Anda belum mempunyai alamat!</h6>
+                            </div>
+                        </div>
+                        <div class="row gutters pt-3">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+
+                                    <a href="/Profile/Alamat/" class="btn btn-primary ps-5 pe-5">Tambah Alamat</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+
 </section>
 @section scripts {
     <script src="~/Scripts/UpdateProfile.js"></script>

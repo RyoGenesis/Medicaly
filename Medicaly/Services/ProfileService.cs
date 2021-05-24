@@ -20,6 +20,7 @@ namespace Medicaly.Services
             else if (customerId != null)
             {
                 profileView.customers = CustomerRepository.getCustomerById(int.Parse(customerId));
+                profileView.Alamat = AlamatCuustomerRepository.getAlamatsCustomer(int.Parse(customerId));
                 return profileView;
             } else
             {

@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="MedicalyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alamat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LabelAlamat" Type="varchar" MaxLength="255" />
+          <Property Name="NamaPenerima" Type="varchar" MaxLength="255" />
+          <Property Name="NoHandphone" Type="varchar" MaxLength="255" />
+          <Property Name="KotaKecamatan" Type="varchar" MaxLength="255" />
+          <Property Name="KodePost" Type="int" />
+          <Property Name="Alamat" Type="text" />
+          <Property Name="CustomerID" Type="int" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,7 +25,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nama" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NoHandphone" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="4000" />
           <Property Name="FotoProfile" Type="varchar" MaxLength="255" />
@@ -127,6 +139,20 @@
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nama" Type="varchar" MaxLength="255" />
         </EntityType>
+        <Association Name="FK__Alamat__Customer__29221CFB">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alamat" Type="Self.Alamat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alamat">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__DetailTra__Produ__0D7A0286">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -268,6 +294,7 @@
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="MedicalyModelStoreContainer">
+          <EntitySet Name="Alamat" EntityType="Self.Alamat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailTransaction" EntityType="Self.DetailTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
@@ -277,6 +304,10 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spesialis" EntityType="Self.Spesialis" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Alamat__Customer__29221CFB" Association="Self.FK__Alamat__Customer__29221CFB">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Alamat" EntitySet="Alamat" />
+          </AssociationSet>
           <AssociationSet Name="FK__DetailTra__Produ__0D7A0286" Association="Self.FK__DetailTra__Produ__0D7A0286">
             <End Role="Products" EntitySet="Products" />
             <End Role="DetailTransaction" EntitySet="DetailTransaction" />
@@ -319,6 +350,20 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MedicalyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alamat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LabelAlamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NamaPenerima" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NoHandphone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="KotaKecamatan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="KodePost" Type="Int32" />
+          <Property Name="Alamat1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Alamat__Customer__29221CFB" FromRole="Alamat" ToRole="Customer" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -326,10 +371,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nama" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NoHandphone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="FotoProfile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alamats" Relationship="Self.FK__Alamat__Customer__29221CFB" FromRole="Customer" ToRole="Alamat" />
           <NavigationProperty Name="HeaderTransactions" Relationship="Self.FK__HeaderTra__Custo__09A971A2" FromRole="Customer" ToRole="HeaderTransaction" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Custo__6FE99F9F" FromRole="Customer" ToRole="ShoppingCart" />
         </EntityType>
@@ -459,6 +504,20 @@
           <NavigationProperty Name="Doctors" Relationship="Self.FK__Doctor__Spesiali__17F790F9" FromRole="Spesialis" ToRole="Doctor" />
           <NavigationProperty Name="Konsultasis" Relationship="Self.FK__Konsultas__Spesi__1EA48E88" FromRole="Spesialis" ToRole="Konsultasi" />
         </EntityType>
+        <Association Name="FK__Alamat__Customer__29221CFB">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alamat" Type="Self.Alamat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alamat">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__HeaderTra__Custo__09A971A2">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -584,6 +643,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MedicalyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alamats" EntityType="Self.Alamat" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="DetailTransactions" EntityType="Self.DetailTransaction" />
           <EntitySet Name="Doctors" EntityType="Self.Doctor" />
@@ -593,6 +653,10 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ShoppingCarts" EntityType="Self.ShoppingCart" />
           <EntitySet Name="Spesialis" EntityType="Self.Spesiali" />
+          <AssociationSet Name="FK__Alamat__Customer__29221CFB" Association="Self.FK__Alamat__Customer__29221CFB">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Alamat" EntitySet="Alamats" />
+          </AssociationSet>
           <AssociationSet Name="FK__HeaderTra__Custo__09A971A2" Association="Self.FK__HeaderTra__Custo__09A971A2">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="HeaderTransaction" EntitySet="HeaderTransactions" />
@@ -652,13 +716,26 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MedicalyModelStoreContainer" CdmEntityContainer="MedicalyDBEntities">
+          <EntitySetMapping Name="Alamats">
+            <EntityTypeMapping TypeName="MedicalyModel.Alamat">
+              <MappingFragment StoreEntitySet="Alamat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LabelAlamat" ColumnName="LabelAlamat" />
+                <ScalarProperty Name="NamaPenerima" ColumnName="NamaPenerima" />
+                <ScalarProperty Name="NoHandphone" ColumnName="NoHandphone" />
+                <ScalarProperty Name="KotaKecamatan" ColumnName="KotaKecamatan" />
+                <ScalarProperty Name="KodePost" ColumnName="KodePost" />
+                <ScalarProperty Name="Alamat1" ColumnName="Alamat" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="MedicalyModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
                 <ScalarProperty Name="NoHandphone" ColumnName="NoHandphone" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FotoProfile" ColumnName="FotoProfile" />

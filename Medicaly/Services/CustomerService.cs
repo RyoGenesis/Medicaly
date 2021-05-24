@@ -36,11 +36,11 @@ namespace Medicaly.Services
                 return "Email already registered!";
             }
 
-            string response = cekInput(customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat);
+            string response = cekInput(customer.Nama, customer.Email, customer.NoHandphone);
             if (response != null) { return response; }
 
 
-            if (CustomerRepository.updateCustomer(customer.Id, customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat))
+            if (CustomerRepository.updateCustomer(customer.Id, customer.Nama, customer.Email, customer.NoHandphone))
             {
                 return "Success update customer!";
             }
@@ -48,7 +48,7 @@ namespace Medicaly.Services
             return "Cannot update customer!";
         }
 
-        private static string cekInput(string nama, string email, string handphone, string alamat)
+        private static string cekInput(string nama, string email, string handphone)
         {
             if (nama == null)
             {
@@ -63,11 +63,6 @@ namespace Medicaly.Services
             if (handphone == null)
             {
                 return "NoHandphone cannot be empty!"; ;
-            }
-
-            if (alamat == null)
-            {
-                return "Alamat cannot be empty!"; ;
             }
 
             return null;

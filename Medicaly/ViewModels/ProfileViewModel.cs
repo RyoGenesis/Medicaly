@@ -12,5 +12,7 @@ namespace Medicaly.ViewModels
         public Doctor doctors { get; set; }
         public Customer customers { get; set; }
 
+        public IEnumerable<Alamat> Alamat { get; set; }
+
     }
 }

@@ -18,6 +18,7 @@ namespace Medicaly.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
+            this.Alamats = new HashSet<Alamat>();
             this.HeaderTransactions = new HashSet<HeaderTransaction>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
@@ -25,13 +26,14 @@ namespace Medicaly.Models
         public int Id { get; set; }
         public string Nama { get; set; }
         public string Email { get; set; }
-        public string Alamat { get; set; }
         public string NoHandphone { get; set; }
         public string Password { get; set; }
         public string FotoProfile { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Alamat> Alamats { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HeaderTransaction> HeaderTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
