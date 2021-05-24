@@ -1,4 +1,6 @@
-﻿using Medicaly.Models;
+﻿using Medicaly.Factories;
+using Medicaly.Models;
+using Medicaly.Password;
 using Medicaly.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,27 +13,84 @@ namespace Medicaly.Services
 {
     public static class CustomerService
     {
-        public static Customer Login(Customer customer)
+        public static Customer login(Customer customer)
         {
             string email = customer.Email;
             string password = customer.Password;
 
-            Customer csr = CustomerRepository.getCustomerByEmailAndPassword(email, password);
+            Customer csr = CustomerRepository.getCustomerByEmail(email);
 
             if (csr != null)
             {
-
-                return csr;
+                if (Hashing.Verify(password, csr.Password)) { return csr; }
+                return null;
             }
 
             return csr;
         }
 
-        public static Customer AddCustomer(Customer customer, string path)
+        public static string update(Customer customer)
         {
-            if (!validateEmail(customer.Email))
+            if (!validateUpdateEmail(customer.Id, customer.Email))
             {
-                return null;
+                return "Email already registered!";
+            }
+
+            string response = cekInput(customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat);
+            if (response != null) { return response; }
+
+
+            if (CustomerRepository.updateCustomer(customer.Id, customer.Nama, customer.Email, customer.NoHandphone, customer.Alamat))
+            {
+                return "Success update customer!";
+            }
+
+            return "Cannot update customer!";
+        }
+
+        private static string cekInput(string nama, string email, string handphone, string alamat)
+        {
+            if (nama == null)
+            {
+                return "Name cannot be empty!"; ;
+            }
+
+            if (email == null)
+            {
+                return "Email cannot be empty!"; ;
+            }
+
+            if (handphone == null)
+            {
+                return "NoHandphone cannot be empty!"; ;
+            }
+
+            if (alamat == null)
+            {
+                return "Alamat cannot be empty!"; ;
+            }
+
+            return null;
+        }
+
+        private static bool validateUpdateEmail(int id, string email)
+        {
+            List<Customer> customerList = CustomerRepository.getCustomerWherIdNot(id);
+            foreach (var item in customerList)
+            {
+                if (item.Email.Equals(email))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool addCustomer(Customer customer, string path)
+        {
+            if (CustomerRepository.getCustomerByEmail(customer.Email) != null)
+            {
+                return false;
             }
 
             string fileName = Path.GetFileNameWithoutExtension(customer.ImageUpload.FileName);
@@ -40,27 +99,14 @@ namespace Medicaly.Services
             customer.FotoProfile = fileName;
             customer.ImageUpload.SaveAs(Path.Combine(path, fileName));
 
+            customer.Password = Hashing.Hash(customer.Password);
+
             if (CustomerRepository.addCustomer(customer))
             {
-                return customer;
+                return true;
             }
 
-            return null;
-        }
-
-        private static bool validateEmail(string email)
-        {
-            List<Customer> customersList = CustomerRepository.getAllCustomer();
-
-            foreach (var item in customersList)
-            {
-                if (email == item.Email)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return false;
         }
     }
 }

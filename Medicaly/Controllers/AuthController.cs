@@ -15,17 +15,22 @@ namespace Medicaly.Controllers
         // GET: Auth
         public ActionResult Login()
         {
+            if (Session["CustomerID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        // Login
         [HttpPost]
         public JsonResult Post(Customer customer)
         {
             if (customer != null)
             {
-                if (CustomerService.Login(customer) != null)
+                if (CustomerService.login(customer) != null)
                 {
-                    createSession(CustomerService.Login(customer));
+                    createSession(CustomerService.login(customer));
                     return Json(new { success = true, message = "Login Successfully", JsonRequestBehavior.AllowGet });
                 }
                 return Json(new { success = false, message = "Wrong email and password", JsonRequestBehavior.AllowGet });
@@ -36,19 +41,22 @@ namespace Medicaly.Controllers
 
         public ActionResult Register()
         {
+            if (Session["CustomerID"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
+        // Register
         [HttpPost]
         public JsonResult Create(Customer customer)
         {
             if (customer != null && customer.ImageUpload != null)
             {
-                string path = Server.MapPath("~/AppFile/Images/Customers");
-                Customer csr = CustomerService.AddCustomer(customer, path);
-                if (csr != null)
+                string path = Server.MapPath("~/App_File/Images/Customers");
+                if (CustomerService.addCustomer(customer, path))
                 {
-                    createSession(CustomerService.Login(csr));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
 
@@ -59,6 +67,7 @@ namespace Medicaly.Controllers
             
         }
 
+        // Log Out
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

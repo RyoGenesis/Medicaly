@@ -15,31 +15,30 @@ namespace Medicaly.Controllers
         // GET: Pharmacy
         public ActionResult Index()
         {
+            if (Session["PharmacyID"] == null)
+            {
+                return RedirectToAction("Login", "Pharmacy");
+            }
             return View();
         }
 
-        // GET: Product
-        public ActionResult Product()
-        {
-            if (Session["Nama"] != null && Session["UserType"].ToString() == "Pharmacy")
-            {
-                ProductViewModel productView = ProductService.getProductView(int.Parse(Session["PharmacyId"].ToString()));
-
-                return View("~/Views/Pharmacy/Products/Dashboard.cshtml", productView);
-            }
-
-
-            return RedirectToAction("Index", "Home");
-        }
 
         public ActionResult Login()
         {
-            return View("~/Views/Pharmacy/Auth/Login.cshtml");
+            if (Session["PharmacyID"] != null)
+            {
+                return RedirectToAction("Index", "Pharmacy");
+            }
+            return View();
         }
 
         public ActionResult Register()
         {
-            return View("~/Views/Pharmacy/Auth/Register.cshtml");
+            if (Session["PharmacyID"] != null)
+            {
+                return RedirectToAction("Index", "Pharmacy");
+            }
+            return View();
         }
 
         //Login
@@ -65,11 +64,9 @@ namespace Medicaly.Controllers
         {
             if (pharmacy != null && pharmacy.ImageUpload != null)
             {
-                string path = Server.MapPath("~/AppFile/Images/Pharmacies");
-                Pharmacy prc = PharmacyService.AddPharmacy(pharmacy, path);
-                if (prc != null)
+                string path = Server.MapPath("~/App_File/Images/Pharmacies");
+                if (PharmacyService.AddPharmacy(pharmacy, path))
                 {
-                    createSession(PharmacyService.Login(prc));
                     return Json(new { success = true, message = "Register Successfully", JsonRequestBehavior.AllowGet });
                 }
 

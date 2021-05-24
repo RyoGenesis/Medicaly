@@ -15,16 +15,38 @@ namespace Medicaly.Models
 
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.DetailTransactions = new HashSet<DetailTransaction>();
+            this.ShoppingCarts = new HashSet<ShoppingCart>();
+        }
+    
         public int Id { get; set; }
         public string Nama { get; set; }
         public string Deskripsi { get; set; }
-        public int Stock { get; set; }
-        public long Price { get; set; }
+        public Nullable<int> Stock { get; set; }
+        public Nullable<long> Price { get; set; }
         public string Category { get; set; }
         public string Type { get; set; }
         public Nullable<int> PharmacyId { get; set; }
         public string ProductFoto { get; set; }
+        public string IndikasiUmum { get; set; }
+        public string Komposisi { get; set; }
+        public string Dosis { get; set; }
+        public string AturanPakai { get; set; }
+        public string Kemasan { get; set; }
+        public string KontraIndikasi { get; set; }
+        public string Perhatian { get; set; }
+        public string Segmentasi { get; set; }
+        public string Manufaktur { get; set; }
+
         public HttpPostedFileBase ImageUpload { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetailTransaction> DetailTransactions { get; set; }
         public virtual Pharmacy Pharmacy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

@@ -7,7 +7,7 @@
         success: function (result) {
             if (result.success) {
                 alert("Success Register Pharmacy");
-                window.location.href = "/Home";
+                window.location.href = "/Pharmacy/Login";
             } else {
                 console.log(result.message);
                 if (result.message == "Email Already Registered") {
@@ -38,7 +38,7 @@ function LoginPost(formData) {
         data: new FormData(formData),
         success: function (result) {
             if (result.success) {
-                window.location.href = "/Home";
+                window.location.href = "/Pharmacy";
             } else {
                 if (result.message == "Wrong email and password") {
                     alert("Wrong email and password");

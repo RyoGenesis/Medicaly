@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Medicaly - Login Doctor";
+}
+
+<section id="loginPage" class="pt-5 pb-3">
+    <div class="mx-auto mt-lg-3 mb-lg-5 shadow mb-5 bg-white rounded" style="width: 600px;">
+        <section id="title">
+            <div class="card-header bg-light">
+                <h3>Medicaly - Doctor Login</h3>
+            </div>
+        </section>
+        <div class="card-body mb-5">
+            <section id="LoginForm">
+                <form id="formLoginDoctor" enctype="multipart/form-data" method="post" onsubmit="return Login(this)">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Email">Email</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control mt-2" id="Email" name="Email" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Password">Password</label>
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control mt-2" id="Password" name="Password" placeholder="Password" maxlength="10" required>
+                        </div>
+                    </div>
+                    <div class="text-left mt-4">
+                        <button type="submit" class="btn btn-primary ps-5 pe-5">Login</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="~/Scripts/DoctorScript.js"></script>
+}
