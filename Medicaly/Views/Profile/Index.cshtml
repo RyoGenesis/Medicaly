@@ -252,16 +252,17 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="card border-0 rounded-20 shadow-sm cards h-100">
-            <div class="card-body">
-                @if (Model.pharmacies == null && Model.doctors == null)
-                {
-                    if (Model.Alamat.Count() > 0)
-                    {
-                        int count = 1;
-                        foreach (var item in Model.Alamat)
-                        {
+
+    @if (Model.pharmacies == null && Model.doctors == null)
+    {
+        if (Model.Alamat.Count() > 0)
+        {
+            int count = 1;
+            foreach (var item in Model.Alamat)
+            {
+                <div class="container">
+                    <div class="card border-0 rounded-20 shadow-sm cards h-100">
+                        <div class="card-body">
                             <div class="row gutters pb-4">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="mb-2 text-primary pb-2">Alamat Anda (@count)</h6>
@@ -293,13 +294,13 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
                                     <div class="form-group">
-                                        <label for="KodePos">Phone</label>
+                                        <label for="KodePos">Kode Pos</label>
                                         <input type="text" class="form-control" id="KodePos" name="KodePost" value="@item.KodePost" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
                                     <div class="form-group">
-                                        <label for="Alamat">Phone</label>
+                                        <label for="Alamat">Alamat</label>
                                         <textarea type="text" class="form-control" id="Alamat" name="Alamat!" readonly>@item.Alamat1</textarea>
                                     </div>
                                 </div>
@@ -312,12 +313,17 @@
                                     </div>
                                 </div>
                             </div>
-
-                            count++;
-                        }
-                    }
-                    else
-                    {
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+        }
+        else
+        {
+            <div class="container">
+                <div class="card border-0 rounded-20 shadow-sm cards h-100">
+                    <div class="card-body">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="mb-2 text-dark pb-2">Anda belum mempunyai alamat!</h6>
@@ -331,13 +337,13 @@
                                 </div>
                             </div>
                         </div>
-
-                    }
-
-                }
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
+
+    }
+
 
 </section>
 @section scripts {

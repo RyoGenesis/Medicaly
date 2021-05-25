@@ -253,6 +253,7 @@
       <DependentUpon>MedicalyModel.edmx</DependentUpon>
       <LastGenOutput>MedicalyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\Alamat.js" />
     <Content Include="Scripts\AskKonsultasi.js" />
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
@@ -334,6 +335,7 @@
     <Content Include="Views\Product\Update.cshtml" />
     <Content Include="Views\Product\Manage.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Alamat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

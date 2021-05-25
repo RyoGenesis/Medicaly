@@ -1,0 +1,147 @@
+﻿@model Medicaly.Models.Alamat
+
+@{
+    ViewBag.Title = "Medicaly - Alamat";
+}
+
+<section id="profile" class="justify-content-center">
+    <div id="" class="mb-5">
+        <div class="container w-75">
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-body text-center my-0">
+                    <div class="section-line mx-auto"></div>
+                    <h6 class="text-muted pt-3">MY PROFILE</h6>
+                    <h2 class="mb-4">Welcome, @Session["Nama"].ToString()</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container w-75">
+        <div class="card border-0 rounded-20 shadow-sm cards h-100">
+            <div class="card-body">
+                <div class="row gutters pb-0">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        @if (Model != null)
+                        {
+                            <h6 class="mb-2 text-primary pb-2">Alamat Anda (ID: @Model.Id)</h6>
+                        }
+                        else
+                        {
+                            <h6 class="mb-2 text-primary pb-2">Buat Alamat Baru</h6>
+                        }
+                    </div>
+                    <hr />
+
+                    @if (Model != null)
+                    {
+
+                        <form id="formAddOrUpdateAlamat" enctype="multipart/form-data" method="post" onsubmit="return updateAlamat(this)">
+                            
+                            <input type="text" name="Id" value="@Model.Id" hidden/>
+
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="LabelAlamat">Label Alamat</label>
+                                    <input type="text" class="form-control" id="LabelAlamat" name="LabelAlamat" value="@Model.LabelAlamat" placeholder="Enter full name" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NamaPenerima">Nama Penerima</label>
+                                    <input type="text" class="form-control" id="NamaPenerima" name="NamaPenerima" value="@Model.NamaPenerima" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NoHandphone">Phone</label>
+                                    <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone" value="@Model.NoHandphone" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KotaKecamatan">Kota atau Kecamatan</label>
+                                    <input type="text" class="form-control" id="KotaKecamatan" name="KotaKecamatan" value="@Model.KotaKecamatan" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KodePost">Kode Pos</label>
+                                    <input type="text" class="form-control" id="KodePost" name="KodePost" value="@Model.KodePost" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="Alamat">Alamat</label>
+                                    <textarea type="text" class="form-control" id="Alamat" name="Alamat1" required>@Model.Alamat1</textarea>
+                                </div>
+                            </div>
+                            <div class="row gutters pt-3 pb-0">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-secondary ps-5 pe-5">Save & Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <form id="formAddOrUpdateAlamat" enctype="multipart/form-data" method="post" onsubmit="return addAlamat(this)">
+                            <div class="col-sm-12col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="LabelAlamat">Label Alamat</label>
+                                    <input type="text" class="form-control" id="LabelAlamat" name="LabelAlamat" placeholder="Enter full name" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NamaPenerima">Nama Penerima</label>
+                                    <input type="text" class="form-control" id="NamaPenerima" name="NamaPenerima"  required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NoHandphone">Phone</label>
+                                    <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone"  required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KotaKecamatan">Kota atau Kecamatan</label>
+                                    <input type="text" class="form-control" id="KotaKecamatan" name="KotaKecamatan"  required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KodePost">Kode Pos</label>
+                                    <input type="text" class="form-control" id="KodePost" name="KodePost"  required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="Alamat">Alamat</label>
+                                    <textarea type="text" class="form-control" id="Alamat" name="Alamat1" required></textarea>
+                                </div>
+                            </div>
+                            <div class="row gutters pt-3 pb-0">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-secondary ps-5 pe-5">Save & Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section scripts {
+    <script src="~/Scripts/Alamat.js"></script>
+}

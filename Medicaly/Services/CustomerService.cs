@@ -29,9 +29,9 @@ namespace Medicaly.Services
             return csr;
         }
 
-        public static string update(Customer customer)
+        public static string update(string customerID, Customer customer)
         {
-            if (!validateUpdateEmail(customer.Id, customer.Email))
+            if (!validateUpdateEmail(int.Parse(customerID), customer.Email))
             {
                 return "Email already registered!";
             }
@@ -40,7 +40,7 @@ namespace Medicaly.Services
             if (response != null) { return response; }
 
 
-            if (CustomerRepository.updateCustomer(customer.Id, customer.Nama, customer.Email, customer.NoHandphone))
+            if (CustomerRepository.updateCustomer(int.Parse(customerID), customer.Nama, customer.Email, customer.NoHandphone))
             {
                 return "Success update customer!";
             }
@@ -103,5 +103,6 @@ namespace Medicaly.Services
 
             return false;
         }
+
     }
 }
