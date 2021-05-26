@@ -93,5 +93,22 @@ namespace Medicaly.Controllers
             return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
 
         }
+
+        [HttpPost]
+        public JsonResult EditPicture(Customer customer)
+        {
+            if (customer != null)
+            {
+                string path = Server.MapPath("~/App_File/Images/Customers");
+
+                string response = CustomerService.updatePicture(Session["CustomerID"].ToString(), customer, path);
+
+                return Json(new { success = true, message = response, JsonRequestBehavior.AllowGet });
+              
+            }
+
+            return Json(new { success = false, message = "Cannot update profile picture!", JsonRequestBehavior.AllowGet });
+
+        }
     }
 }

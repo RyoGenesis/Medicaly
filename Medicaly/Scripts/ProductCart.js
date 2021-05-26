@@ -54,27 +54,32 @@ for (let i = 1; i <= $('#cartcount').val(); i++) {
 
 
 function deleteCart(val) {
-    var id = val;
-    console.log("masuk");
-    console.log(id);
 
-    $.ajax({
-        type: "POST",
-        url: "/Cart/DeleteCart",
-        data: {
-            id: id
-        },
-        success: function (result) {
-            console.log(result.message)
-            if (result.success) {
-                alert("Success remove product");
-                location.reload();
+    if (confirm("Are you sure ?")) {
+        var id = val;
+        console.log("masuk");
+        console.log(id);
+
+        $.ajax({
+            type: "POST",
+            url: "/Cart/DeleteCart",
+            data: {
+                id: id
+            },
+            success: function (result) {
+                console.log(result.message)
+                if (result.success) {
+                    alert("Success remove product");
+                    location.reload();
+                }
+            },
+            error: function (err) {
+                console.log(err);
             }
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    })
+        })
+    }
+
+    return;
 }
 
 

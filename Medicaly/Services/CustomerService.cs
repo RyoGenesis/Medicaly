@@ -81,6 +81,8 @@ namespace Medicaly.Services
             return true;
         }
 
+
+
         public static bool addCustomer(Customer customer, string path)
         {
             if (CustomerRepository.getCustomerByEmail(customer.Email) != null)
@@ -103,6 +105,30 @@ namespace Medicaly.Services
 
             return false;
         }
+
+        public static string updatePicture(string id, Customer customer, string path)
+        {
+            if (customer.ImageUpload != null)
+            {
+                Customer oldCustomer = CustomerRepository.getCustomerById(int.Parse(id));
+                if (File.Exists(Path.Combine(path, oldCustomer.FotoProfile))) { File.Delete(Path.Combine(path, oldCustomer.FotoProfile)); }
+
+
+                string fileName = Path.GetFileNameWithoutExtension(customer.ImageUpload.FileName);
+                string extension = Path.GetExtension(customer.ImageUpload.FileName);
+                fileName = "csr_" + oldCustomer.Nama + "_" + fileName + extension;
+                customer.FotoProfile = fileName;
+                customer.ImageUpload.SaveAs(Path.Combine(path, fileName));
+            }
+
+            if (CustomerRepository.updatePicture(int.Parse(id), customer.FotoProfile))
+            {
+                return "Success update profile picture!";
+            }
+
+            return "Cannot update profile picture!";
+        }
+
 
     }
 }

@@ -67,23 +67,27 @@ function deleteProduct(val, element) {
     console.log("masuk");
     console.log(id);
 
-    $.ajax({
-        type: "POST",
-        url: "/Product/Delete",
-        data: {
-            id: id
-        },
-        success: function (result) {
-            console.log(result.message)
-            if (result.success) {
-                alert("Success Delete Product");
-                $('#tableList').load('/Product/Manage #tableList');
-                $('#tableListAlat').load('/Product/Manage #tableListAlat');
-                $('#products').data.reload();
+    if (confirm("Are you sure?")) {
+        $.ajax({
+            type: "POST",
+            url: "/Product/Delete",
+            data: {
+                id: id
+            },
+            success: function (result) {
+                console.log(result.message)
+                if (result.success) {
+                    alert("Success Delete Product");
+                    $('#tableList').load('/Product/Manage #tableList');
+                    $('#tableListAlat').load('/Product/Manage #tableListAlat');
+                    $('#products').data.reload();
+                }
+            },
+            error: function (err) {
+                console.log(err);
             }
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    })
+        })
+    }
+
+    return;
 }

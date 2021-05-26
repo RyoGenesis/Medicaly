@@ -2,7 +2,22 @@
 
 @{
     ViewBag.Title = "Medicaly - Profile";
+
+    string form = "";
+    if (Model.pharmacies == null && Model.doctors == null)
+    {
+        form = "formPictureCustomer(this)";
+    }
+    else if (Model.customers == null && Model.doctors == null)
+    {
+        form = "formPicturePharmacy(this)";
+    }
+    else if (Model.customers == null && Model.pharmacies == null)
+    {
+        form = "formPictureDoctor(this)";
+    }
 }
+
 
 <section id="profile">
     <div id="" class="mb-5">
@@ -64,7 +79,16 @@
                                     <h5 class="user-name">@Model.doctors.Nama</h5>
                                     <h6 class="user-email">@Model.doctors.Email</h6>
                                 }
+
                             </div>
+
+                            <div class="text-center">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updatePicture">
+                                    Update Picture
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -346,6 +370,33 @@
 
 
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="updatePicture" tabindex="-1" aria-labelledby="updatePictureLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updatePictureLabel">Update Profile Picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formupdate" method="POST" enctype="multipart/form-data" onsubmit="return @form">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12 mt-2">
+                            <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @section scripts {
     <script src="~/Scripts/UpdateProfile.js"></script>
 }
