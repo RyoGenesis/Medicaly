@@ -20,9 +20,11 @@
                 <div class="card wish-list mb-3">
                     <div id="Cart" class="card-body">
                         @{
+                            int indexcount = 1;
                             if (Model.shoppingCarts.Count() > 0)
                             {
                                 <h5 class="mb-4">Cart (<span>@Model.shoppingCarts.Count()</span> items)</h5>
+                                <input type="text" id="cartcount" value="@Model.shoppingCarts.Count()" hidden/>
 
                                 foreach (var item in Model.shoppingCarts)
                                 {
@@ -46,20 +48,21 @@
                                                         <p class="mb-3 text-muted text-uppercase small">@item.Product.Pharmacy.NamaPharmacy</p>
                                                         <p class="mb-2 text-muted text-uppercase small">Type: @item.Product.Type</p>
                                                         <p class="mb-3 text-muted text-uppercase small">Stok: @item.Product.Stock</p>
+                                                        <input type="text" name="Stock" id="Stock-@indexcount" value="@item.Product.Stock" hidden/>
                                                     </div>
                                                     <div>
                                                         <div class="input-group">
                                                             <span class="input-group-btn">
-                                                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"
-                                                                        data-type="minus" data-field="">
+                                                                <button type="button" class="quantity-left-minus d-block minus-@indexcount btn btn-danger btn-number"
+                                                                        data-type="minus" data-field="@item.Id">
                                                                     <span class="glyphicon glyphicon-minus">-</span>
                                                                 </button>
                                                             </span>
-                                                            <input type="text" id="quantity" name="quantity" class="input-number me-2 ms-2"
+                                                            <input type="text" id="quantity-@indexcount" name="quantity" class="input-number me-2 ms-2"
                                                                    value="@item.Quantity" min="1" max="" style="width: 30px">
                                                             <span class="input-group-btn">
-                                                                <button type="button" class="quantity-right-plus btn btn-success btn-number"
-                                                                        data-type="plus" data-field="">
+                                                                <button type="button" class="quantity-right-plus plus-@indexcount btn btn-success btn-number"
+                                                                        data-type="plus" data-field="@item.Id">
                                                                     <span class="glyphicon glyphicon-plus">+</span>
                                                                 </button>
                                                             </span>
@@ -91,6 +94,7 @@
                                     </div>
                                     <hr class="mb-4">
                                     totalHarga += (item.Quantity * item.Product.Price);
+                                    indexcount++;
                                 }
 
                                 <p class="text-primary mb-0">

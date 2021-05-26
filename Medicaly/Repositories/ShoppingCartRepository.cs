@@ -48,6 +48,24 @@ namespace Medicaly.Repositories
                     select x).FirstOrDefault();
         }
 
+        public static bool updateQuantity(int id, int quantity)
+        {
+            try
+            {
+               ShoppingCart shoppingCart =  getShoppingCartById(id);
+
+                shoppingCart.Quantity = quantity;
+                
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
         public static bool updateCart(ShoppingCart shoppingCart)
         {
             try

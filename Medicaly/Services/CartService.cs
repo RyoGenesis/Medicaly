@@ -42,6 +42,17 @@ namespace Medicaly.Services
             return shoppingCartView;
         }
 
+        public static string updateCartQuantity(int cartId, int quantity)
+        {
+
+            if (ShoppingCartRepository.updateQuantity(cartId, quantity))
+            {
+                return "Success update quantity!";
+            }
+
+            return "Failed update quantity!";
+        }
+
         public static bool deleteCart(int cartId)
         {
 

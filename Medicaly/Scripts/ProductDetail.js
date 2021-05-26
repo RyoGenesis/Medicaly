@@ -3,6 +3,7 @@ var url = new URL(url_string);
 var id = url.searchParams.get("Id");
 
 
+
 $(document).ready(function () {
 
     var quantitiy = 0;
@@ -10,13 +11,20 @@ $(document).ready(function () {
 
         // Stop acting like a button
         e.preventDefault();
+
+        if ($('#quantity').val() >= $('#Stock').val()) {
+            alert("You reach the maximum quantity");
+            $('.quantity-right-plus').prop('disabled', true);
+            return;
+        }
+
+
         // Get the field name
         var quantity = parseInt($('#quantity').val());
 
         // If is not undefined
 
         $('#quantity').val(quantity + 1);
-
 
         // Increment
 
@@ -31,8 +39,9 @@ $(document).ready(function () {
         // If is not undefined
 
         // Increment
-        if (quantity > 0) {
+        if (quantity > 1) {
             $('#quantity').val(quantity - 1);
+            $('.quantity-right-plus').prop('disabled', false);
         }
     });
 
@@ -54,10 +63,6 @@ $("#formAddToCart").submit(function (event) {
         return;
     }
 
-    if (quantity > stock) {
-        alert("You reach the maximum quantity");
-        return;
-    }
 
     $.ajax({
         type: "POST",

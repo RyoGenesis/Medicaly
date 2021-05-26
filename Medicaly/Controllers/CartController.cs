@@ -41,6 +41,21 @@ namespace Medicaly.Controllers
 
         // Delete Cart
         [HttpPost]
+        public JsonResult Update(int id, int quantity)
+        {
+            if (id.ToString() != null && quantity.ToString() != null)
+            {
+               string response = CartService.updateCartQuantity(id, quantity);
+               return Json(new { success = true, message = response, JsonRequestBehavior.AllowGet });
+                
+            }
+
+            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+
+        }
+
+        // Delete Cart
+        [HttpPost]
         public JsonResult DeleteCart(int id)
         {
             if (id.ToString() != null)
