@@ -8,7 +8,7 @@
             if (result.success) {
                 alert(result.message);
                 if (result.message == "Success update alamat!") {
-                    window.location.href = "/Profile/";
+                    window.history.back();
                 }
             } else {
                 console.log(result.message);
@@ -40,7 +40,7 @@ function addAlamat(formData) {
             if (result.success) {
                 alert(result.message);
                 if (result.message == "Success add alamat baru!") {
-                    window.location.href = "/Profile/";
+                    window.history.back();
                 }
             } else {
                 console.log(result.message);

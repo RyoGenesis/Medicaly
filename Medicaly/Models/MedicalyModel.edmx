@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MedicalyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alamat">
           <Key>
             <PropertyRef Name="Id" />
@@ -61,7 +61,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerId" Type="int" />
+          <Property Name="AlamatId" Type="bigint" />
           <Property Name="TransactionDate" Type="varchar" MaxLength="255" />
           <Property Name="PaymentType" Type="varchar" MaxLength="255" />
           <Property Name="BankName" Type="varchar" MaxLength="255" />
@@ -70,6 +70,7 @@
           <Property Name="TransferNominal" Type="varchar" MaxLength="255" />
           <Property Name="TransferProof" Type="varchar" MaxLength="255" />
           <Property Name="Status" Type="varchar" MaxLength="255" />
+          <Property Name="TotalHarga" Type="bigint" />
         </EntityType>
         <EntityType Name="Konsultasi">
           <Key>
@@ -153,7 +154,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailTra__Produ__0D7A0286">
+        <Association Name="FK__DetailTra__Produ__42E1EEFE">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -167,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailTra__Trans__0C85DE4D">
+        <Association Name="FK__DetailTra__Trans__41EDCAC5">
           <End Role="HeaderTransaction" Type="Self.HeaderTransaction" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -195,17 +196,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HeaderTra__Custo__09A971A2">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+        <Association Name="FK__HeaderTra__Alama__3F115E1A">
+          <End Role="Alamat" Type="Self.Alamat" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="HeaderTransaction" Type="Self.HeaderTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="Alamat">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HeaderTransaction">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="AlamatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -293,7 +294,7 @@
           <Parameter Name="TransactionId" Type="int" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="MedicalyModelStoreContainer">
+        <EntityContainer Name="MedicalModelStoreContainer">
           <EntitySet Name="Alamat" EntityType="Self.Alamat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailTransaction" EntityType="Self.DetailTransaction" Schema="dbo" store:Type="Tables" />
@@ -308,11 +309,11 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Alamat" EntitySet="Alamat" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailTra__Produ__0D7A0286" Association="Self.FK__DetailTra__Produ__0D7A0286">
+          <AssociationSet Name="FK__DetailTra__Produ__42E1EEFE" Association="Self.FK__DetailTra__Produ__42E1EEFE">
             <End Role="Products" EntitySet="Products" />
             <End Role="DetailTransaction" EntitySet="DetailTransaction" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailTra__Trans__0C85DE4D" Association="Self.FK__DetailTra__Trans__0C85DE4D">
+          <AssociationSet Name="FK__DetailTra__Trans__41EDCAC5" Association="Self.FK__DetailTra__Trans__41EDCAC5">
             <End Role="HeaderTransaction" EntitySet="HeaderTransaction" />
             <End Role="DetailTransaction" EntitySet="DetailTransaction" />
           </AssociationSet>
@@ -320,8 +321,8 @@
             <End Role="Spesialis" EntitySet="Spesialis" />
             <End Role="Doctor" EntitySet="Doctor" />
           </AssociationSet>
-          <AssociationSet Name="FK__HeaderTra__Custo__09A971A2" Association="Self.FK__HeaderTra__Custo__09A971A2">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK__HeaderTra__Alama__3F115E1A" Association="Self.FK__HeaderTra__Alama__3F115E1A">
+            <End Role="Alamat" EntitySet="Alamat" />
             <End Role="HeaderTransaction" EntitySet="HeaderTransaction" />
           </AssociationSet>
           <AssociationSet Name="FK__Konsultas__Dokto__1F98B2C1" Association="Self.FK__Konsultas__Dokto__1F98B2C1">
@@ -349,7 +350,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MedicalyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MedicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Alamat">
           <Key>
             <PropertyRef Name="Id" />
@@ -363,6 +364,7 @@
           <Property Name="Alamat1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CustomerID" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Alamat__Customer__29221CFB" FromRole="Alamat" ToRole="Customer" />
+          <NavigationProperty Name="HeaderTransactions" Relationship="Self.FK__HeaderTra__Alama__3F115E1A" FromRole="Alamat" ToRole="HeaderTransaction" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -375,7 +377,6 @@
           <Property Name="Password" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="FotoProfile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alamats" Relationship="Self.FK__Alamat__Customer__29221CFB" FromRole="Customer" ToRole="Alamat" />
-          <NavigationProperty Name="HeaderTransactions" Relationship="Self.FK__HeaderTra__Custo__09A971A2" FromRole="Customer" ToRole="HeaderTransaction" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Custo__6FE99F9F" FromRole="Customer" ToRole="ShoppingCart" />
         </EntityType>
         <EntityType Name="DetailTransaction">
@@ -386,8 +387,8 @@
           <Property Name="TransactionId" Type="Int32" />
           <Property Name="ProductId" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__DetailTra__Produ__0D7A0286" FromRole="DetailTransaction" ToRole="Products" />
-          <NavigationProperty Name="HeaderTransaction" Relationship="Self.FK__DetailTra__Trans__0C85DE4D" FromRole="DetailTransaction" ToRole="HeaderTransaction" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__DetailTra__Produ__42E1EEFE" FromRole="DetailTransaction" ToRole="Products" />
+          <NavigationProperty Name="HeaderTransaction" Relationship="Self.FK__DetailTra__Trans__41EDCAC5" FromRole="DetailTransaction" ToRole="HeaderTransaction" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -414,7 +415,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="AlamatId" Type="Int64" />
           <Property Name="TransactionDate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PaymentType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="BankName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -423,8 +424,9 @@
           <Property Name="TransferNominal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TransferProof" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__HeaderTra__Custo__09A971A2" FromRole="HeaderTransaction" ToRole="Customer" />
-          <NavigationProperty Name="DetailTransactions" Relationship="Self.FK__DetailTra__Trans__0C85DE4D" FromRole="HeaderTransaction" ToRole="DetailTransaction" />
+          <Property Name="TotalHarga" Type="Int64" />
+          <NavigationProperty Name="Alamat" Relationship="Self.FK__HeaderTra__Alama__3F115E1A" FromRole="HeaderTransaction" ToRole="Alamat" />
+          <NavigationProperty Name="DetailTransactions" Relationship="Self.FK__DetailTra__Trans__41EDCAC5" FromRole="HeaderTransaction" ToRole="DetailTransaction" />
         </EntityType>
         <EntityType Name="Konsultasi">
           <Key>
@@ -480,7 +482,7 @@
           <Property Name="Perhatian" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Segmentasi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Manufaktur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DetailTransactions" Relationship="Self.FK__DetailTra__Produ__0D7A0286" FromRole="Products" ToRole="DetailTransaction" />
+          <NavigationProperty Name="DetailTransactions" Relationship="Self.FK__DetailTra__Produ__42E1EEFE" FromRole="Products" ToRole="DetailTransaction" />
           <NavigationProperty Name="Pharmacy" Relationship="Self.FK__Products__Pharma__5CD6CB2B" FromRole="Products" ToRole="Pharmacy" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Produ__70DDC3D8" FromRole="Products" ToRole="ShoppingCart" />
         </EntityType>
@@ -518,17 +520,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HeaderTra__Custo__09A971A2">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+        <Association Name="FK__HeaderTra__Alama__3F115E1A">
+          <End Role="Alamat" Type="Self.Alamat" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="HeaderTransaction" Type="Self.HeaderTransaction" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="Alamat">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="HeaderTransaction">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="AlamatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -546,7 +548,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailTra__Produ__0D7A0286">
+        <Association Name="FK__DetailTra__Produ__42E1EEFE">
           <End Role="Products" Type="Self.Product" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -560,7 +562,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetailTra__Trans__0C85DE4D">
+        <Association Name="FK__DetailTra__Trans__41EDCAC5">
           <End Role="HeaderTransaction" Type="Self.HeaderTransaction" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -657,19 +659,19 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Alamat" EntitySet="Alamats" />
           </AssociationSet>
-          <AssociationSet Name="FK__HeaderTra__Custo__09A971A2" Association="Self.FK__HeaderTra__Custo__09A971A2">
-            <End Role="Customer" EntitySet="Customers" />
+          <AssociationSet Name="FK__HeaderTra__Alama__3F115E1A" Association="Self.FK__HeaderTra__Alama__3F115E1A">
+            <End Role="Alamat" EntitySet="Alamats" />
             <End Role="HeaderTransaction" EntitySet="HeaderTransactions" />
           </AssociationSet>
           <AssociationSet Name="FK__ShoppingC__Custo__6FE99F9F" Association="Self.FK__ShoppingC__Custo__6FE99F9F">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailTra__Produ__0D7A0286" Association="Self.FK__DetailTra__Produ__0D7A0286">
+          <AssociationSet Name="FK__DetailTra__Produ__42E1EEFE" Association="Self.FK__DetailTra__Produ__42E1EEFE">
             <End Role="Products" EntitySet="Products" />
             <End Role="DetailTransaction" EntitySet="DetailTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetailTra__Trans__0C85DE4D" Association="Self.FK__DetailTra__Trans__0C85DE4D">
+          <AssociationSet Name="FK__DetailTra__Trans__41EDCAC5" Association="Self.FK__DetailTra__Trans__41EDCAC5">
             <End Role="HeaderTransaction" EntitySet="HeaderTransactions" />
             <End Role="DetailTransaction" EntitySet="DetailTransactions" />
           </AssociationSet>
@@ -715,9 +717,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MedicalyModelStoreContainer" CdmEntityContainer="MedicalyDBEntities">
+        <EntityContainerMapping StorageEntityContainer="MedicalModelStoreContainer" CdmEntityContainer="MedicalyDBEntities">
           <EntitySetMapping Name="Alamats">
-            <EntityTypeMapping TypeName="MedicalyModel.Alamat">
+            <EntityTypeMapping TypeName="MedicalModel.Alamat">
               <MappingFragment StoreEntitySet="Alamat">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LabelAlamat" ColumnName="LabelAlamat" />
@@ -731,7 +733,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="MedicalyModel.Customer">
+            <EntityTypeMapping TypeName="MedicalModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -743,7 +745,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetailTransactions">
-            <EntityTypeMapping TypeName="MedicalyModel.DetailTransaction">
+            <EntityTypeMapping TypeName="MedicalModel.DetailTransaction">
               <MappingFragment StoreEntitySet="DetailTransaction">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
@@ -753,7 +755,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="MedicalyModel.Doctor">
+            <EntityTypeMapping TypeName="MedicalModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NoKTP" ColumnName="NoKTP" />
@@ -772,10 +774,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HeaderTransactions">
-            <EntityTypeMapping TypeName="MedicalyModel.HeaderTransaction">
+            <EntityTypeMapping TypeName="MedicalModel.HeaderTransaction">
               <MappingFragment StoreEntitySet="HeaderTransaction">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="AlamatId" ColumnName="AlamatId" />
                 <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="BankName" ColumnName="BankName" />
@@ -784,11 +786,12 @@
                 <ScalarProperty Name="TransferNominal" ColumnName="TransferNominal" />
                 <ScalarProperty Name="TransferProof" ColumnName="TransferProof" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalHarga" ColumnName="TotalHarga" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Konsultasis">
-            <EntityTypeMapping TypeName="MedicalyModel.Konsultasi">
+            <EntityTypeMapping TypeName="MedicalModel.Konsultasi">
               <MappingFragment StoreEntitySet="Konsultasi">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -804,7 +807,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pharmacies">
-            <EntityTypeMapping TypeName="MedicalyModel.Pharmacy">
+            <EntityTypeMapping TypeName="MedicalModel.Pharmacy">
               <MappingFragment StoreEntitySet="Pharmacy">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NamaPharmacy" ColumnName="NamaPharmacy" />
@@ -819,7 +822,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="MedicalyModel.Product">
+            <EntityTypeMapping TypeName="MedicalModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -843,7 +846,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShoppingCarts">
-            <EntityTypeMapping TypeName="MedicalyModel.ShoppingCart">
+            <EntityTypeMapping TypeName="MedicalModel.ShoppingCart">
               <MappingFragment StoreEntitySet="ShoppingCart">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -853,15 +856,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Spesialis">
-            <EntityTypeMapping TypeName="MedicalyModel.Spesiali">
+            <EntityTypeMapping TypeName="MedicalModel.Spesiali">
               <MappingFragment StoreEntitySet="Spesialis">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AddTransaction" FunctionName="MedicalyModel.Store.AddTransaction" />
-          <FunctionImportMapping FunctionImportName="UpdateTransactionStatus" FunctionName="MedicalyModel.Store.UpdateTransactionStatus" />
+          <FunctionImportMapping FunctionImportName="AddTransaction" FunctionName="MedicalModel.Store.AddTransaction" />
+          <FunctionImportMapping FunctionImportName="UpdateTransactionStatus" FunctionName="MedicalModel.Store.UpdateTransactionStatus" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

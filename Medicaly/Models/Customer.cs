@@ -19,7 +19,6 @@ namespace Medicaly.Models
         public Customer()
         {
             this.Alamats = new HashSet<Alamat>();
-            this.HeaderTransactions = new HashSet<HeaderTransaction>();
             this.ShoppingCarts = new HashSet<ShoppingCart>();
         }
     
@@ -34,8 +33,6 @@ namespace Medicaly.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alamat> Alamats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HeaderTransaction> HeaderTransactions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }

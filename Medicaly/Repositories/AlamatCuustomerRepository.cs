@@ -10,11 +10,11 @@ namespace Medicaly.Repositories
     public static class AlamatCuustomerRepository
     {
         private static MedicalyDBEntities db = MedicalySingletonDB.getInstance();
-        public static List<Alamat> getAlamatsCustomer(int id)
+        public static Alamat getAlamatsCustomer(int id)
         {
             return (from x in db.Alamats
                     where x.CustomerID == id
-                    select x).ToList();
+                    select x).First();
         }
 
         public static Alamat getAlamat(int customerId, int id)

@@ -14,6 +14,12 @@ namespace Medicaly.Models
     
     public partial class Alamat
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Alamat()
+        {
+            this.HeaderTransactions = new HashSet<HeaderTransaction>();
+        }
+    
         public long Id { get; set; }
         public string LabelAlamat { get; set; }
         public string NamaPenerima { get; set; }
@@ -24,5 +30,7 @@ namespace Medicaly.Models
         public Nullable<int> CustomerID { get; set; }
     
         public virtual Customer Customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeaderTransaction> HeaderTransactions { get; set; }
     }
 }

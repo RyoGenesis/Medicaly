@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Repositories\SpesialisRepository.cs" />
+    <Compile Include="Services\CheckoutService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DoctorService.cs" />
     <Compile Include="Services\KonsultasiService.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\KonsultasiViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -255,6 +258,7 @@
     </Content>
     <Content Include="Scripts\Alamat.js" />
     <Content Include="Scripts\AskKonsultasi.js" />
+    <Content Include="Scripts\Checkout.js" />
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\JawabKonsultasi.js" />
@@ -336,6 +340,7 @@
     <Content Include="Views\Product\Manage.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Alamat.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

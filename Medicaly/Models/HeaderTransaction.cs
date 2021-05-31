@@ -22,7 +22,7 @@ namespace Medicaly.Models
         }
     
         public int Id { get; set; }
-        public Nullable<int> CustomerId { get; set; }
+        public Nullable<long> AlamatId { get; set; }
         public string TransactionDate { get; set; }
         public string PaymentType { get; set; }
         public string BankName { get; set; }
@@ -31,9 +31,10 @@ namespace Medicaly.Models
         public string TransferNominal { get; set; }
         public string TransferProof { get; set; }
         public string Status { get; set; }
+        public Nullable<long> TotalHarga { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
-        public virtual Customer Customer { get; set; }
+        public virtual Alamat Alamat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailTransaction> DetailTransactions { get; set; }
     }

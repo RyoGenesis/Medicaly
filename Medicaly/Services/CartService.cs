@@ -42,6 +42,7 @@ namespace Medicaly.Services
             return shoppingCartView;
         }
 
+
         public static string updateCartQuantity(int cartId, int quantity)
         {
 

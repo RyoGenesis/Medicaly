@@ -279,69 +279,64 @@
 
     @if (Model.pharmacies == null && Model.doctors == null)
     {
-        if (Model.Alamat.Count() > 0)
+        if (Model.Alamat != null)
         {
-            int count = 1;
-            foreach (var item in Model.Alamat)
-            {
-                <div class="container">
-                    <div class="card border-0 rounded-20 shadow-sm cards h-100">
-                        <div class="card-body">
-                            <div class="row gutters pb-4">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mb-2 text-primary pb-2">Alamat Anda (@count)</h6>
-                                </div>
-                                <hr />
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="LabelAlamat">Label Alamat</label>
-                                        <input type="text" class="form-control" id="LabelAlamat" name="LabelAlamat" value="@item.LabelAlamat" placeholder="Enter full name" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="NamaPenerima">Nama Penerima</label>
-                                        <input type="text" class="form-control" id="NamaPenerima" name="NamaPenerima" value="@item.NamaPenerima" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="NoHandphone">Phone</label>
-                                        <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone" value="@item.NoHandphone" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="KotaKecamatan">Kota atau Kecamatan</label>
-                                        <input type="text" class="form-control" id="KotaKecamatan" name="KotaKecamatan" value="@item.KotaKecamatan" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="KodePos">Kode Pos</label>
-                                        <input type="text" class="form-control" id="KodePos" name="KodePost" value="@item.KodePost" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
-                                    <div class="form-group">
-                                        <label for="Alamat">Alamat</label>
-                                        <textarea type="text" class="form-control" id="Alamat" name="Alamat!" readonly>@item.Alamat1</textarea>
-                                    </div>
+
+            <div class="container">
+                <div class="card border-0 rounded-20 shadow-sm cards h-100">
+                    <div class="card-body">
+                        <div class="row gutters pb-4">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary pb-2">Alamat Anda</h6>
+                            </div>
+                            <hr />
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="LabelAlamat">Label Alamat</label>
+                                    <input type="text" class="form-control" id="LabelAlamat" name="LabelAlamat" value="@Model.Alamat.LabelAlamat" placeholder="Enter full name" readonly>
                                 </div>
                             </div>
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="text-right">
-                                        <a href="/Profile/Alamat/@item.Id" class="btn btn-secondary ps-5 pe-5">Update Alamat (@count)</a>
-                                        <a href="/Profile/Alamat/" class="btn btn-primary ps-5 pe-5">Tambah Alamat</a>
-                                    </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NamaPenerima">Nama Penerima</label>
+                                    <input type="text" class="form-control" id="NamaPenerima" name="NamaPenerima" value="@Model.Alamat.NamaPenerima" readonly>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="NoHandphone">Phone</label>
+                                    <input type="tel" class="form-control" id="NoHandphone" name="NoHandphone" value="@Model.Alamat.NoHandphone" readonly>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KotaKecamatan">Kota atau Kecamatan</label>
+                                    <input type="text" class="form-control" id="KotaKecamatan" name="KotaKecamatan" value="@Model.Alamat.KotaKecamatan" readonly>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="KodePos">Kode Pos</label>
+                                    <input type="text" class="form-control" id="KodePos" name="KodePost" value="@Model.Alamat.KodePost" readonly>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 pt-2">
+                                <div class="form-group">
+                                    <label for="Alamat">Alamat</label>
+                                    <textarea type="text" class="form-control" id="Alamat" name="Alamat!" readonly>@Model.Alamat.Alamat1</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <a href="/Profile/Alamat/@Model.Alamat.Id" class="btn btn-secondary ps-5 pe-5">Update Alamat</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                count++;
-            }
+            </div>
         }
         else
         {
@@ -356,7 +351,6 @@
                         <div class="row gutters pt-3">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-
                                     <a href="/Profile/Alamat/" class="btn btn-primary ps-5 pe-5">Tambah Alamat</a>
                                 </div>
                             </div>

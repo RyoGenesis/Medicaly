@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="28499f7491ad4b6483ad0573dc3a69b8" Name="Diagram1">
-        <EntityTypeShape EntityType="MedicalyModel.Alamat" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Customer" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.DetailTransaction" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Doctor" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.HeaderTransaction" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Konsultasi" Width="1.5" PointX="10.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Pharmacy" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalyModel.Spesiali" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
-        <AssociationConnector Association="MedicalyModel.FK__Alamat__Customer__29221CFB" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__HeaderTra__Custo__09A971A2" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__ShoppingC__Custo__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__DetailTra__Produ__0D7A0286" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__DetailTra__Trans__0C85DE4D" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__Doctor__Spesiali__17F790F9" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__Konsultas__Dokto__1F98B2C1" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__Konsultas__Spesi__1EA48E88" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__Products__Pharma__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalyModel.FK__ShoppingC__Produ__70DDC3D8" ManuallyRouted="false" />
+      <Diagram DiagramId="8dcada50919d40e7b0ab454d9988b98b" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalModel.Alamat" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Customer" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.DetailTransaction" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Doctor" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.HeaderTransaction" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Konsultasi" Width="1.5" PointX="10.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Pharmacy" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Product" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Spesiali" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="MedicalModel.FK__Alamat__Customer__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__HeaderTra__Alama__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__ShoppingC__Custo__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__DetailTra__Produ__42E1EEFE" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__DetailTra__Trans__41EDCAC5" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__Doctor__Spesiali__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__Konsultas__Dokto__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__Konsultas__Spesi__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__Products__Pharma__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalModel.FK__ShoppingC__Produ__70DDC3D8" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
