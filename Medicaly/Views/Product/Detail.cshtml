@@ -179,10 +179,19 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="button" class="btn btn-outline-primary btn-md me-1 mb-2 ps-4 pe-4">Buy now</button>
-                        <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2">
-                            <i class="fas fa-shopping-cart pr-2"></i> Add to cart
-                        </button>
+                        @if (Model.Stock == 0)
+                        {
+                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2 disabled">
+                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2">
+                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
+                            </button>
+                        }
+
                     </form>
                 </div>
             </div>

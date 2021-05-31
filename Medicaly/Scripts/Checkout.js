@@ -18,3 +18,34 @@
         })
     }, false)
 }())
+
+function AddTransaction(formData) {
+    if (confirm('Are you sure ?')) {
+        var ajaxConfig = {
+            type: "post",
+            url: "/Checkout/Add",
+            data: new FormData(formData),
+            success: function (result) {
+                console.log(result.message);
+                if (result.success) {
+                    alert(result.message);
+                    if (result.message == "Berhasil checkout!") {
+                        window.location.href = "/Home/";
+                    }
+                } else {
+                    alert("Failed checkout!");
+                }
+            },
+            error: function (err) {
+                alert("Error checkout!");
+                console.log(err);
+            }
+        }
+        if ($(formData).attr('enctype') == "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+    }
+    return false;
+}

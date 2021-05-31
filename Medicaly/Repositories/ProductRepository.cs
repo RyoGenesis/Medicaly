@@ -54,6 +54,25 @@ namespace Medicaly.Repositories
                 throw ex;
             }
         }
+
+        public static bool updateQuantity(int id, int quantity)
+        {
+            try
+            {
+                Product product = getProductById(id);
+
+                product.Stock = quantity;
+
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static Product getProductById(int id)
         {
             return (
