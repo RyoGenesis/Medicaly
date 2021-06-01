@@ -17,6 +17,13 @@ namespace Medicaly.Repositories
                     select x).FirstOrDefault();
         }
 
+        public static List<DetailTransaction> getDetailTransactionByTrId(int id)
+        {
+            return (from x in db.DetailTransactions
+                    where x.TransactionId == id
+                    select x).ToList();
+        }
+
         public static bool addDetail(DetailTransaction detailTransaction)
         {
             try

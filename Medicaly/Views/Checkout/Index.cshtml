@@ -86,95 +86,101 @@
                 </div>
             }
 
+        
+        <form class="needs-validation" id="formCheckout" enctype="multipart/form-data" method="post" onsubmit="return AddTransaction(this)">
+            <hr class="mb-4">
+            <h4 class="mb-3">Payment</h4>
+            <div class="d-block my-3 container">
+                <ol class="py-3 text-dark px-0 mx-0 text-justify">
+                    <li class="my-2">
+                        Pembayaran dapat dilakukan dengan transfer melalui:
+                        <span class="font-weight-bold h5 text-blue-gradient">
+                            BANK BCA: 52710239030
+                            a/n
+                            Medcialy
+                        </span>
+                    </li>
+                    <li class="my-2">
+                        <span class="font-weight-bold">Cantumkan berita</span> saat melakukan
+                        transfer
+                        dengan
+                        format:
+                        <span class="font-weight-bold">“Pembayaran Medicaly (Nama Kalian)”</span>
+                    </li>
+                    <li class="my-2">
+                        <span class="font-weight-bold">Foto atau screenshot bukti transfer</span>
+                        yang
+                        telah
+                        kamu lakukan
+                    </li>
+                    <li class="my-2">
+                        <span class="font-weight-bold">Isi form</span> dengan data pribadimu dan
+                        detail
+                        transfer
+                        yang sudah berhasil
+                    </li>
+                    <li class="my-2">
+                        Untuk pengisian <b>"Transfer Nominal"</b> pada form, tuliskan dalam
+                        <b>
+                            format
+                            full angka (Contoh: @totalHarga)
+                        </b>
+                    </li>
+                    <li class="my-2">
+                        Setelah melakukan langkah-langkah di atas, <span class="font-weight-bold">
+                            submit
+                            form
+                        </span> tersebut!
+                    </li>
+                </ol>
+            </div>
 
-            <form class="needs-validation"  id="formCheckout" enctype="multipart/form-data" method="post" onsubmit="return AddTransaction(this)">
-                <hr class="mb-4">
-                <h4 class="mb-3">Payment</h4>
-                <div class="d-block my-3 container">
-                    <ol class="py-3 text-dark px-0 mx-0 text-justify">
-                        <li class="my-2">
-                            Pembayaran dapat dilakukan dengan transfer melalui:
-                            <span class="font-weight-bold h5 text-blue-gradient">
-                                BANK BCA: 52710239030
-                                a/n
-                                Medcialy
-                            </span>
-                        </li>
-                        <li class="my-2">
-                            <span class="font-weight-bold">Cantumkan berita</span> saat melakukan
-                            transfer
-                            dengan
-                            format:
-                            <span class="font-weight-bold">“Pembayaran Medicaly (Nama Kalian)”</span>
-                        </li>
-                        <li class="my-2">
-                            <span class="font-weight-bold">Foto atau screenshot bukti transfer</span>
-                            yang
-                            telah
-                            kamu lakukan
-                        </li>
-                        <li class="my-2">
-                            <span class="font-weight-bold">Isi form</span> dengan data pribadimu dan
-                            detail
-                            transfer
-                            yang sudah berhasil
-                        </li>
-                        <li class="my-2">
-                            Untuk pengisian <b>"Transfer Nominal"</b> pada form, tuliskan dalam
-                            <b>
-                                format
-                                full angka (Contoh: @totalHarga)
-                            </b>
-                        </li>
-                        <li class="my-2">
-                            Setelah melakukan langkah-langkah di atas, <span class="font-weight-bold">
-                                submit
-                                form
-                            </span> tersebut!
-                        </li>
-                    </ol>
+            <input type="text" class="form-control" id="AlamatId" name="AlamatId" value="@Model.Alamat.Id" hidden>
+
+            <div>
+                <div class="mb-3">
+                    <label for="PaymentType">Tipe Pembayaran</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="PaymentType" name="PaymentType" value="BANK TRANSFER" readonly>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="BankName">Nama Bank</label>
+                    <select class="form-select" aria-label="Select Bank Name" id="BankName" name="BankName" required>
+                        <option selected>--Choose--</option>
+                        <option value="BCA">Bank BCA</option>
+                        <option value="MANDIRI">Bank Mandiri</option>
+                        <option value="BNI">Bank BNI</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="BankAccountName">Nama Akun Bank</label>
+                    <input type="text" class="form-control" id="BankAccountName" name="BankAccountName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="BankAccountNumber">Nomor Akun Bank</label>
+                    <input type="number" class="form-control" id="BankAccountNumber" name="BankAccountNumber" required>
+                </div>
+                <div class="mb-3">
+                    <label for="TransferNominal">Nominal Transfer</label>
+                    <input type="number" class="form-control" id="TransferNominal" name="TransferNominal" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ImageUpload">Transfer Proof</label>
+                    <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
                 </div>
 
-                <input type="text" class="form-control" id="AlamatId" name="AlamatId" value="@Model.Alamat.Id" hidden>
-
-                <div>
-                    <div class="mb-3">
-                        <label for="PaymentType">Tipe Pembayaran</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="PaymentType" name="PaymentType" value="BANK TRANSFER" readonly>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="BankName">Nama Bank</label>
-                        <select class="form-select" aria-label="Select Bank Name" id="BankName" name="BankName" required>
-                            <option selected>--Choose--</option>
-                            <option value="BCA">Bank BCA</option>
-                            <option value="MANDIRI">Bank Mandiri</option>
-                            <option value="BNI">Bank BNI</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="BankAccountName">Nama Akun Bank</label>
-                        <input type="text" class="form-control" id="BankAccountName" name="BankAccountName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="BankAccountNumber">Nomor Akun Bank</label>
-                        <input type="number" class="form-control" id="BankAccountNumber" name="BankAccountNumber" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="TransferNominal">Nominal Transfer</label>
-                        <input type="number" class="form-control" id="TransferNominal" name="TransferNominal" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ImageUpload">Transfer Proof</label>
-                        <input type="file" class="form-control" name="ImageUpload" id="ImageUpload" placeholder="No file chosen" required>
-                    </div>
-
-                    <input type="number" class="form-control" id="TotalHarga" name="TotalHarga" value="@totalHarga" hidden>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block pe-5 ps-5" type="submit">Bayar</button>
-            </form>
+                <input type="number" class="form-control" id="TotalHarga" name="TotalHarga" value="@totalHarga" hidden>
+            </div>
+            <hr class="mb-4">
+            @if (Model.Alamat == null)
+            {
+                <button class="btn btn-primary btn-lg btn-block pe-5 ps-5 disabled" type="submit">Bayar</button>
+            } else
+            {
+                <button class="btn btn-primary btn-lg btn-block pe-5 ps-5" type="submit">Bayar</button> 
+            }
+        </form>
         </div>
     </div>
 </div>
