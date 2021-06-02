@@ -22,6 +22,13 @@
 <section id="profile">
     <div id="" class="mb-5">
         <div class="container">
+            @if (Model.customers == null && Model.doctors == null)
+            {
+                <a href="/Pharmacy" class="btn btn-secondary pe-4 ps-4 mb-3">
+                    Back to dashboard
+                </a>
+            }
+
             <div class="card border-0 rounded-20 shadow-sm">
                 <div class="card-body text-center my-0">
                     <div class="section-line mx-auto"></div>

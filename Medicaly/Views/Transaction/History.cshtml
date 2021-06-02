@@ -73,9 +73,7 @@
                                                             View
                                                         </a>
                                                         <form id="formUpdateStatus" method="POST">
-                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
-                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
-                                                            <button type="submit" class="btn btn-outline-dark">
+                                                            <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatusSubmit(this.id, this.name);">
                                                                 Confirm
                                                             </button>
                                                         </form>
@@ -151,11 +149,8 @@
                                                             </a>
                                                         </div>
 
-
                                                         <form id="formUpdateStatus" method="POST">
-                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
-                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
-                                                            <button type="submit" class="btn btn-outline-dark">
+                                                            <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatusSubmit(this.id, this.name);">
                                                                 Confirm
                                                             </button>
                                                         </form>
@@ -229,9 +224,7 @@
                                                             View
                                                         </a>
                                                         <form id="formUpdateStatus" method="POST">
-                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
-                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
-                                                            <button type="submit" class="btn btn-outline-dark">
+                                                            <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatusSubmit(this.id, this.name);">
                                                                 Confirm
                                                             </button>
                                                         </form>

@@ -23,15 +23,6 @@ $(document).ready(function () {
     $('#products-alat').DataTable();
 });
 
-function responseAfterAdd() {
-    $('#tableListAlat').load('/Product/Manage #tableListAlat');
-    $('#tableList').load('/Product/Manage #tableList');
-    $("#add-alat .closeModal").click();
-    $("#add-obat .closeModal").click();
-    $("#formAddObat").trigger("reset");
-    $("#formAddAlat").trigger("reset");
-}
-
 function AddProductPost(formData) {
     var ajaxConfig = {
         type: "post",
@@ -42,7 +33,7 @@ function AddProductPost(formData) {
             if (result.success) {
                 alert("Success Add Product");
                 
-                responseAfterAdd();
+                location.reload();
             } else {
                 console.log(result.message);
                 alert("Failed Add Product");
@@ -78,9 +69,7 @@ function deleteProduct(val, element) {
                 console.log(result.message)
                 if (result.success) {
                     alert("Success Delete Product");
-                    $('#tableList').load('/Product/Manage #tableList');
-                    $('#tableListAlat').load('/Product/Manage #tableListAlat');
-                    $('#products').data.reload();
+                    location.reload();
                 }
             },
             error: function (err) {
