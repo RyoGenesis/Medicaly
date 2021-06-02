@@ -1,6 +1,7 @@
 ﻿using Medicaly.mails;
 using Medicaly.Models;
 using Medicaly.Repositories;
+using Medicaly.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,17 @@ namespace Medicaly.Services
             }
 
             return "Cannot update status!";
+        }
+
+        public static TransactionViewModel getAllTransaction(int id)
+        {
+            List<DetailTransaction> detailTransactions = TransactionRepository.getDetailTransactionByTrId(id);
+            TransactionViewModel transactionView = new TransactionViewModel();
+
+            transactionView.detailTransactions = detailTransactions;
+            transactionView.header = TransactionRepository.getHeaderTransactionbyId(id);
+
+            return transactionView;
         }
 
         public static List<DetailTransaction> getTransactions(string id)

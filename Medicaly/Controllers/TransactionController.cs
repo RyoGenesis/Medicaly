@@ -20,6 +20,17 @@ namespace Medicaly.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: Detail Transaction 
+        public ActionResult Detail(int id)
+        {
+            if (Session["Nama"] != null)
+            {
+                return View(TransactionService.getAllTransaction(id));
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: Transaction
         public ActionResult Manage()
         {
