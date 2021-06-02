@@ -35,7 +35,7 @@ namespace Medicaly.mails
             smtp.EnableSsl = GmailSSL;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("madeadit80@gmail.com", "blackshadow");
+            smtp.Credentials = new NetworkCredential("", "");
 
             using (var message = new MailMessage("No-Reply@gmail.com", ToEmail))
             {
