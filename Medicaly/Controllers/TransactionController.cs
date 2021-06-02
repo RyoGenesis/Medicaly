@@ -9,6 +9,17 @@ namespace Medicaly.Controllers
 {
     public class TransactionController : Controller
     {
+        // GET: User Transaction 
+        public ActionResult History()
+        {
+            if (Session["Nama"] != null && Session["UserType"].ToString() == "Customer")
+            {
+                return View(TransactionService.getUserTransactions(Session["CustomerID"].ToString()));
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: Transaction
         public ActionResult Manage()
         {
@@ -33,7 +44,23 @@ namespace Medicaly.Controllers
 
             }
 
-            return Json(new { success = false, message = "Product Is Empty", JsonRequestBehavior.AllowGet });
+            return Json(new { success = false, message = "Error update!", JsonRequestBehavior.AllowGet });
+        }
+
+        // Update Status Shipment
+        [HttpPost]
+        public JsonResult EditStatusShipment(int id, int isShipped, string kurir, string trackingId)
+        {
+            if (id.ToString() != null && isShipped.ToString() != null && kurir.ToString() != null && trackingId.ToString() != null)
+            {
+
+                string message = TransactionService.updateStatus(id, isShipped, kurir, trackingId);
+
+                return Json(new { success = true, message = message, JsonRequestBehavior.AllowGet });
+
+            }
+
+            return Json(new { success = false, message = "Error update!", JsonRequestBehavior.AllowGet });
         }
     }
 }

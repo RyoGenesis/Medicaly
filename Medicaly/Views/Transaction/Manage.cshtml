@@ -114,10 +114,10 @@
                                 <thead class="bg-blue text-white">
                                     <tr>
                                         <th class="align-middle text-center">ID</th>
-                                        <th class="align-middle text-center">Images</th>
-                                        <th class="align-middle text-center">Name</th>
-                                        <th class="align-middle text-center">Stock</th>
-                                        <th class="align-middle text-center">Harga Barang</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
                                         <th class="align-middle text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -151,7 +151,7 @@
                                                         </div>
             
 
-                                                        <button type="button" class="btn btn-primary pe-4 ps-4 mb-3" data-bs-toggle="modal" data-bs-target="#kirim">
+                                                        <button type="button" class="btn btn-primary pe-4 ps-4 mb-3 editShipt" data-bs-toggle="modal" data-id="@item.Id" data-bs-target="#kirim">
                                                             Kirim
                                                         </button>
                                                     </div>
@@ -180,20 +180,20 @@
             <div class="card border-0 rounded-20 shadow-sm">
                 <div class="card-header text-start">
                     <div class="section-line mx-auto pt-2"></div>
-                    <h6 class="text-muted">TRANSAKSI - SELESAI</h6>
+                    <h6 class="text-muted">TRANSAKSI - DIKIRIM</h6>
                 </div>
                 <div class="card-body text-center my-3">
                     @if (Model != null && Model.Any(x => x.IsShipped == 2))
                     {
                         <div id="" class="table-responsive">
-                            <table class="table table-hover" id="transaksi-selesai">
+                            <table class="table table-hover" id="transaksi-dikirim">
                                 <thead class="bg-blue text-white">
                                     <tr>
                                         <th class="align-middle text-center">ID</th>
-                                        <th class="align-middle text-center">Images</th>
-                                        <th class="align-middle text-center">Name</th>
-                                        <th class="align-middle text-center">Stock</th>
-                                        <th class="align-middle text-center">Harga Barang</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
                                         <th class="align-middle text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -242,6 +242,145 @@
     </div>
 </section>
 
+<section id="tableListSelesai" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI - SELESAI</h6>
+                </div>
+                <div class="card-body text-center my-3">
+                    @if (Model != null && Model.Any(x => x.IsShipped == 3))
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-selesai">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 3))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                            View
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableListSelesai" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI - SELESAI (DICONFIRM ADMIN)</h6>
+                </div>
+                <div class="card-body text-center my-3">
+                    @if (Model != null && Model.Any(x => x.IsShipped == 4))
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-selesai-beneran">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 4))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                            View
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section>
     <div class="modal fade" id="kirim" tabindex="-1" role="dialog" aria-labelledby="add-securityLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -252,8 +391,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form id="formShipement" enctype="multipart/form-data" method="post" onsubmit="return updateStatusShipment(this)">
-                            <input type="number" id="IsShipped" name="IsShipped" value="2" hidden />
+                        <form id="formShipement" method="post">
+                            <input type="number" id="IdModal" name="Id" hidden />
 
                             <div class="form-group row">
                                 <label class="col-sm-12 col-form-label" for="Nama">Nama Kurir</label>

@@ -1,0 +1,329 @@
+﻿@model IEnumerable<Medicaly.Models.DetailTransaction>
+
+@{
+    ViewBag.Title = "Medicaly - Transactions History";
+}
+
+
+<section id="productDashboardTitle">
+    <div id="" class="mb-5">
+        <div class="container">
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-body text-center my-0">
+                    <div class="section-line mx-auto"></div>
+                    <h6 class="text-muted pt-3">TRANSACTIONS HISTORY</h6>
+                    <h2 class="mb-4">List Transaksi Anda</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section id="tableList">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI (MENUNGGU KONFIRMASI)</h6>
+                </div>
+                <div class="card-body text-center my-3">
+
+                    @if (Model != null && Model.Any(x => x.IsShipped == 0))
+                    {
+                        <div id="ProductList" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-baru">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 0))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                            View
+                                                        </a>
+                                                        <form id="formUpdateStatus" method="POST">
+                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
+                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
+                                                            <button type="submit" class="btn btn-outline-dark">
+                                                                Confirm
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableList" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI - DIPROSES</h6>
+                </div>
+                <div class="card-body text-center my-3">
+                    @if (Model != null && Model.Any(x => x.IsShipped == 1))
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-belumDikirim">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 1))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <div class="me-2">
+                                                            <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark pe-4 ps-4 editProduct">
+                                                                View
+                                                            </a>
+                                                        </div>
+
+
+                                                        <form id="formUpdateStatus" method="POST">
+                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
+                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
+                                                            <button type="submit" class="btn btn-outline-dark">
+                                                                Confirm
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableListSelesai" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI - DIKIRIM</h6>
+                </div>
+                <div class="card-body text-center my-3">
+                    @if (Model != null && Model.Any(x => x.IsShipped == 2))
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-dikirim">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 2))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                            View
+                                                        </a>
+                                                        <form id="formUpdateStatus" method="POST">
+                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
+                                                            <input type="number" id="IsShipped" name="IsShipped" value="3" hidden />
+                                                            <button type="submit" class="btn btn-outline-dark">
+                                                                Confirm
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tableListSelesai" class="mt-5">
+    <div id="content" class="dashboard">
+        <div class="container">
+
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-header text-start">
+                    <div class="section-line mx-auto pt-2"></div>
+                    <h6 class="text-muted">TRANSAKSI - SELESAI</h6>
+                </div>
+                <div class="card-body text-center my-3">
+                    @if (Model != null && Model.Any(x => x.IsShipped == 3))
+                    {
+                        <div id="" class="table-responsive">
+                            <table class="table table-hover" id="transaksi-selesai">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th class="align-middle text-center">ID</th>
+                                        <th class="align-middle text-center">Date</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Harga</th>
+                                        <th class="align-middle text-center">Quantity</th>
+                                        <th class="align-middle text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="List">
+                                    @foreach (var item in Model.Where(x => x.IsShipped == 3))
+                                    {
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.TransactionId)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.HeaderTransaction.TransactionDate)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Product.Nama)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                     aria-label="Toolbar">
+                                                    <div class="btn-group me-2" role="group" aria-label="link">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                            View
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">Tidak ada pesanan.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    <script src="~/Scripts/TransactionHistory.js"></script>
+}

@@ -273,6 +273,7 @@
     <Content Include="Scripts\ProductDetail.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\Transaction.js" />
+    <Content Include="Scripts\TransactionHistory.js" />
     <Content Include="Scripts\UpdateProduct.js" />
     <Content Include="Scripts\UpdateProfile.js" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -347,6 +348,8 @@
     <Content Include="Views\Profile\Alamat.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\Transaction\Manage.cshtml" />
+    <Content Include="Views\Transaction\History.cshtml" />
+    <Content Include="Views\Transaction\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

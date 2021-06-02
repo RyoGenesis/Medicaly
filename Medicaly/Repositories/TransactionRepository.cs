@@ -24,6 +24,14 @@ namespace Medicaly.Repositories
                     select x).FirstOrDefault();
         }
 
+
+        public static List<DetailTransaction> GetDetailByCustomerId(int customerId)
+        {
+            return (from x in db.DetailTransactions
+                    where x.HeaderTransaction.Alamat.CustomerID == customerId
+                    select x).OrderByDescending(x => x.HeaderTransaction.TransactionDate).ToList();
+        }
+
         public static List<DetailTransaction> GetDetailByApotekId(int apotekId)
         {
             return (from x in db.DetailTransactions
@@ -34,7 +42,7 @@ namespace Medicaly.Repositories
         public static DetailTransaction getDetailById(int id)
         {
             return (from x in db.DetailTransactions
-                    where x.Id == id
+                    where x.Id == id 
                     select x).FirstOrDefault();
         }
 
