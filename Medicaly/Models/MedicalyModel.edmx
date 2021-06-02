@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MedicalyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alamat">
           <Key>
             <PropertyRef Name="Id" />
@@ -37,6 +37,9 @@
           <Property Name="TransactionId" Type="int" />
           <Property Name="ProductId" Type="int" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="IsShipped" Type="int" />
+          <Property Name="Kurir" Type="varchar" MaxLength="255" />
+          <Property Name="TrackingId" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -294,7 +297,7 @@
           <Parameter Name="TransactionId" Type="int" Mode="In" />
           <Parameter Name="Status" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="MedicalModelStoreContainer">
+        <EntityContainer Name="MedicalyModelStoreContainer">
           <EntitySet Name="Alamat" EntityType="Self.Alamat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailTransaction" EntityType="Self.DetailTransaction" Schema="dbo" store:Type="Tables" />
@@ -350,7 +353,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MedicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MedicalyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Alamat">
           <Key>
             <PropertyRef Name="Id" />
@@ -387,6 +390,9 @@
           <Property Name="TransactionId" Type="Int32" />
           <Property Name="ProductId" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="IsShipped" Type="Int32" />
+          <Property Name="Kurir" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TrackingId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK__DetailTra__Produ__42E1EEFE" FromRole="DetailTransaction" ToRole="Products" />
           <NavigationProperty Name="HeaderTransaction" Relationship="Self.FK__DetailTra__Trans__41EDCAC5" FromRole="DetailTransaction" ToRole="HeaderTransaction" />
         </EntityType>
@@ -717,9 +723,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MedicalModelStoreContainer" CdmEntityContainer="MedicalyDBEntities">
+        <EntityContainerMapping StorageEntityContainer="MedicalyModelStoreContainer" CdmEntityContainer="MedicalyDBEntities">
           <EntitySetMapping Name="Alamats">
-            <EntityTypeMapping TypeName="MedicalModel.Alamat">
+            <EntityTypeMapping TypeName="MedicalyModel.Alamat">
               <MappingFragment StoreEntitySet="Alamat">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LabelAlamat" ColumnName="LabelAlamat" />
@@ -733,7 +739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="MedicalModel.Customer">
+            <EntityTypeMapping TypeName="MedicalyModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -745,17 +751,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetailTransactions">
-            <EntityTypeMapping TypeName="MedicalModel.DetailTransaction">
+            <EntityTypeMapping TypeName="MedicalyModel.DetailTransaction">
               <MappingFragment StoreEntitySet="DetailTransaction">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IsShipped" ColumnName="IsShipped" />
+                <ScalarProperty Name="Kurir" ColumnName="Kurir" />
+                <ScalarProperty Name="TrackingId" ColumnName="TrackingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Doctors">
-            <EntityTypeMapping TypeName="MedicalModel.Doctor">
+            <EntityTypeMapping TypeName="MedicalyModel.Doctor">
               <MappingFragment StoreEntitySet="Doctor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NoKTP" ColumnName="NoKTP" />
@@ -774,7 +783,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HeaderTransactions">
-            <EntityTypeMapping TypeName="MedicalModel.HeaderTransaction">
+            <EntityTypeMapping TypeName="MedicalyModel.HeaderTransaction">
               <MappingFragment StoreEntitySet="HeaderTransaction">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AlamatId" ColumnName="AlamatId" />
@@ -791,7 +800,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Konsultasis">
-            <EntityTypeMapping TypeName="MedicalModel.Konsultasi">
+            <EntityTypeMapping TypeName="MedicalyModel.Konsultasi">
               <MappingFragment StoreEntitySet="Konsultasi">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -807,7 +816,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pharmacies">
-            <EntityTypeMapping TypeName="MedicalModel.Pharmacy">
+            <EntityTypeMapping TypeName="MedicalyModel.Pharmacy">
               <MappingFragment StoreEntitySet="Pharmacy">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NamaPharmacy" ColumnName="NamaPharmacy" />
@@ -822,7 +831,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="MedicalModel.Product">
+            <EntityTypeMapping TypeName="MedicalyModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
@@ -846,7 +855,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ShoppingCarts">
-            <EntityTypeMapping TypeName="MedicalModel.ShoppingCart">
+            <EntityTypeMapping TypeName="MedicalyModel.ShoppingCart">
               <MappingFragment StoreEntitySet="ShoppingCart">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -856,15 +865,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Spesialis">
-            <EntityTypeMapping TypeName="MedicalModel.Spesiali">
+            <EntityTypeMapping TypeName="MedicalyModel.Spesiali">
               <MappingFragment StoreEntitySet="Spesialis">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nama" ColumnName="Nama" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AddTransaction" FunctionName="MedicalModel.Store.AddTransaction" />
-          <FunctionImportMapping FunctionImportName="UpdateTransactionStatus" FunctionName="MedicalModel.Store.UpdateTransactionStatus" />
+          <FunctionImportMapping FunctionImportName="AddTransaction" FunctionName="MedicalyModel.Store.AddTransaction" />
+          <FunctionImportMapping FunctionImportName="UpdateTransactionStatus" FunctionName="MedicalyModel.Store.UpdateTransactionStatus" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

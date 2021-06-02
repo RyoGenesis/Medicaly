@@ -27,7 +27,7 @@ namespace Medicaly.Services
             {
                 string name = Path.GetFileNameWithoutExtension(headerTransaction.ImageUpload.FileName);
                 string extension = Path.GetExtension(headerTransaction.ImageUpload.FileName);
-                string fileName = "checkout_" + headerTransaction.AlamatId + "_" +  DateTime.Now.ToString() + "_" + name + extension;
+                string fileName = "checkout_" + headerTransaction.AlamatId + "_" + name + extension;
                 headerTransaction.TransferProof = fileName;
                 headerTransaction.ImageUpload.SaveAs(Path.Combine(path, fileName));
                 headerTransaction.Status = "PAID";
@@ -63,6 +63,7 @@ namespace Medicaly.Services
                 detailTransaction.ProductId = item.ProductId;
                 detailTransaction.TransactionId = headerTransaction.Id;
                 detailTransaction.Quantity = item.Quantity;
+                detailTransaction.IsShipped = 0;
 
                 quantity = convertNullable(product.Stock) - convertNullable(item.Quantity);
 
@@ -90,24 +91,14 @@ namespace Medicaly.Services
 
         private static void sendEmail(HeaderTransaction headerTransaction)
         {
-
-            string order = "";
-
-            List<DetailTransaction> detailTransaction = TransactionRepository.getDetailTransactionByTrId(headerTransaction.Id);
-            foreach (var item in detailTransaction)
-            {
-                order += "<p style='font-size:14px;margin:0;padding:10px;border:solid 1px #ddd;font-weight:bold;'><span style='display:block;font-size:13px;font-weight:normal;'>" + item.Product.Nama + "</span> " + Convert.ToDecimal(item.Product.Price).ToString("C2") + " <b style='font-size:12px;font-weight:300;'> " + item.Product.Pharmacy.NamaPharmacy + " Qty: " + item.Quantity + " Tipe: " + item.Product.Type + "</b></p>";
-            }
-
-
             GMailer mailer = new GMailer();
             mailer.ToEmail = headerTransaction.Alamat.Customer.Email;
-            mailer.Subject = "INVOICE - Medicaly";
+            mailer.Subject = "Medicaly - Order: " + headerTransaction.Id;
             mailer.Body =
                 "<html>" +
                     "<body style='background-color:#e2e1e0;font-family: Open Sans, sans-serif;font-size:100%;font-weight:400;line-height:1.4;color:#000;'>" +
                         "<table style= 'max-width:670px;margin:50px auto 10px;background-color:#fff;padding:50px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);-moz-box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24); border-top: solid 10px green;'>" +
-                            "<thead>" +
+                            "<thead style='margin-top: 20px;'>" +
                                 "<tr>" +
                                     "<th style='text-align:left;'>Medicaly</th>" +
                                     "<th style='text-align:right;font-weight:400;'>" + DateTime.Now + "</th>" +
@@ -138,11 +129,11 @@ namespace Medicaly.Services
                                       "</tr>" +
                                       "<tr>" +
                                         "<td colspan='2' style='padding:15px;'>" +
-                                            order +
+                                            orderString(headerTransaction.Id) +
                                         "</td>" +
                                       "</tr>" +
                                     "</tbody>" +
-                                    "<tfooter>" +
+                                    "<tfooter style='margin-bottom: 20px;'>" +
                                       "<tr>" +
                                         "<td colspan='2' style='font-size:14px;padding:50px 15px 0 15px;'>" +
                                           "<strong style='display:block;margin:0 0 10px 0;'>Regards</strong> Medicaly<br> New York, Avenue Street 10<br><br>" +
@@ -156,6 +147,19 @@ namespace Medicaly.Services
                                 "</html>";
             mailer.IsHtml = true;
             mailer.Send();
+        }
+
+        private static string orderString(int id)
+        {
+            string order = "";
+
+            List<DetailTransaction> detailTransaction = TransactionRepository.getDetailTransactionByTrId(id);
+            foreach (var item in detailTransaction)
+            {
+                order += "<p style='font-size:14px;margin:0;padding:10px;border:solid 1px #ddd;font-weight:bold;'><span style='display:block;font-size:13px;font-weight:normal;'>" + item.Product.Nama + "</span> " + Convert.ToDecimal(item.Product.Price).ToString("C2") + " <b style='font-size:12px;font-weight:300;'> " + item.Product.Pharmacy.NamaPharmacy + " Qty: " + item.Quantity + " Tipe: " + item.Product.Type + "</b></p>";
+            }
+
+            return order;
         }
     }
 }

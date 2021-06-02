@@ -34,6 +34,7 @@ namespace Medicaly.Models
         public Nullable<long> TotalHarga { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
+
         public virtual Alamat Alamat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailTransaction> DetailTransactions { get; set; }

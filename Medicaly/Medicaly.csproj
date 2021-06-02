@@ -138,6 +138,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Factories\ProductFactory.cs" />
     <Compile Include="Factories\ShoppingCartFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,6 +210,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\TransactionService.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\KonsultasiViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -270,6 +272,7 @@
     <Content Include="Scripts\ProductCart.js" />
     <Content Include="Scripts\ProductDetail.js" />
     <Content Include="Scripts\Register.js" />
+    <Content Include="Scripts\Transaction.js" />
     <Content Include="Scripts\UpdateProduct.js" />
     <Content Include="Scripts\UpdateProfile.js" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -343,6 +346,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Alamat.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Transaction\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
