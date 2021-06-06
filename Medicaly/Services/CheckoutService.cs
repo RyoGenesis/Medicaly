@@ -138,7 +138,8 @@ namespace Medicaly.Services
                                         "<td colspan='2' style='font-size:14px;padding:50px 15px 0 15px;'>" +
                                           "<strong style='display:block;margin:0 0 10px 0;'>Regards</strong> Medicaly<br> New York, Avenue Street 10<br><br>" +
                                           "<b>Phone:</b> 03552-222011<br>" +
-                                          "<b>Email:</b> contact@medicaly.in" +
+                                          "<b>Email:</b> pr.medicaly@gmail.com" +
+                                          "<br><a href='https://localhost:44378/'>Medicaly</a>" +
                                         "</td>" +
                                       "</tr>" +
                                     "</tfooter>" +
