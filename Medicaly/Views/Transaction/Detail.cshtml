@@ -1,0 +1,137 @@
+﻿@model Medicaly.ViewModels.TransactionViewModel
+@{
+    ViewBag.Title = "Medicaly - Detail Transaction";
+}
+
+
+<section id="transaction-detail" class="justify-content-center">
+    <div id="" class="mb-5">
+        <div class="container w-75">
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-body text-center my-0">
+                    <div class="section-line mx-auto"></div>
+                    <h6 class="text-muted pt-3 pb-3">TRANSACTION DETAIL</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container w-75">
+        <div class="card border-0 rounded-20 shadow-sm cards h-100">
+            <div class="card-body">
+                <table style="width: 100%;">
+                    <thead style="margin-top: 20px;">
+                        <tr>
+                            <th style="text-align:left;padding-left: 8px;">Medicaly</th>
+                            <th style="text-align:right;padding-right: 8px;">  @Model.header.TransactionDate  </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td style="height:35px;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: solid 1px #ddd; padding:10px 20px;">
+                                <p style="font-size:14px;margin:0 0 6px 0;"><span style="font-weight:bold;display:inline-block;min-width:150px">Order status</span><b style="color:green;font-weight:normal;margin:0">@Model.header.Status</b></p>
+                                <p style="font-size:14px;margin:0 0 6px 0;"><span style="font-weight:bold;display:inline-block;min-width:146px">Transaction ID</span>   @Model.header.Id  </p>
+                                <p style="font-size:14px;margin:0 0 0 0;"><span style="font-weight:bold;display:inline-block;min-width:146px">Order amount</span>   @Convert.ToDecimal(Model.header.TotalHarga).ToString("C2")  </p>
+                            </td>
+                        </tr>
+                        <tr><td style="height:35px;"></td></tr>
+                        <tr>
+                            <td style="width:50%;padding:20px;vertical-align:top">
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px">Name</span>   @Model.header.Alamat.NamaPenerima  </p>
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Email</span>   @Model.header.Alamat.Customer.Email  </p>
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Phone</span>   @Model.header.Alamat.Customer.NoHandphone  </p>
+                            </td>
+                            <td style="width:50%;padding:20px;vertical-align:top">
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Address</span>   @Model.header.Alamat.Alamat1  </p>
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Kota</span>   @Model.header.Alamat.KotaKecamatan  </p>
+                                <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Kota</span>   @Model.header.Alamat.KodePost  </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size:20px;padding:30px 15px 0 15px;">Items</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding:15px;">
+                                @foreach (var item in Model.detailTransactions)
+                                {
+                                    <p style='font-size:14px;margin:0;padding:10px;border:solid 1px #ddd;font-weight:bold;'>
+                                        <span style='display:block;font-size:13px;font-weight:normal;'> @item.Product.Nama </span> @Convert.ToDecimal(item.Product.Price).ToString("C2")
+                                        <b style='font-size:12px;font-weight:300;'> @item.Product.Pharmacy.NamaPharmacy |  Qty: @item.Quantity | Tipe: @item.Product.Type </b>
+                                    </p>
+                                    if (item.Kurir != null && item.TrackingId != null)
+                                    {
+                                        <p>Kurir: @item.Kurir <br /> Tracking ID: @item.TrackingId </p>
+                                    }
+                                    else
+                                    {
+                                        <p>Kurir: Waiting <br /> Tracking ID: Waiting </p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container w-75">
+        <div class="card border-0 rounded-20 shadow-sm cards h-100">
+            <div class="card-body">
+                <div class="row gutters pb-0">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 text-primary pb-2">Payment Detail</h6>
+                    </div>
+                    <hr />
+                    <div class="col-sm-12 col-12 pt-2">
+                        <div class="form-group">
+                            <label for="BankName">BANK</label>
+                            <input type="text" class="form-control" id="BankName" name="BankName" value="@Model.header.BankName" placeholder="Enter full name" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 pt-2">
+                        <div class="form-group">
+                            <label for="BankAccountName">Nama Akun Bank</label>
+                            <input type="text" class="form-control" id="BankAccountName" name="BankAccountName" value="@Model.header.BankAccountName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 pt-2">
+                        <div class="form-group">
+                            <label for="BankAccountNumber">Bank Account Number</label>
+                            <input type="tel" class="form-control" id="BankAccountNumber" name="BankAccountNumber" value="@Model.header.BankAccountNumber" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 pt-2">
+                        <div class="form-group">
+                            <label for="TotalHarga">Total Harga</label>
+                            <input type="text" class="form-control" id="TotalHarga" name="TotalHarga" value="@Model.header.TotalHarga" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-12 pt-2">
+                        <div class="form-group">
+                            <label for="TransferNominal">Transfer Nominal</label>
+                            <input type="text" class="form-control" id="TransferNominal" name="TransferNominal" value="@Model.header.TransferNominal" readonly>
+                        </div>
+                    </div>
+                    <div class="row gutters pt-3 pb-0">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <a href="~/App_File/Images/Transactions/@Model.header.TransferProof"
+                                   data-size="710x823" target="_blank">
+                                    View Transfer Proof
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,7 +1,43 @@
 ﻿
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Medicaly - Pharmacy";
 }
 
-<h2>Home</h2>
+<section id="pharmacy-dashboard" class="justify-content-center" style="margin-top: 75px!important;">
+    <div id="" class="mb-4">
+        <div class="container w-75">
+            <div class="card border-0 rounded-20 shadow-sm">
+                <div class="card-body text-center my-0">
+                    <div class="section-line mx-auto"></div>
+                    <h6 class="text-muted pt-3 pb-3">APOTEK DASHBOARD</h6>
+                    <h2 class="mb-4">Welcome, @Session["Nama"].ToString()</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container w-75">
+        <div class="card border-0 rounded-20 shadow-sm mb-4" style="background-color: #fff3cd!important;">
+            <div class="card-body text-start my-0">
+                <div class="section-line mx-auto"></div>
+                <h6 class="text-muted pt-2 pb-1">Please read carefully the instruction of using this website. For any assistance, please contact the administrator.</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="container w-75">
+        <div class="card border-0 rounded-20 shadow-sm cards h-100" style="background-color: #d1ecf1!important;">
+            <div class="card-body">
+                As part of <b>Apotek</b>, you are provided with several features that you can use for managing transaction and product purposes.
+                <br>There are 2 main features consist of:
+                <ul>
+                    <li>Main : <a href="/Product/Manage">Manage Products</a> (Add product, Update Product, Delete Product and View all product)</li>
+                    <li><a href="/Transaction/Manage">Manage Transaction</a>: See all transaction that been made and manage it.</li>
+                    <li><a href="/Profile/">Profile</a>: View and update your profile.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</section>

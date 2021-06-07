@@ -147,7 +147,15 @@
                             </li>
                         </ul>
 
-                        <a href="/Checkout/" class="btn btn-primary btn-block waves-effect waves-light ps-3 pe-3">Checkout</a>
+                        @if (Model.shoppingCarts.Count() > 0)
+                        {
+                            <a href="/Checkout/" class="btn btn-primary btn-block waves-effect waves-light ps-3 pe-3">Checkout</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary btn-block waves-effect waves-light ps-3 pe-3 disabled" type="button">Checkout</button>
+                        }
+
 
                     </div>
                 </div>
