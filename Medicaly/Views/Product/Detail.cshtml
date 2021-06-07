@@ -14,7 +14,7 @@
     <section id="ProductDetail" class="container">
         <div class="mb-5">
             <div class="row">
-                <div class="col-md-6 mb-4 mb-md-0">
+                <div class="col-md-6 mb-0 mb-md-0">
 
                     <div id="mdb-lightbox-ui"></div>
 
@@ -24,9 +24,10 @@
 
                             <div class="col-12 mb-0">
                                 <figure class="view overlay rounded z-depth-1 main-img">
-                                    <a href="~/App_File/Images/Products/@Model.ProductFoto"
-                                       data-size="710x823" target="_blank">
-                                        <img class="card-img-top img-fluid z-depth-1" width="600px" height="400px"
+                                    <!--<a href="~/App_File/Images/Products/@Model.ProductFoto"
+                                    data-size="710x823" target="_blank"> -->
+                                    <a class="popup-enlarge" href="#">
+                                        <img class="card-img-top img-fluid z-depth-1" width="600" height="400"
                                              src="~/App_File/Images/Products/@Model.ProductFoto" alt="Card image cap">
                                     </a>
                                 </figure>
@@ -35,33 +36,113 @@
 
                     </div>
 
+                    <!--modal enlarge-->
+                    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span class="visually-hidden">Close</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="" class="imagepreview" style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end modal-->
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
 
 
-                    <h5>@Model.Nama</h5>
+                    <h5 class="fs-3">@Model.Nama</h5>
                     <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
-                    <p><span class="mr-1"><strong>@Convert.ToDecimal(Model.Price).ToString("C2")</strong></span></p>
+                    <p><span class="mr-1 fs-3"><strong>@Convert.ToDecimal(Model.Price).ToString("C2")</strong></span></p>
 
+                    <span><strong>Stok: </strong> @Model.Stock</span>
+
+                    <form id="formAddToCart" method="POST">
+                        <div class="table-responsive mb-2 w-50">
+                            <table class="table table-sm table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td class="ps-0 pb-2">Quantity</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="ps-1">
+
+                                            @{
+                                                if (Session["CustomerID"] != null)
+                                                {
+
+                                                    int CustomerId = int.Parse(Session["CustomerID"].ToString());
+                                                    <input type="text" name="CustomerId" id="CustomerId" value="@CustomerId" hidden />
+                                                }
+                                            }
+
+                                            <input type="text" name="ProductId" id="ProductId" value="@Model.Id" hidden />
+                                            <input type="text" name="Stock" id="Stock" value="@Model.Stock" hidden />
+
+                                            <div class="input-group w-75">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                                                            data-type="minus" data-field="">
+                                                        <span class="glyphicon glyphicon-minus">-</span>
+                                                    </button>
+                                                </span>
+                                                <input type="text" id="quantity" name="quantity" class="form-control input-number me-2 ms-2"
+                                                       value="1" min="1" max="20">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                                                            data-type="plus" data-field="">
+                                                        <span class="glyphicon glyphicon-plus">+</span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @if (Model.Stock == 0)
+                        {
+                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2 disabled">
+                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2">
+                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
+                            </button>
+                        }
+
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-borderless mb-0">
+                            <tbody>
+                                <tr>
+                                    <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
+                                    <td>@Model.Pharmacy.NamaPharmacy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9 mb-4 mb-md-0">
+                    <hr>
+                    <h2><b>Deskripsi</b></h2>
                     @if (Model.Type.Equals("Alat-Kesehatan"))
                     {
                         <p class="pt-1">
                             @Model.Deskripsi
                         </p>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-borderless mb-0">
-                                <tbody>
-                                    <tr>
-                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
-                                        <td>@Model.Pharmacy.NamaPharmacy</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Stok</strong></th>
-                                        <td>@Model.Stock</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     }
                     else
                     {
@@ -71,7 +152,7 @@
                             @Model.IndikasiUmum
                         </p>
                         <p class="pt-0">
-                            <strong>Deskripsi</strong>
+                            <strong>Deskripsi Obat</strong>
                             <br />
                             @Model.Deskripsi
                         </p>
@@ -117,14 +198,6 @@
                                         <td>@Model.Segmentasi</td>
                                     </tr>
                                     <tr>
-                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Stok</strong></th>
-                                        <td>@Model.Stock</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
-                                        <td>@Model.Pharmacy.NamaPharmacy</td>
-                                    </tr>
-                                    <tr>
                                         <th class="ps-0 w-25 fw-normal" scope="row"><strong>Manufaktur</strong></th>
                                         <td>@Model.Manufaktur</td>
                                     </tr>
@@ -132,71 +205,9 @@
                             </table>
                         </div>
                     }
-                    <hr>
-                    <form id="formAddToCart" method="POST">
-                        <div class="table-responsive mb-2">
-                            <table class="table table-sm table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td class="ps-0 pb-2 w-25">Quantity</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="ps-0">
-
-
-                                            @{
-                                                if (Session["CustomerID"] != null)
-                                                {
-
-                                                    int CustomerId = int.Parse(Session["CustomerID"].ToString());
-                                                    <input type="text" name="CustomerId" id="CustomerId" value="@CustomerId" hidden />
-                                                }
-                                            }
-
-                                            <input type="text" name="ProductId" id="ProductId" value="@Model.Id" hidden />
-                                            <input type="text" name="Stock" id="Stock" value="@Model.Stock" hidden />
-
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="quantity-left-minus btn btn-danger btn-number"
-                                                            data-type="minus" data-field="">
-                                                        <span class="glyphicon glyphicon-minus">-</span>
-                                                    </button>
-                                                </span>
-                                                <input type="text" id="quantity" name="quantity" class="form-control input-number me-2 ms-2"
-                                                       value="1" min="1" max="20">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="quantity-right-plus btn btn-success btn-number"
-                                                            data-type="plus" data-field="">
-                                                        <span class="glyphicon glyphicon-plus">+</span>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <td class="pl-0">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        @if (Model.Stock == 0)
-                        {
-                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2 disabled">
-                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
-                            </button>
-                        }
-                        else
-                        {
-                            <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2">
-                                <i class="fas fa-shopping-cart pr-2"></i> Add to cart
-                            </button>
-                        }
-
-                    </form>
                 </div>
             </div>
-
-        </div>
+        </div>       
     </section>
 </secion>
 

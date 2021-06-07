@@ -4,6 +4,16 @@
     ViewBag.Title = "Medicaly";
 }
 
+<style>
+    .text-item-truncate {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }  
+</style>
+
 
 <div class="container">
     <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
@@ -21,7 +31,7 @@
                 {
                     <div class="carousel-item @if (i == 0) { @active }">
                         <img src="~/App_File/Images/Products/@item.ProductFoto" class="d-block w-100" width="600px" 
-                             height="400px" alt="...">
+                             height="400" alt="...">
                     </div>
 
                     i++;
@@ -57,18 +67,20 @@
 
     </div>
 
-    <div class="row justify-content-md-center mt-3">
+    <div class="row justify-content-md-start mt-3 row-cols-sm-auto">
         @foreach (var item in Model.product)
         {
             <div class="filterDiv @item.Type col-3  mt-3">
                 <div class="card" style="width: 18rem;">
                     <a href="/Product/Detail/@item.Id">
-                        <img class="card-img-top" width="300px" height="150px" src="~/App_File/Images/Products/@item.ProductFoto"
+                        <img class="card-img-top" width="300" height="150" src="~/App_File/Images/Products/@item.ProductFoto"
                              alt="Card image cap">
                     </a>
                     <div class="card-body">
-                        <a href="/Product/Detail/@item.Id"><h5 class="text-dark card-title">@item.Nama</h5></a>
-                        <p style="color: grey;">@item.Pharmacy.NamaPharmacy - (@item.Type)</p>
+                        <div style="height: 3rem;">
+                            <a href="/Product/Detail/@item.Id"><h5 class="text-dark card-title text-item-truncate">@item.Nama</h5></a>
+                        </div>                       
+                        <p class="text-truncate" style="color: grey;">@item.Pharmacy.NamaPharmacy - (@item.Type)</p>
                         <p class="card-text">@Convert.ToDecimal(item.Price).ToString("C2")</p>
                     </div>
                 </div>

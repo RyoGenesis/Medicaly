@@ -59,7 +59,8 @@ $("#formAddToCart").submit(function (event) {
     var stock = $('#Stock').val();
 
     if (customerId == null) {
-        alert("Please log in first");
+        //alert("Please log in first");
+        window.location.href = "/Auth/Login";
         return;
     }
 
@@ -82,4 +83,11 @@ $("#formAddToCart").submit(function (event) {
             console.log(err);
         }
     })
+});
+
+$(function () {
+    $('.popup-enlarge').on('click', function () {
+        $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+        $('#imagemodal').modal('show');
+    });
 });
