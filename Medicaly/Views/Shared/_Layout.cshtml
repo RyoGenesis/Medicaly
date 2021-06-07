@@ -153,6 +153,22 @@
                                 </ul>
                             </div>
                         }
+                        else if (Session["UserType"].ToString() == "Admin")
+                        {
+                            <div class="dropdown">
+                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <img src="~/App_File/Images/Admin/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                    @Session["Nama"]
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="/Transaction/Manage" class="dropdown-item"><i class="fa fa-user-o"></i>Manage</a></li>
+                                    <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        }
                     }
                 </div>
                 </div>

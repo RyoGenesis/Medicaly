@@ -39,6 +39,12 @@ namespace Medicaly.Repositories
                     select x).ToList();
         }
 
+        public static List<DetailTransaction> getDetails()
+        {
+            return (from x in db.DetailTransactions
+                    select x).ToList();
+        }
+
         public static DetailTransaction getDetailById(int id)
         {
             return (from x in db.DetailTransactions

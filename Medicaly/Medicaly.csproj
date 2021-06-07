@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
@@ -145,6 +146,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="mails\GMailer.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>MedicalyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Alamat.cs">
       <DependentUpon>MedicalyModel.tt</DependentUpon>
     </Compile>
@@ -192,6 +196,7 @@
     </Compile>
     <Compile Include="Password\Hashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Repositories\AlamatCuustomerRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\DoctorRepository.cs" />
@@ -202,6 +207,7 @@
     <Compile Include="Repositories\ShoppingCartRepository.cs" />
     <Compile Include="Repositories\SpesialisRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
+    <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\CheckoutService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DoctorService.cs" />
@@ -260,6 +266,7 @@
       <DependentUpon>MedicalyModel.edmx</DependentUpon>
       <LastGenOutput>MedicalyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\AdminLogin.js" />
     <Content Include="Scripts\Alamat.js" />
     <Content Include="Scripts\AskKonsultasi.js" />
     <Content Include="Scripts\Checkout.js" />
@@ -351,6 +358,7 @@
     <Content Include="Views\Transaction\Manage.cshtml" />
     <Content Include="Views\Transaction\History.cshtml" />
     <Content Include="Views\Transaction\Detail.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

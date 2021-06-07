@@ -34,9 +34,18 @@ namespace Medicaly.Controllers
         // GET: Transaction
         public ActionResult Manage()
         {
-            if (Session["Nama"] != null && Session["UserType"].ToString() == "Pharmacy")
+            if (Session["Nama"] != null)
             {
-                return View(TransactionService.getTransactions(Session["PharmacyId"].ToString()));
+                if (Session["UserType"].ToString() == "Pharmacy")
+                {
+                    return View(TransactionService.getTransactions(Session["PharmacyId"].ToString()));
+                }
+
+                if (Session["UserType"].ToString() == "Admin")
+                {
+                    return View(TransactionService.getAdminAllTransactions());
+                }
+
             }
 
             return RedirectToAction("Index", "Home");

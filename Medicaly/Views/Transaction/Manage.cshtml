@@ -9,9 +9,12 @@
     <div id="" class="mb-5">
         <div class="container">
 
-            <a href="/Pharmacy" class="btn btn-secondary pe-4 ps-4 mb-3">
-                Back to dashboard
-            </a>
+            @if (Session["UserType"].ToString() != "Admin")
+            {
+                <a href="/Pharmacy" class="btn btn-secondary pe-4 ps-4 mb-3">
+                    Back to dashboard
+                </a>
+            }
 
             <div class="card border-0 rounded-20 shadow-sm">
                 <div class="card-body text-center my-0">
@@ -73,16 +76,27 @@
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
-                                                            View
-                                                        </a>
-                                                        <form id="formUpdateStatus" method="POST">
-                                                            <input type="number" id="Id" name="Id" value="@item.Id" hidden />
-                                                            <input type="number" id="IsShipped" name="IsShipped" value="1" hidden />
-                                                            <button type="submit" class="btn btn-outline-dark">
-                                                                Confirm
-                                                            </button>
-                                                        </form>
+                                                        <div class="me-2">
+                                                            <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark pe-4 ps-4 editProduct">
+                                                                View
+                                                            </a>
+                                                        </div>
+                                                        <div class="me-2">
+                                                            <form id="formUpdateStatus" method="POST">
+                                                                <button id="@item.Id" name="1" class="btn btn-outline-dark pe-3 ps-3" onclick="return EditStatus(this.id, this.name);">
+                                                                    Confirm
+                                                                </button>
+                                                            </form>
+                                                        </div>
+
+                                                        @if (Session["UserType"].ToString() == "Admin")
+                                                        {
+                                                            <form id="formUpdateStatus" method="POST">
+                                                                <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatus(this.id, this.name);">
+                                                                    Selesai
+                                                                </button>
+                                                            </form>
+                                                        }
                                                     </div>
                                                 </div>
                                             </td>
@@ -146,7 +160,7 @@
                                                 @Html.DisplayFor(modelItem => item.Quantity)
                                             </td>
                                             <td class="align-middle text-center">
-                                                <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
+                                                <div class="btn-toolbar flex-nowrap justify-content-center pt-3" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
                                                         <div class="me-2">
@@ -154,11 +168,21 @@
                                                                 View
                                                             </a>
                                                         </div>
-            
 
-                                                        <button type="button" class="btn btn-primary pe-4 ps-4 mb-3 editShipt" data-bs-toggle="modal" data-id="@item.Id" data-bs-target="#kirim">
-                                                            Kirim
-                                                        </button>
+                                                        @if (Session["UserType"].ToString() == "Admin")
+                                                        {
+                                                            <form id="formUpdateStatus" method="POST">
+                                                                <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatus(this.id, this.name);">
+                                                                    Selesai
+                                                                </button>
+                                                            </form>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" class="btn btn-outline-dark pe-4 ps-4 mb-3 editShipt" data-bs-toggle="modal" data-id="@item.Id" data-bs-target="#kirim">
+                                                                Kirim
+                                                            </button>
+                                                        }
                                                     </div>
                                                 </div>
                                             </td>
@@ -225,10 +249,18 @@
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark pe-4 ps-4 editProduct">
                                                             View
                                                         </a>
                                                     </div>
+                                                    @if (Session["UserType"].ToString() == "Admin")
+                                                    {
+                                                        <form id="formUpdateStatus" method="POST">
+                                                            <button id="@item.Id" name="3" class="btn btn-outline-dark" onclick="return EditStatus(this.id, this.name);">
+                                                                Selesai
+                                                            </button>
+                                                        </form>
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>
@@ -294,10 +326,18 @@
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark pe-4 ps-4 editProduct">
                                                             View
                                                         </a>
                                                     </div>
+                                                    @if (Session["UserType"].ToString() == "Admin")
+                                                    {
+                                                        <form id="formUpdateStatus" method="POST">
+                                                            <button id="@item.Id" name="4" class="btn btn-outline-dark" onclick="return EditStatus(this.id, this.name);">
+                                                                Selesai
+                                                            </button>
+                                                        </form>
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>
@@ -363,7 +403,7 @@
                                                 <div class="btn-toolbar flex-nowrap justify-content-center" role="toolbar"
                                                      aria-label="Toolbar">
                                                     <div class="btn-group me-2" role="group" aria-label="link">
-                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark editProduct">
+                                                        <a href="/Transaction/Detail/@item.HeaderTransaction.Id" class="btn btn-outline-dark pe-4 ps-4 editProduct">
                                                             View
                                                         </a>
                                                     </div>
