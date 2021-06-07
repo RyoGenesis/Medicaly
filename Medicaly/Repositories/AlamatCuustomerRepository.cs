@@ -14,7 +14,7 @@ namespace Medicaly.Repositories
         {
             return (from x in db.Alamats
                     where x.CustomerID == id
-                    select x).First();
+                    select x).FirstOrDefault();
         }
 
         public static Alamat getAlamat(int customerId, int id)
