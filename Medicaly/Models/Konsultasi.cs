@@ -27,7 +27,6 @@ namespace Medicaly.Models
         public Nullable<int> Status { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
-
         public virtual Doctor Doctor { get; set; }
         public virtual Spesiali Spesiali { get; set; }
     }

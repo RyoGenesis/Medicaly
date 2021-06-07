@@ -49,6 +49,11 @@ namespace Medicaly.Services
             return TransactionRepository.GetDetailByApotekId(int.Parse(id));
         }
 
+        public static List<DetailTransaction> getAdminAllTransactions()
+        {
+            return TransactionRepository.getDetails();
+        }
+
 
         public static List<DetailTransaction> getUserTransactions(string id)
         {

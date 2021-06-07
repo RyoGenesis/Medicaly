@@ -6,15 +6,9 @@
     $('#transaksi-selesai-beneran').DataTable();
 });
 
-$("#formUpdateStatus").submit(function (event) {
+function EditStatus(id, name) {
 
-    // Stop form from submitting normally
-    event.preventDefault();
-
-    // Get some values from elements on the page:
-    var id = $('#Id').val();
-    var isShipped = $('#IsShipped').val();
-
+    console.log(id + name);
 
     if (confirm("Are you sure ?")) {
         $.ajax({
@@ -22,7 +16,7 @@ $("#formUpdateStatus").submit(function (event) {
             url: "/Transaction/EditStatus",
             data: {
                 id: id,
-                isShipped: isShipped,
+                isShipped: name,
             },
             success: function (result) {
                 if (result.success) {
@@ -42,7 +36,7 @@ $("#formUpdateStatus").submit(function (event) {
             }
         })
     }
-});
+}
 
 $(".editShipt").click(function () {
 

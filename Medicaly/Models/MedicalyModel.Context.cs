@@ -27,6 +27,7 @@ namespace Medicaly.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Alamat> Alamats { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DetailTransaction> DetailTransactions { get; set; }
