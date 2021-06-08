@@ -37,6 +37,10 @@
             background-color: #e1e5ea;
             color: forestgreen;
         }
+
+        .left-nav a{
+            font-weight: bold;
+        }
     </style>
 
 </head>
@@ -60,14 +64,14 @@
         <!-- Navbar -->
         <nav class="navbar sticky-top navbar-expand-lg navbar-light navShadow" style="background-color: lightgreen !important;">
             <div class="container pt-1 pb-1">
-                <a class="navbar-brand" href="/">Medicaly</a>
+                <a class="navbar-brand" href="/"><img src="~/App_File/Images/MedicalyImages/medicaly-logo.png" width="150" height="63"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse pt-1 pt-1" id="navbarScroll">
-                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll left-nav" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@konsulPath">Konsultasi</a>
