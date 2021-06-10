@@ -1,6 +1,6 @@
-﻿@model Medicaly.Models.Product
+﻿@model Medicaly.ViewModels.ProductDetailViewModel
 @{
-    ViewBag.Title = "Medicaly - " + Model.Nama;
+    ViewBag.Title = "Medicaly - " + Model.selectedProduct.Nama;
 }
 
 <secion id="ProductPage">
@@ -24,11 +24,11 @@
 
                             <div class="col-12 mb-0">
                                 <figure class="view overlay rounded z-depth-1 main-img">
-                                    <!--<a href="~/App_File/Images/Products/@Model.ProductFoto"
-                                    data-size="710x823" target="_blank"> -->
+                                    <!--<a href="~/App_File/Images/Products/@Model.selectedProduct.ProductFoto"
+                                data-size="710x823" target="_blank"> -->
                                     <a class="popup-enlarge" href="#">
                                         <img class="card-img-top img-fluid z-depth-1" width="600" height="400"
-                                             src="~/App_File/Images/Products/@Model.ProductFoto" alt="Card image cap">
+                                             src="~/App_File/Images/Products/@Model.selectedProduct.ProductFoto" alt="Card image cap">
                                     </a>
                                 </figure>
                             </div>
@@ -54,11 +54,11 @@
                 <div class="col-md-4">
 
 
-                    <h5 class="fs-3">@Model.Nama</h5>
-                    <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
-                    <p><span class="mr-1 fs-3"><strong>@Convert.ToDecimal(Model.Price).ToString("C2")</strong></span></p>
+                    <h5 class="fs-3">@Model.selectedProduct.Nama</h5>
+                    <p class="mb-2 text-muted text-uppercase small">@Model.selectedProduct.Type</p>
+                    <p><span class="mr-1 fs-3"><strong>@Convert.ToDecimal(Model.selectedProduct.Price).ToString("C2")</strong></span></p>
 
-                    <span><strong>Stok: </strong> @Model.Stock</span>
+                    <span><strong>Stok: </strong> @Model.selectedProduct.Stock</span>
 
                     <form id="formAddToCart" method="POST">
                         <div class="table-responsive mb-2 w-50">
@@ -79,8 +79,8 @@
                                                 }
                                             }
 
-                                            <input type="text" name="ProductId" id="ProductId" value="@Model.Id" hidden />
-                                            <input type="text" name="Stock" id="Stock" value="@Model.Stock" hidden />
+                                            <input type="text" name="ProductId" id="ProductId" value="@Model.selectedProduct.Id" hidden />
+                                            <input type="text" name="Stock" id="Stock" value="@Model.selectedProduct.Stock" hidden />
 
                                             <div class="input-group w-75">
                                                 <span class="input-group-btn">
@@ -104,7 +104,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @if (Model.Stock == 0)
+                        @if (Model.selectedProduct.Stock == 0)
                         {
                             <button type="submit" class="btn btn-outline-secondary btn-md me-1 mb-2 disabled">
                                 <i class="fas fa-shopping-cart pr-2"></i> Add to cart
@@ -124,7 +124,7 @@
                             <tbody>
                                 <tr>
                                     <th class="ps-0 w-25 fw-normal" scope="row"><strong>Toko</strong></th>
-                                    <td>@Model.Pharmacy.NamaPharmacy</td>
+                                    <td>@Model.selectedProduct.Pharmacy.NamaPharmacy</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -138,10 +138,10 @@
                 <div class="col-md-9 mb-4 mb-md-0">
                     <hr>
                     <h2><b>Deskripsi</b></h2>
-                    @if (Model.Type.Equals("Alat-Kesehatan"))
+                    @if (Model.selectedProduct.Type.Equals("Alat-Kesehatan"))
                     {
                         <p class="pt-1">
-                            @Model.Deskripsi
+                            @Model.selectedProduct.Deskripsi
                         </p>
                     }
                     else
@@ -149,57 +149,57 @@
                         <p class="pt-0">
                             <strong>Indikasi Umum</strong>
                             <br />
-                            @Model.IndikasiUmum
+                            @Model.selectedProduct.IndikasiUmum
                         </p>
                         <p class="pt-0">
                             <strong>Deskripsi Obat</strong>
                             <br />
-                            @Model.Deskripsi
+                            @Model.selectedProduct.Deskripsi
                         </p>
                         <p class="pt-0">
                             <strong>Komposisi</strong>
                             <br />
-                            @Model.Komposisi
+                            @Model.selectedProduct.Komposisi
                         </p>
                         <p class="pt-0">
                             <strong>Dosis</strong>
                             <br />
-                            @Model.Dosis
+                            @Model.selectedProduct.Dosis
                         </p>
                         <p class="pt-0">
                             <strong>Aturan Pakai</strong>
                             <br />
-                            @Model.AturanPakai
+                            @Model.selectedProduct.AturanPakai
                         </p>
                         <p class="pt-0">
                             <strong>Kemasan</strong>
                             <br />
-                            @Model.Kemasan
+                            @Model.selectedProduct.Kemasan
                         </p>
                         <p class="pt-0">
                             <strong>Kontra Indikasi</strong>
                             <br />
-                            @Model.KontraIndikasi
+                            @Model.selectedProduct.KontraIndikasi
                         </p>
                         <p class="pt-0">
                             <strong>Perhatian</strong>
                             <br />
-                            @Model.Perhatian
+                            @Model.selectedProduct.Perhatian
                         </p>
                         <div class="table-responsive">
                             <table class="table table-sm table-borderless mb-0">
                                 <tbody>
                                     <tr>
                                         <th class="ps-0 w-25 fw-normal" scope="row"><strong>Kategori</strong></th>
-                                        <td>@Model.Category</td>
+                                        <td>@Model.selectedProduct.Category</td>
                                     </tr>
                                     <tr>
                                         <th class="ps-0 w-25 fw-normal" scope="row"><strong>Segmentasi</strong></th>
-                                        <td>@Model.Segmentasi</td>
+                                        <td>@Model.selectedProduct.Segmentasi</td>
                                     </tr>
                                     <tr>
                                         <th class="ps-0 w-25 fw-normal" scope="row"><strong>Manufaktur</strong></th>
-                                        <td>@Model.Manufaktur</td>
+                                        <td>@Model.selectedProduct.Manufaktur</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -207,7 +207,31 @@
                     }
                 </div>
             </div>
-        </div>       
+        </div>
+        <h4>Produk Lain untuk anda</h4>
+        <div class="row justify-content-md-start mt-3 row-cols-sm-auto">
+            @for(int i=0; i<4; i++)
+            {
+                var item = Model.products.ElementAt(i);
+                if (!item.Equals(Model.selectedProduct))
+                {
+                    <div class="card" style="width: 18rem;">
+                        <a href="/Product/Detail/@item.Id">
+                            <img class="card-img-top" width="300" height="150" src="~/App_File/Images/Products/@item.ProductFoto"
+                                 alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <div style="height: 3rem;">
+                                <a href="/Product/Detail/@item.Id"><h5 class="text-dark card-title text-item-truncate">@item.Nama</h5></a>
+                            </div>
+                            <p class="text-truncate" style="color: grey;">@item.Pharmacy.NamaPharmacy - (@item.Type)</p>
+                            <p class="card-text">@Convert.ToDecimal(item.Price).ToString("C2")</p>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
     </section>
 </secion>
 

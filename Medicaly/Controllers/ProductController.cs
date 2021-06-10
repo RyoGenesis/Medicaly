@@ -103,9 +103,9 @@ namespace Medicaly.Controllers
             try
             {
                 ViewBag.Message = "Your contact page.";
-                Product product = ProductService.getProductById(id);
+                ProductDetailViewModel details = ProductService.getProductDetailView(id);
 
-                return View(product);
+                return View(details);
             }
             catch (Exception)
             {

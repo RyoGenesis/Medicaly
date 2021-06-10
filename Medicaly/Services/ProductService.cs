@@ -45,6 +45,15 @@ namespace Medicaly.Services
             return null;
         }
 
+        public static ProductDetailViewModel getProductDetailView(int id)
+        {
+            List<Product> products = ProductRepository.getAllProduct();
+            ProductDetailViewModel detailView = new ProductDetailViewModel();
+            detailView.selectedProduct = getProductById(id);
+            detailView.products = products;
+            return detailView;
+        }
+
         public static bool addProduct(int pharmacyId, string pharmacyName, Product product, string path)
         {
             string fileName = Path.GetFileNameWithoutExtension(product.ImageUpload.FileName);
