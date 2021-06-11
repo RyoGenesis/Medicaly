@@ -47,7 +47,7 @@ namespace Medicaly.Services
 
         public static ProductDetailViewModel getProductDetailView(int id)
         {
-            List<Product> products = ProductRepository.getAllProduct();
+            List<Product> products = ProductRepository.getFiveRandomProducts();
             ProductDetailViewModel detailView = new ProductDetailViewModel();
             detailView.selectedProduct = getProductById(id);
             detailView.products = products;

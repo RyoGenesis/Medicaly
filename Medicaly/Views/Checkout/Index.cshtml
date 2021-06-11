@@ -5,6 +5,10 @@
     long? totalHarga = 0;
 }
 
+<style>
+    .affix
+</style>
+
 <div class="container mb-5">
     <div class="card border-0 rounded-20 shadow-sm">
         <div class="card-body text-center my-0">
@@ -22,7 +26,7 @@
                 <span class="text-muted">Your cart</span>
                 <span class="badge badge-secondary badge-pill">3</span>
             </h4>
-            <ul class="list-group mb-3 sticky-top">
+            <ul class="list-group mb-3">
                 @foreach (var item in Model.shoppingCarts)
                 {
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -97,7 +101,7 @@
                         <span class="font-weight-bold h5 text-blue-gradient">
                             BANK BCA: 52710239030
                             a/n
-                            Medcialy
+                            Medicaly
                         </span>
                     </li>
                     <li class="my-2">
@@ -138,7 +142,10 @@
                 </ol>
             </div>
 
-            <input type="text" class="form-control" id="AlamatId" name="AlamatId" value="@Model.Alamat.Id" hidden>
+            @if (Model.Alamat != null)
+            {
+                <input type="text" class="form-control" id="AlamatId" name="AlamatId" value="@Model.Alamat.Id" hidden>
+            }
 
             <div>
                 <div class="mb-3">
@@ -179,9 +186,11 @@
             @if (Model.Alamat == null)
             {
                 <button class="btn btn-primary btn-lg btn-block pe-5 ps-5 disabled" type="submit">Bayar</button>
-            } else
+                <h6 class="mt-1">*Mohon tambahkan alamat anda terlebih dahulu! Anda tidak bisa checkout jika belum ada alamat yang terdaftar.</h6>
+            }
+            else
             {
-                <button class="btn btn-primary btn-lg btn-block pe-5 ps-5" type="submit">Bayar</button> 
+                <button class="btn btn-primary btn-lg btn-block pe-5 ps-5" type="submit">Bayar</button>
             }
         </form>
         </div>

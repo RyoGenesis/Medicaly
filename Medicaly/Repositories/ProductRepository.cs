@@ -25,6 +25,12 @@ namespace Medicaly.Repositories
                     select x).ToList();
         }
 
+        public static List<Product> getFiveRandomProducts()
+        {
+            return (from x in db.Products
+                    select x).OrderBy(x => Guid.NewGuid()).Take(5).ToList();
+        }
+
         public static bool addProduct(Product product)
         {
             try

@@ -41,6 +41,15 @@
         .left-nav a{
             font-weight: bold;
         }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        .form-control::placeholder {
+            font-size: 0.95rem;
+            color: #aaa;
+        }
     </style>
 
 </head>
@@ -48,16 +57,20 @@
     <div id="App">
         @{
             string path = "";
-            string konsulPath = "";
+            string konsulPath = "/Konsultasi/";
+
             if (Session["CustomerId"] == null)
             {
                 path = "/Auth/Login";
-                konsulPath = "/Auth/Login";
             }
             else
             {
                 path = "/Cart/";
-                konsulPath = "/Konsultasi/";
+            }
+
+            if (Session["DoctorId"] != null)
+            {
+                konsulPath = "/Doctor/";
             }
         }
 
@@ -69,30 +82,45 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse pt-1 pt-1" id="navbarScroll">
+                    <!--left side of navbar-->
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll left-nav" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@konsulPath">Konsultasi</a>
-                        </li>
+                        @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@konsulPath">Konsultasi</a>
+                            </li>
+                        }
+                        @if (Session["Nama"] != null)
+                        {
+                            if (Session["UserType"].ToString() == "Pharmacy")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Pharmacy/">Dashboard</a>
+                                </li>
+                            }
+                        }
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Link
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                            <a class="nav-link" href="#">Customer Support</a>
                         </li>
                         <!--
-                            <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
-                            </li>   
-                        -->
+            <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+            </li>
+        -->
                     </ul>
+
+                    <!--search bar navbar in middle-->
+                    <div class="input-group mb-2" style="width: 350px;">
+                        <input type="search" placeholder="Cari obat atau alat kesehatan" aria-describedby="button-search" class="form-control">
+                        <div class="input-group-append">
+                            <button id="button-search" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <!--right side of navbar-->
                     @if (Session["Nama"] == null || Session["UserType"].ToString() != "Pharmacy")
                     {
 
@@ -102,7 +130,7 @@
                                     <i class="fas fa-shopping-cart pl-0"></i> Keranjang
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item dropdown me-1">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-store"></i> Farmasi
@@ -116,80 +144,80 @@
 
                         </ul>
                     }
-                <div class="ml-auto pb-1">
-                    @{
-                        if (Session["Nama"] == null)
-                        {
-                            <a href="/Auth/Login" class="btn btn-outline-primary btn-rounded pe-4 ps-4 login-regis">Login</a>
-                            <a href="/Auth/Register" class="btn btn-outline-primary pe-3 ps-3 login-regis">Register</a>
+                    <div class="ml-auto pb-1">
+                        @{
+                            if (Session["Nama"] == null)
+                            {
+                                <a href="/Auth/Login" class="btn btn-outline-primary btn-rounded pe-4 ps-4 login-regis">Login</a>
+                                <a href="/Auth/Register" class="btn btn-outline-primary pe-3 ps-3 login-regis">Register</a>
+                            }
+                            else if (Session["UserType"].ToString() == "Customer")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/App_File/Images/Customers/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="/Transaction/History" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
+                                        <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Session["UserType"].ToString() == "Pharmacy")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/App_File/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="/Product/Manage" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Products</a></li>
+                                        <li> <a href="/Transaction/Manage" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Transactions</a></li>
+                                        <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Session["UserType"].ToString() == "Doctor")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/App_File/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="/Doctor/" class="dropdown-item"><i class="fa fa-user-o"></i>Konsultasi</a></li>
+                                        <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else if (Session["UserType"].ToString() == "Admin")
+                            {
+                                <div class="dropdown">
+                                    <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <img src="~/App_File/Images/Admin/@Session["FotoProfile"]" class="avatar" alt="Avatar">
+                                        @Session["Nama"]
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="/Transaction/Manage" class="dropdown-item"><i class="fa fa-user-o"></i>Manage</a></li>
+                                        <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
+                                        <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
+                                    </ul>
+                                </div>
+                            }
                         }
-                        else if (Session["UserType"].ToString() == "Customer")
-                        {
-                            <div class="dropdown">
-                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img src="~/App_File/Images/Customers/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                    @Session["Nama"]
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li> <a href="/Transaction/History" class="dropdown-item"><i class="fa fa-user-o"></i> Shopping History</a></li>
-                                    <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        }
-                        else if (Session["UserType"].ToString() == "Pharmacy")
-                        {
-                            <div class="dropdown">
-                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img src="~/App_File/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                    @Session["Nama"]
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li> <a href="/Product/Manage" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Products</a></li>
-                                    <li> <a href="/Transaction/Manage" class="dropdown-item"><i class="fa fa-user-o"></i> Manage Transactions</a></li>
-                                    <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        }
-                        else if (Session["UserType"].ToString() == "Doctor")
-                        {
-                            <div class="dropdown">
-                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img src="~/App_File/Images/Pharmacies/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                    @Session["Nama"]
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li> <a href="/Doctor/" class="dropdown-item"><i class="fa fa-user-o"></i>Konsultasi</a></li>
-                                    <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        }
-                        else if (Session["UserType"].ToString() == "Admin")
-                        {
-                            <div class="dropdown">
-                                <a href="#" class="nav-item dropdown-toggle nav-link user-action" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <img src="~/App_File/Images/Admin/@Session["FotoProfile"]" class="avatar" alt="Avatar">
-                                    @Session["Nama"]
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li> <a href="/Transaction/Manage" class="dropdown-item"><i class="fa fa-user-o"></i>Manage</a></li>
-                                    <li><a href="/Profile/" class="dropdown-item"><i class="fa fa-calendar-o"></i> My Profile</a></li>
-                                    <li><a href="/Auth/Logout" class="dropdown-item"><i class="fa fa-sliders"></i> Logout</a></li>
-                                </ul>
-                            </div>
-                        }
-                    }
-                </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -221,11 +249,11 @@
                         <h6>Contacts</h6>
                         <ul class="footer-links">
                             <li class="mb-2">
-                                <span class="fa-li"><i class="far fa-map"></i></span>New York, Avenue Street 10
+                                <span class="fa-li"><i class="far fa-map"></i></span>Jakarta Barat, Jl. Kemanggisan Raya
                             </li>
                             <li class="mb-2"><span class="fa-li"><i class="fas fa-phone-alt"></i></span>042 876 836 908</li>
                             <li class="mb-2"><span class="fa-li"><i class="far fa-envelope"></i></span>pr.medicaly@gmail.com</li>
-                            <li><span class="fa-li"><i class="far fa-clock"></i></span>Monday - Friday: 10-17</li>
+                            <li><span class="fa-li"><i class="far fa-clock"></i></span>Senin - Jumat: 10:00-17:00</li>
                         </ul>
                     </div>
                 </div>
