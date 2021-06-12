@@ -113,5 +113,21 @@ namespace Medicaly.Controllers
                 return RedirectToAction("Index", "Home"); ;
             }
         }
+
+        //get browse result
+        public ActionResult Browse(string id)
+        {
+            try
+            {
+                ViewBag.Message = "Your contact page.";
+                BrowseViewModel browse = ProductService.getBrowseView(id);
+
+                return View(browse);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Home"); ;
+            }
+        }
     }
 }

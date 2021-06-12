@@ -88,6 +88,12 @@ namespace Medicaly.Repositories
                 ).FirstOrDefault();
         }
 
+        public static List<Product> getProductsContainString(string searchQuery)
+        {
+            return (from x in db.Products
+                    where x.Nama.Contains(searchQuery)
+                    select x).ToList();
+        }
 
         public static bool deleteProduct(int productId)
         {

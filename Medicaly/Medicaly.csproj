@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -216,7 +217,10 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\SupportService.cs" />
     <Compile Include="Services\TransactionService.cs" />
+    <Compile Include="SupportClasses\SupportForm.cs" />
+    <Compile Include="ViewModels\BrowseViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\KonsultasiViewModel.cs" />
     <Compile Include="ViewModels\ProductDetailViewModel.cs" />
@@ -271,6 +275,7 @@
     <Content Include="Scripts\Alamat.js" />
     <Content Include="Scripts\AskKonsultasi.js" />
     <Content Include="Scripts\Checkout.js" />
+    <Content Include="Scripts\CustomerSupport.js" />
     <Content Include="Scripts\DoctorScript.js" />
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\JawabKonsultasi.js" />
@@ -361,6 +366,8 @@
     <Content Include="Views\Transaction\History.cshtml" />
     <Content Include="Views\Transaction\Detail.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Product\Browse.cshtml" />
+    <Content Include="Views\Customer\Support.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

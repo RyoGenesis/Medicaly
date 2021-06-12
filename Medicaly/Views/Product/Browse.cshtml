@@ -1,0 +1,54 @@
+﻿@model Medicaly.ViewModels.BrowseViewModel
+
+@{
+    ViewBag.Title = "Medicaly - Cari " + Model.searchInput;
+}
+
+<style>
+    .text-item-truncate {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="container">
+
+    <div class="row">
+        <h4>Hasil Pencarian: @Model.searchInput</h4>
+    </div>
+    <hr />
+    <div class="row justify-content-md-start mt-3 row-cols-sm-auto">
+        @if (Model.product.Count() > 0)
+        {
+            foreach (var item in Model.product)
+            {
+                <div class="col-3  mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <a href="/Product/Detail/@item.Id">
+                            <img class="card-img-top" width="300" height="150" src="~/App_File/Images/Products/@item.ProductFoto"
+                                 alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <div style="height: 3rem;">
+                                <a href="/Product/Detail/@item.Id"><h5 class="text-dark card-title text-item-truncate">@item.Nama</h5></a>
+                            </div>
+                            <p class="text-truncate" style="color: grey;">@item.Pharmacy.NamaPharmacy - (@item.Type)</p>
+                            <p class="card-text">@Convert.ToDecimal(item.Price).ToString("C2")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center">
+                <h6>Tidak ada produk yang sesuai.</h6>
+            </div>
+        }
+
+    </div>
+
+</div>

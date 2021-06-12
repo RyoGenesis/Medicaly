@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Medicaly - Customer Support";
+}
+
+<section id="supportPage" class="pt-3">
+    <div class="mx-auto mt-lg-3 mb-lg-5 shadow mb-5 bg-white rounded" style="width: 900px;">
+        <section id="title">
+            <div class="card-header bg-light text-center">
+                <h3>Form Customer Support Medicaly*</h3>
+            </div>
+        </section>
+        <div class="card-body">
+            <section id="Form">
+                <form id="formSupport" enctype="multipart/form-data" method="post" onsubmit="return sendForm(this)">
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Nama">Nama Anda</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Nama" name="Nama" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Email">Email Anda</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control mt-2" id="Email" name="Email" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Topik">Topik</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control mt-2" id="Topik" name="Topik" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="Detail">Cantumkan detail masalah/pertanyaan anda</label>
+                        <div class="col-sm-12">
+                            <textarea class="form-control mt-2" style="resize: none;" id="Detail" name="Detail" cols="20" rows="10" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-form-label" for="FilePendukung">Upload File Tambahan (jika ada)</label>
+                        <div class="col-sm-12">
+                            <input type="file" class="form-control" name="fileUpload" id="FileUpload" placeholder="No file chosen">
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary ps-5 pe-5">Submit Form</button>
+                        <br />
+                        <span class="text-start" style="font-size: small; color:gray;">
+                            *Balasan complaint/pertanyaan anda akan dikirim ke email yang tertera di form.
+                            Mohon menunggu paling lama 3 hari kerja untuk mendapatkan balasan anda.
+                        </span>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script src="~/Scripts/CustomerSupport.js"></script>
+}

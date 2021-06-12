@@ -32,6 +32,18 @@ namespace Medicaly.Services
             return productView;
         }
 
+        public static BrowseViewModel getBrowseView(string searchQuery)
+        {
+            System.Diagnostics.Debug.WriteLine(searchQuery);
+            List<Product> products = ProductRepository.getProductsContainString(searchQuery);
+            BrowseViewModel browseView = new BrowseViewModel();
+
+            browseView.product = products;
+            browseView.searchInput = searchQuery;
+
+            return browseView;
+        }
+
         public static Product getProductById(int id)
         {
             if (id.ToString() != null)

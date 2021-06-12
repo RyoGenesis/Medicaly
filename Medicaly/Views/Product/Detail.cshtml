@@ -3,7 +3,17 @@
     ViewBag.Title = "Medicaly - " + Model.selectedProduct.Nama;
 }
 
-<secion id="ProductPage">
+<style>
+    .text-item-truncate {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<section id="ProductPage">
     <section id="ProductTitle" class="jumbotron color-grey-light mt-0" style="padding-bottom: 70px;">
         <div class="d-flex align-items-center h-100">
             <div class="container text-center">
@@ -237,11 +247,7 @@
 
         </div>
     </section>
-</secion>
-
-
-
-
+</section>
 
 @section scripts {
     <script src="~/Scripts/ProductDetail.js"></script>
