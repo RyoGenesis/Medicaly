@@ -123,7 +123,7 @@ namespace Medicaly.Services
 
             if (CustomerRepository.updatePicture(int.Parse(id), customer.FotoProfile))
             {
-                return "Success update profile picture!";
+                return customer.FotoProfile;
             }
 
             return "Cannot update profile picture!";

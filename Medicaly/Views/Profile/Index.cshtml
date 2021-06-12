@@ -60,15 +60,23 @@
                                 <div class="user-avatar pt-2 pb-5">
                                     @if (Model.pharmacies == null && Model.doctors == null)
                                     {
-                                        <img class="img-profile" src="~/App_File/Images/Customers/@Model.customers.FotoProfile" alt="Maxwell Admin">
+                                        <img class="img-profile" src="~/App_File/Images/Customers/@Model.customers.FotoProfile" alt="No Photos">
                                     }
                                     else if (Model.customers == null && Model.doctors == null)
                                     {
-                                        <img src="~/App_File/Images/Pharmacies/@Model.pharmacies.FotoPharmacy" alt="Maxwell Admin">
+                                        <img src="~/App_File/Images/Pharmacies/@Model.pharmacies.FotoPharmacy" alt="No Photos">
                                     }
                                     else if (Model.customers == null && Model.pharmacies == null)
                                     {
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                        if (Model.doctors.FotoProfile != null)
+                                        {
+                                            <img src="~/App_File/Images/Doctors/@Model.doctors.FotoProfile" alt="No Photos">
+                                        }
+                                        else
+                                        {
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="No Photos">
+                                        }
+
                                     }
                                 </div>
                                 @if (Model.pharmacies == null && Model.doctors == null)
@@ -169,7 +177,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="Alamat">Address</label>
-                                            <input type="url" class="form-control" id="Alamat" value="@Model.pharmacies.Alamat" required>
+                                            <input type="text" class="form-control" id="Alamat" name="Alamat" value="@Model.pharmacies.Alamat" required>
                                         </div>
                                     </div>
                                 </div>
@@ -186,15 +194,14 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="EmailPIC">Email PIC</label>
-                                            <input type="email" class="form-control" id="EmailPIC" name="EmailPIC" value="@Model.pharmacies.EmailPharmacy" required>
+                                            <input type="email" class="form-control" id="EmailPIC" name="EmailPIC" value="@Model.pharmacies.EmailPIC" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pt-5">
                                         <div class="text-right">
-                                            <button type="button" id="submit" name="submit" class="btn btn-secondary ps-5 pe-5">Cancel</button>
-                                            <button type="button" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update</button>
+                                            <button type="submit" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,13 +217,13 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="NoKTP">NO KTP</label>
-                                            <input type="text" class="form-control" id="NoKTP" name="NoKTP" value="@Model.doctors.NoKTP" placeholder="Enter full name" required>
+                                            <input type="text" class="form-control" id="NoKTP" name="NoKTP" value="@Model.doctors.NoKTP" placeholder="Enter No KTP" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="SpesialisId">Email</label>
-                                            <input type="text" class="form-control" id="SpesialisId" value="@Model.doctors.Spesiali.Nama" readonly>
+                                            <label for="SpesialisId">Bidang Spesialis</label>
+                                            <input type="text" class="form-control" value="@Model.doctors.Spesiali.Nama" readonly>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -240,7 +247,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="Alamat">Address</label>
-                                            <input type="url" class="form-control" id="Alamat" value="@Model.doctors.Alamat" required>
+                                            <input type="text" class="form-control" id="Alamat" name="Alamat" value="@Model.doctors.Alamat" required>
                                         </div>
                                     </div>
                                 </div>
@@ -250,19 +257,19 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="Pengalaman">Pengalaman</label>
+                                            <label for="Pengalaman">Pengalaman (Dalam Tahun)</label>
                                             <input type="number" class="form-control" id="Pengalaman" name="Pengalaman" value="@Model.doctors.Pengalaman" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="STR">STR</label>
+                                            <label for="STR">No Surat Tanda Registrasi (STR)</label>
                                             <input type="text" class="form-control" id="STR" name="STR" value="@Model.doctors.STR" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="SIP">SIP</label>
+                                            <label for="SIP">No Surat Ijin Praktek (SIP)</label>
                                             <input type="text" class="form-control" id="SIP" name="SIP" value="@Model.doctors.SIP" required>
                                         </div>
                                     </div>
@@ -270,8 +277,7 @@
                                 <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pt-5">
                                         <div class="text-right">
-                                            <button type="button" id="submit" name="submit" class="btn btn-secondary ps-5 pe-5">Cancel</button>
-                                            <button type="button" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update</button>
+                                            <button type="submit" id="submit" name="submit" class="btn btn-primary ps-5 pe-5">Update</button>
                                         </div>
                                     </div>
                                 </div>

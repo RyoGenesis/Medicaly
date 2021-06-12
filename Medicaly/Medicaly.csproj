@@ -302,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_File\Images\Customers\" />
+    <Folder Include="App_File\Images\Doctors\" />
     <Folder Include="App_File\Images\Pharmacies\" />
     <Folder Include="App_File\Images\Products\" />
     <Folder Include="App_File\Images\Transactions\" />
