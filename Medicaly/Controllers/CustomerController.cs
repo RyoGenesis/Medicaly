@@ -1,5 +1,5 @@
 ﻿using Medicaly.Services;
-using Medicaly.SupportClasses;
+using Medicaly.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,13 @@ namespace Medicaly.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        public ActionResult Index()
+        public ActionResult Support()
         {
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Support(SupportForm support)
+        public JsonResult SupportPost(SupportForm support)
         {
             if (support != null)
             {

@@ -279,6 +279,10 @@
 
         function browse() {
             var query = $('#search').val()
+            if (query === "") {
+                alert('Tolong input nama produk yang ingin dicari!');
+                return;
+            }
             console.log(query);
             window.location.href = "/Product/Browse/" + query;
         }

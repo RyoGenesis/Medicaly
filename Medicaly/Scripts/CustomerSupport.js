@@ -2,7 +2,7 @@
     console.log(formData.data);
     var ajaxConfig = {
         type: "post",
-        url: "/Customer/Support",
+        url: "/Customer/SupportPost",
         data: new FormData(formData),
         success: function (result) {
             console.log(result)

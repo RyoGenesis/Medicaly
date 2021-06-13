@@ -1,5 +1,5 @@
 ﻿using Medicaly.mails;
-using Medicaly.SupportClasses;
+using Medicaly.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

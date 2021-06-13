@@ -9,6 +9,7 @@
                 alert(result.message);
                 if (result.message == "Success update alamat!") {
                     window.history.back();
+                    location.reload();
                 }
             } else {
                 console.log(result.message);
@@ -41,6 +42,7 @@ function addAlamat(formData) {
                 alert(result.message);
                 if (result.message == "Success add alamat baru!") {
                     window.history.back();
+                    location.reload();
                 }
             } else {
                 console.log(result.message);
